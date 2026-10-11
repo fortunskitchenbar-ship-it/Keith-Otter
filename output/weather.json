@@ -1,89 +1,89 @@
 {
-  "temp": 71,
+  "temp": 75,
   "high": 75,
-  "low": 65,
-  "conditions": "Overcast",
-  "updated": "2026-10-11T18:19:09.937286+00:00",
+  "low": 63,
+  "conditions": "Clear",
+  "updated": "2026-10-11T22:09:32.046616+00:00",
   "hourly": [
     {
+      "time": "3 PM",
+      "temp": 75,
+      "conditions": "Clear"
+    },
+    {
+      "time": "4 PM",
+      "temp": 75,
+      "conditions": "Clear"
+    },
+    {
+      "time": "5 PM",
+      "temp": 74,
+      "conditions": "Clear"
+    },
+    {
+      "time": "6 PM",
+      "temp": 71,
+      "conditions": "Clear"
+    },
+    {
+      "time": "7 PM",
+      "temp": 67,
+      "conditions": "Clear"
+    },
+    {
+      "time": "8 PM",
+      "temp": 64,
+      "conditions": "Clear"
+    },
+    {
+      "time": "9 PM",
+      "temp": 63,
+      "conditions": "Clear"
+    },
+    {
+      "time": "10 PM",
+      "temp": 64,
+      "conditions": "Clear"
+    },
+    {
+      "time": "11 PM",
+      "temp": 63,
+      "conditions": "Clear"
+    },
+    {
       "time": "12 AM",
-      "temp": 68,
-      "conditions": "Rain"
+      "temp": 63,
+      "conditions": "Clear"
     },
     {
       "time": "1 AM",
-      "temp": 70,
-      "conditions": "Heavy rain"
+      "temp": 62,
+      "conditions": "Clear"
     },
     {
       "time": "2 AM",
-      "temp": 70,
-      "conditions": "Heavy rain"
-    },
-    {
-      "time": "3 AM",
-      "temp": 70,
-      "conditions": "Rain"
-    },
-    {
-      "time": "4 AM",
-      "temp": 71,
-      "conditions": "Overcast"
-    },
-    {
-      "time": "5 AM",
-      "temp": 68,
-      "conditions": "Mostly clear"
-    },
-    {
-      "time": "6 AM",
-      "temp": 68,
-      "conditions": "Rain"
-    },
-    {
-      "time": "7 AM",
-      "temp": 68,
-      "conditions": "Light rain"
-    },
-    {
-      "time": "8 AM",
-      "temp": 69,
-      "conditions": "Overcast"
-    },
-    {
-      "time": "9 AM",
-      "temp": 70,
-      "conditions": "Overcast"
-    },
-    {
-      "time": "10 AM",
-      "temp": 72,
-      "conditions": "Light drizzle"
-    },
-    {
-      "time": "11 AM",
-      "temp": 71,
-      "conditions": "Overcast"
+      "temp": 62,
+      "conditions": "Clear"
     }
   ],
   "daily": [
     {
       "day": "Sun",
       "high": 75,
-      "low": 65,
+      "low": 63,
       "conditions": "Heavy rain"
     },
     {
       "day": "Mon",
-      "high": 69,
-      "low": 60,
+      "high": 75,
+      "low": 59,
       "conditions": "Overcast"
     },
     {
       "day": "Tue",
       "high": 78,
-      "low": 59,
-      "conditions": "Clear"
+      "low": 56,
+      "conditions": "Mostly clear"
     },
     {
       "day": "Wed",
