@@ -8,14 +8,14 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Trump Russia deal could fuel Putin's war, ex-NATO commander warns as Zelenskyy says 'nyet'
+   1. Trump and Rubio weigh firing Kimberly Guilfoyle as misconduct and donor bailout allegations mount
+      https://www.foxnews.com/politics/trump-rubio-weigh-firing-kimberly-guilfoyle-misconduct-donor-bailout-allegations-mount
+
+   2. Trump Russia deal could fuel Putin's war, ex-NATO commander warns as Zelenskyy says 'nyet'
       https://www.foxnews.com/world/trump-russia-deal-could-fuel-putins-war-ex-nato-commander-warns-zelenskyy-says-nyet
 
-   2. GOP senator calls for FCC probe of ABC News over Trump sons-Anduril 'political hit job'
+   3. GOP senator calls for FCC probe of ABC News over Trump sons-Anduril 'political hit job'
       https://www.foxnews.com/media/gop-senator-calls-fcc-probe-abc-news-trump-sons-anduril-political-hit-job
-
-   3. In Springfield, Ohio, Trump must settle the MAGA vs Chamber of Commerce war
-      https://www.foxnews.com/opinion/springfield-ohio-trump-settle-maga-vs-chamber-commerce-war
 
    4. Trump announces immediate energy ceasefire between Russia and Ukraine
       https://www.foxnews.com/politics/trump-announces-immediate-energy-ceasefire-between-russia-ukraine
@@ -40,5 +40,5 @@
 
 
 ============================================================
-  Generated at 03:12 PM PDT by GitHub Actions
+  Generated at 07:34 PM PDT by GitHub Actions
 ============================================================
