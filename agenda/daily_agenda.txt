@@ -1,5 +1,5 @@
 ============================================================
-  DAILY BRIEFING — Monday, October 12, 2026
+  DAILY BRIEFING — Tuesday, October 13, 2026
 ============================================================
 
 📅  TODAY'S AGENDA
@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Eric Trump trashes ABC over 'bulls--- hit piece,' backs call for FCC probe into revised story
-      https://www.foxnews.com/media/eric-trump-trashes-abc-bulls-hit-piece-backs-call-fcc-probe-revised-story
+   1. Trump 'looking at' firing ambassador to Greece: 'We're not happy'
+      https://www.foxnews.com/politics/trump-looking-firing-ambassador-greece-not-happy
 
-   2. Biden-appointed judge with history of fiery Trump clashes erupts at DOJ: 'You've lost all credibility!'
+   2. Trump's new press secretary takes the podium after weeks-long White House shake-up and more top headlines
+      https://www.foxnews.com/us/trumps-new-press-secretary-takes-podium-after-weeks-long-white-house-shake-up-more-top-headlines
+
+   3. Trump's new press secretary faces first major test as White House briefing room enters new era
+      https://www.foxnews.com/politics/trumps-new-press-secretary-faces-first-major-test-white-house-briefing-room-enters-new-era
+
+   4. Booker ‘wowed’ by GOP challenger’s blunt message to Trump
+      https://www.foxnews.com/politics/booker-wowed-gop-challengers-blunt-message-trump
+
+   5. Protester punched in face by Trump supporter, mocked by president at Ohio rally: 'Gotta go on a diet'
+      https://www.foxnews.com/politics/protester-punched-face-trump-supporter-mocked-president-ohio-rally-gotta-go-diet
+
+   6. Biden-appointed judge with history of fiery Trump clashes erupts at DOJ: 'You've lost all credibility!'
       https://www.foxnews.com/politics/biden-appointed-judge-history-fiery-trump-clashes-erupts-doj-lost-all-credibility
 
-   3. Republican lawmakers break with Trump on diesel deal with Russia
+   7. Republican lawmakers break with Trump on diesel deal with Russia
       https://www.foxnews.com/politics/republican-lawmakers-break-trump-diesel-deal-russia
 
-   4. Trump's backyard is quietly transforming into 'Silicon Valley South' as wealthy Americans flock in
+   8. Trump's backyard is quietly transforming into 'Silicon Valley South' as wealthy Americans flock in
       https://www.foxnews.com/politics/trumps-backyard-quietly-transforming-silicon-valley-south-wealthy-americans-flock
 
-   5. Trump and Rubio weigh firing Kimberly Guilfoyle as misconduct and donor bailout allegations mount
+   9. Trump and Rubio weigh firing Kimberly Guilfoyle as misconduct and donor bailout allegations mount
       https://www.foxnews.com/politics/trump-rubio-weigh-firing-kimberly-guilfoyle-misconduct-donor-bailout-allegations-mount
 
-   6. Trump announces immediate energy ceasefire between Russia and Ukraine
-      https://www.foxnews.com/politics/trump-announces-immediate-energy-ceasefire-between-russia-ukraine
-
-   7. Hollywood jobs flee overseas as Congress scrambles to stop production exodus — with Trump's blessing
-      https://www.foxnews.com/politics/hollywood-jobs-flee-overseas-congress-scrambles-stop-production-exodus-trumps-blessing
-
-   8. Former Eagles CB Asante Samuel calls out coach Nick Sirianni after brutal London loss: 'You lost the game'
-      https://www.foxnews.com/outkick-sports/former-eagles-cb-asante-samuel-calls-out-coach-nick-sirianni-brutal-london-loss-you-lost-game
-
-   9. Man admits to dismembering ex-girlfriend, keeping severed head in suitcase after she played him 'like a fool'
-      https://www.foxnews.com/us/man-admits-dismembering-ex-girlfriend-keeping-severed-head-suitcase-played-fool
-
-  10. Bears kicker goes viral after trying to trip Packers receiver who decked Chicago coach on sideline
-      https://www.foxnews.com/outkick-sports/bears-kicker-goes-viral-trying-trip-packers-receiver-decked-chicago-coach-sideline
+  10. Fake Facebook Marketplace listing uses your name
+      https://www.foxnews.com/tech/fake-facebook-marketplace-listing-uses-your-name
 
 
 ============================================================
-  Generated at 08:44 PM PDT by GitHub Actions
+  Generated at 05:04 AM PDT by GitHub Actions
 ============================================================
