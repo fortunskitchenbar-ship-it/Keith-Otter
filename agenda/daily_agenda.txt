@@ -1,5 +1,5 @@
 ============================================================
-  DAILY BRIEFING — Tuesday, October 13, 2026
+  DAILY BRIEFING — Wednesday, October 14, 2026
 ============================================================
 
 📅  TODAY'S AGENDA
@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Trump Energy Department issues emergency order to prevent blackouts across 13 states amid unusual October heat
+   1. Ukraine showed Trump how easily an enemy could cripple an AI powerhouse
+      https://www.foxnews.com/opinion/ukraine-showed-trump-how-easily-enemy-could-cripple-ai-powerhouse
+
+   2. Trump announces massive oil, gas and mineral exploration plans in Greenland, touts national security benefits
+      https://www.foxnews.com/politics/trump-announces-massive-oil-gas-mineral-exploration-plans-greenland-touts-national-security-benefits
+
+   3. Trump administration slashes time refugees have to challenge loss of legal status
+      https://www.foxnews.com/politics/trump-administration-slashes-time-refugees-challenge-loss-legal-status
+
+   4. Trump signs pardons for Alaska diesel mechanics onstage during rally touting major energy deals
+      https://www.foxnews.com/politics/president-trump-signs-pardons-alaska-diesel-mechanics-onstage-rally-touting-major-energy-deals
+
+   5. Trump Energy Department issues emergency order to prevent blackouts across 13 states amid unusual October heat
       https://www.foxnews.com/us/trump-energy-department-issues-emergency-order-prevent-blackouts-13-states-unusual-october-heat
 
-   2. Venture capital firm tied to Donald Trump Jr weighs legal action against ABC News over botched report
+   6. Venture capital firm tied to Donald Trump Jr weighs legal action against ABC News over botched report
       https://www.foxnews.com/media/venture-capital-firm-tied-donald-trump-jr-weighs-legal-action-abc-news-botched-report
 
-   3. Dem making Senate comeback bid says he wouldn't support a Trump impeachment push
+   7. Dem making Senate comeback bid says he wouldn't support a Trump impeachment push
       https://www.foxnews.com/politics/dem-making-senate-comeback-bid-says-he-wouldnt-support-trump-impeachment-push
 
-   4. Trump-linked super PAC pulls funding from 2 House Republicans as GOP fights to keep majority
-      https://www.foxnews.com/politics/trump-linked-super-pac-pulls-funding-from-2-house-republicans-gop-fights-keep-majority
+   8. Schumer warns of Republican advantage that could change the battle for Senate control
+      https://www.foxnews.com/politics/schumer-warns-republican-advantage-could-change-battle-senate-control
 
-   5. Kimberly Guilfoyle confirms exit as ambassador to Greece as Trump asks her to resign amid flurry of scandals
-      https://www.foxnews.com/politics/kimberly-guilfoyle-confirms-exit-ambassador-greece-trump-asks-her-resign-amid-flurry-scandals
+   9. Democrats have ‘dirty hands’ over complaints about Omar raid weeks before election, ex-prosecutor says
+      https://www.foxnews.com/politics/democrats-dirty-hands-complaints-omar-raid-weeks-before-election-ex-prosecutor-says
 
-   6. Trump rally crowd chants 'deport' as president rips Ilhan Omar after federal raid
-      https://www.foxnews.com/politics/trump-rally-crowd-chants-deport-president-rips-ilhan-omar-federal-raid
-
-   7. Trump vanishes from GOP senator's campaign website as poll numbers plunge weeks before election
-      https://www.foxnews.com/politics/trump-vanishes-from-gop-senators-campaign-website-poll-numbers-plunge-weeks-before-election
-
-   8. Trump 'looking at' firing ambassador to Greece: 'We're not happy'
-      https://www.foxnews.com/politics/trump-looking-firing-ambassador-greece-not-happy
-
-   9. Trump's new press secretary faces first major test as White House briefing room enters new era
-      https://www.foxnews.com/politics/trumps-new-press-secretary-faces-first-major-test-white-house-briefing-room-enters-new-era
-
-  10. Florida executes inmate who killed cellmate because he wanted death penalty
-      https://www.foxnews.com/us/florida-executes-inmate-killed-cellmate-wanted-death-penalty
+  10. Republicans in historically critical battleground county pull no punches in midterm homestretch: 'Lot of hope'
+      https://www.foxnews.com/politics/republicans-historically-critical-battleground-county-pull-no-punches-midterm-homestretch-lot-hope
 
 
 ============================================================
-  Generated at 07:03 PM PDT by GitHub Actions
+  Generated at 02:40 AM PDT by GitHub Actions
 ============================================================
