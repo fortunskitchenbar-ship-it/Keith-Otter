@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Dem making Senate comeback bid says he wouldn't support a Trump impeachment push
+   1. Trump Energy Department issues emergency order to prevent blackouts across 13 states amid unusual October heat
+      https://www.foxnews.com/us/trump-energy-department-issues-emergency-order-prevent-blackouts-13-states-unusual-october-heat
+
+   2. Venture capital firm tied to Donald Trump Jr weighs legal action against ABC News over botched report
+      https://www.foxnews.com/media/venture-capital-firm-tied-donald-trump-jr-weighs-legal-action-abc-news-botched-report
+
+   3. Dem making Senate comeback bid says he wouldn't support a Trump impeachment push
       https://www.foxnews.com/politics/dem-making-senate-comeback-bid-says-he-wouldnt-support-trump-impeachment-push
 
-   2. Trump-linked super PAC pulls funding from 2 House Republicans as GOP fights to keep majority
+   4. Trump-linked super PAC pulls funding from 2 House Republicans as GOP fights to keep majority
       https://www.foxnews.com/politics/trump-linked-super-pac-pulls-funding-from-2-house-republicans-gop-fights-keep-majority
 
-   3. Kimberly Guilfoyle confirms exit as ambassador to Greece as Trump asks her to resign amid flurry of scandals
+   5. Kimberly Guilfoyle confirms exit as ambassador to Greece as Trump asks her to resign amid flurry of scandals
       https://www.foxnews.com/politics/kimberly-guilfoyle-confirms-exit-ambassador-greece-trump-asks-her-resign-amid-flurry-scandals
 
-   4. Trump rally crowd chants 'deport' as president rips Ilhan Omar after federal raid
+   6. Trump rally crowd chants 'deport' as president rips Ilhan Omar after federal raid
       https://www.foxnews.com/politics/trump-rally-crowd-chants-deport-president-rips-ilhan-omar-federal-raid
 
-   5. Trump vanishes from GOP senator's campaign website as poll numbers plunge weeks before election
+   7. Trump vanishes from GOP senator's campaign website as poll numbers plunge weeks before election
       https://www.foxnews.com/politics/trump-vanishes-from-gop-senators-campaign-website-poll-numbers-plunge-weeks-before-election
 
-   6. Trump 'looking at' firing ambassador to Greece: 'We're not happy'
+   8. Trump 'looking at' firing ambassador to Greece: 'We're not happy'
       https://www.foxnews.com/politics/trump-looking-firing-ambassador-greece-not-happy
 
-   7. Trump's new press secretary faces first major test as White House briefing room enters new era
+   9. Trump's new press secretary faces first major test as White House briefing room enters new era
       https://www.foxnews.com/politics/trumps-new-press-secretary-faces-first-major-test-white-house-briefing-room-enters-new-era
 
-   8. Booker ‘wowed’ by GOP challenger’s blunt message to Trump
-      https://www.foxnews.com/politics/booker-wowed-gop-challengers-blunt-message-trump
-
-   9. Bears' Montez Sweat suspended 2 games for violating NFL's performance-enhancing drug policy
-      https://www.foxnews.com/outkick-sports/bears-montez-sweat-suspended-2-games-violating-nfl-performance-enhancing-drug-policy
-
-  10. Billy Crystal says he no longer trusts God after losing home of 46 years then his longtime friend Rob Reiner
-      https://www.foxnews.com/entertainment/billy-crystal-says-he-no-longer-trusts-god-after-losing-home-46-years-his-longtime-friend-rob-reiner
+  10. Florida executes inmate who killed cellmate because he wanted death penalty
+      https://www.foxnews.com/us/florida-executes-inmate-killed-cellmate-wanted-death-penalty
 
 
 ============================================================
-  Generated at 03:58 PM PDT by GitHub Actions
+  Generated at 07:03 PM PDT by GitHub Actions
 ============================================================
