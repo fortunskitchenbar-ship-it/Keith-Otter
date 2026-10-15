@@ -8,17 +8,17 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Trump scores win from liberal-leaning 9th Circuit in ICE enforcement showdown
+   1. Trump torches Democrats at Arizona rally, warns they will ‘destroy our country’ ahead of midterms
+      https://www.foxnews.com/politics/trump-torches-democrats-arizona-rally-warns-destroy-country-ahead-midterms
+
+   2. Rogan warns Trump's voters feel betrayed by Iran war with 'no easy way out'
+      https://www.foxnews.com/media/rogan-warns-trumps-voters-feel-betrayed-iran-war-no-easy-way-out
+
+   3. Ex-SJSU volleyball coach files new lawsuit alleging retaliation for Trump support, religion amid trans scandal
+      https://www.foxnews.com/outkick-sports/ex-sjsu-volleyball-coach-files-new-lawsuit-alleging-retaliation-trump-support-religion-trans-scandal
+
+   4. Trump scores win from liberal-leaning 9th Circuit in ICE enforcement showdown
       https://www.foxnews.com/politics/trump-scores-win-from-liberal-leaning-ninth-circuit-ice-enforcement-showdown
-
-   2. Kai Trump's Miami women's golf season on hold following second wrist surgery: 'I made the best decision'
-      https://www.foxnews.com/outkick-sports/kai-trump-miami-womens-golf-season-hold-following-second-wrist-surgery-best-decision
-
-   3. Trump’s 19-year-old granddaughter pictured in hospital following medical procedure
-      https://www.foxnews.com/health/trumps-19-year-old-granddaughter-pictured-hospital-following-medical-procedure
-
-   4. White House confirms appeal as Trump-appointed judge extends ruling restoring CNN, MS NOW, Politico access
-      https://www.foxnews.com/media/white-house-confirms-appeal-trump-appointed-judge-extends-ruling-restoring-cnn-msnbc-politico-access
 
    5. Trump-backed GOP candidate who ousted scandal-plagued incumbent warns against 'never-ending war' with Iran
       https://www.foxnews.com/politics/trump-backed-gop-candidate-ousted-scandal-plagued-incumbent-warns-never-ending-war-iran
@@ -29,16 +29,16 @@
    7. Elon Musk blames Trump, US military for SpaceX restrictions Ukraine warns could have deadly consequences
       https://www.foxnews.com/politics/elon-musk-spacex-imposes-stunning-restrictions-ukraine-could-have-deadly-consequences
 
-   8. Trump says 'we are looking into' other Dan Sullivan on Alaska ballot, warns about governor's race
-      https://www.foxnews.com/politics/trump-says-we-are-looking-into-other-dan-sullivan-alaska-ballot-warns-about-governors-race
+   8. FBI arrest leads to maximum 90-year sentence for gymnastics coach who recorded minors at Mississippi gym
+      https://www.foxnews.com/outkick-sports/fbi-arrest-leads-maximum-90-year-sentence-gymnastics-coach-recorded-minors-mississippi-gym
 
-   9. New York governor debate heats up as Blakeman, Hochul spar over Trump, sanctuary status, ICE shooting
-      https://www.foxnews.com/politics/new-york-governor-debate-heats-blakeman-hochul-spar-trump-sanctuary-status-ice-shooting
+   9. White House punches back at Chicago Mayor Johnson over reparations demands
+      https://www.foxnews.com/media/white-house-slams-chicago-mayor-brandon-johnson-progressive-mayor-hits-trump-wealth-reparations
 
-  10. Bipartisan senators demand Trump scrap Russia diesel deal, call it 'betrayal' of US allies
-      https://www.foxnews.com/politics/bipartisan-senators-demand-trump-scrap-russia-diesel-deal-call-betrayal-us-allies
+  10. Canadian singer Joni Mitchell officially becomes American citizen after 62-year journey
+      https://www.foxnews.com/entertainment/canadian-singer-joni-mitchell-officially-becomes-american-citizen-after-62-year-journey
 
 
 ============================================================
-  Generated at 02:51 PM PDT by GitHub Actions
+  Generated at 06:40 PM PDT by GitHub Actions
 ============================================================
