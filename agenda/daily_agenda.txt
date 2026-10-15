@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Trump-appointed justice joins Sotomayor in unlikely alliance to rip DOJ's handling of illegal immigrant case
+   1. Fort Hood survivors praise Trump for scrapping Hasan execution livestream: ‘We’re not barbaric’
+      https://www.foxnews.com/politics/fort-hood-survivors-praise-trump-scrapping-hasan-execution-livestream-not-barbaric
+
+   2. Trump links Michigan Senate candidate Abdul El-Sayed to Muslim Brotherhood: 'He's a con man'
+      https://www.foxnews.com/politics/trump-links-michigan-senate-candidate-abdul-el-sayed-muslim-brotherhood-con-man
+
+   3. Trump-appointed justice joins Sotomayor in unlikely alliance to rip DOJ's handling of illegal immigrant case
       https://www.foxnews.com/politics/trump-appointed-justice-joins-sotomayor-unlikely-alliance-rip-dojs-handling-illegal-immigrant-case
 
-   2. Somalis in Minnesota unleash fury on Trump after feds raid Ilhan Omar's DC home
+   4. Somalis in Minnesota unleash fury on Trump after feds raid Ilhan Omar's DC home
       https://www.foxnews.com/politics/somalis-minnesota-unleash-fury-trump-feds-raid-ilhan-omar-dc-home
 
-   3. Trump rules out livestream for Nidal Hasan firing squad execution
+   5. Trump rules out livestream for Nidal Hasan firing squad execution
       https://www.foxnews.com/politics/trump-rules-out-livestream-nidal-hasan-firing-squad-execution
 
-   4. Trump announces Montana 'super range' at midterm rally for Pentagon to test advanced war technology
+   6. Trump announces Montana 'super range' at midterm rally for Pentagon to test advanced war technology
       https://www.foxnews.com/politics/trump-announces-montana-super-range-midterm-rally-pentagon-test-advanced-war-technology
 
-   5. Press freedom groups that blasted Trump turn fire on Dem governor over alleged media retaliation
+   7. Press freedom groups that blasted Trump turn fire on Dem governor over alleged media retaliation
       https://www.foxnews.com/politics/press-freedom-groups-blasted-trump-turn-fire-dem-governor-alleged-media-retaliation
 
-   6. Former White House press secretary Karoline Leavitt opens up about Trump, motherhood
+   8. Former White House press secretary Karoline Leavitt opens up about Trump, motherhood
       https://www.foxnews.com/politics/former-white-house-press-secretary-karoline-leavitt-opens-up-about-trump-motherhood
 
-   7. Trump torches Democrats at Arizona rally, warns they will ‘destroy our country’ ahead of midterms
-      https://www.foxnews.com/politics/trump-torches-democrats-arizona-rally-warns-destroy-country-ahead-midterms
+   9. 'SNL' cast member Michael Che shrugs off Shane Gillis' monologue joke saying, 'that's comedy'
+      https://www.foxnews.com/media/snl-cast-member-michael-che-shrugs-off-shane-gillis-monologue-joke-saying-thats-comedy
 
-   8. RedZone host Scott Hanson defends NFL officiating, calls league 'best officiated' in America
-      https://www.foxnews.com/outkick-sports/redzone-host-scott-hanson-defends-nfl-officiating-calls-league-best-officiated-america
-
-   9. Weight-loss drugs may fight 7 serious health problems before the pounds even come off
-      https://www.foxnews.com/health/weight-loss-drugs-fight-7-serious-health-problems-before-pounds-come-off
-
-  10. LSU head coach Lane Kiffin is making the same mistake his predecessor did, will he suffer the same fate?
-      https://www.foxnews.com/outkick-sports/lsu-head-coach-lane-kiffin-making-same-mistake-predecessor-suffer-same-fate
+  10. Country music's dominant hunting season continues as Koe Wetzel bags a monster bull elk
+      https://www.foxnews.com/outkick-sports/country-music-dominant-hunting-season-continues-koe-wetzel-bags-monster-bull-elk
 
 
 ============================================================
-  Generated at 10:49 AM PDT by GitHub Actions
+  Generated at 02:35 PM PDT by GitHub Actions
 ============================================================
