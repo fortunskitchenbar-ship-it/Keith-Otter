@@ -1,5 +1,5 @@
 ============================================================
-  DAILY BRIEFING — Thursday, October 15, 2026
+  DAILY BRIEFING — Friday, October 16, 2026
 ============================================================
 
 📅  TODAY'S AGENDA
@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Fort Hood survivors praise Trump for scrapping Hasan execution livestream: ‘We’re not barbaric’
+   1. Trump casts doubt on new press secretary's future after rocky White House debut
+      https://www.foxnews.com/politics/trump-casts-doubt-new-press-secretarys-future-after-rocky-white-house-debut
+
+   2. Americans back Trump's decision against livestreaming Nidal Hasan's firing squad execution
+      https://www.foxnews.com/politics/americans-back-trumps-decision-against-livestreaming-nidal-hasans-firing-squad-execution
+
+   3. Trump's Capitol Hill whisperer reveals secrets to president's dealmaking as he heads for exit
+      https://www.foxnews.com/politics/trumps-capitol-hill-whisperer-reveals-secrets-presidents-deal-making-he-heads-exit
+
+   4. Former Border Patrol chief recalls Biden migrant surge chaos as Trump crackdown delivers historic turnaround
+      https://www.foxnews.com/politics/former-border-patrol-chief-recalls-biden-migrant-surge-chaos-trump-crackdown-delivers-historic-turnaround
+
+   5. Trump admin sued over alleged illegal collection of sensitive voter data from 47 states
+      https://www.foxnews.com/politics/trump-admin-sued-alleged-illegal-collection-sensitive-voter-data-47-states
+
+   6. Fort Hood survivors praise Trump for scrapping Hasan execution livestream: ‘We’re not barbaric’
       https://www.foxnews.com/politics/fort-hood-survivors-praise-trump-scrapping-hasan-execution-livestream-not-barbaric
 
-   2. Trump links Michigan Senate candidate Abdul El-Sayed to Muslim Brotherhood: 'He's a con man'
+   7. Trump links Michigan Senate candidate Abdul El-Sayed to Muslim Brotherhood: 'He's a con man'
       https://www.foxnews.com/politics/trump-links-michigan-senate-candidate-abdul-el-sayed-muslim-brotherhood-con-man
 
-   3. Trump-appointed justice joins Sotomayor in unlikely alliance to rip DOJ's handling of illegal immigrant case
+   8. Trump-appointed justice joins Sotomayor in unlikely alliance to rip DOJ's handling of illegal immigrant case
       https://www.foxnews.com/politics/trump-appointed-justice-joins-sotomayor-unlikely-alliance-rip-dojs-handling-illegal-immigrant-case
 
-   4. Somalis in Minnesota unleash fury on Trump after feds raid Ilhan Omar's DC home
+   9. Somalis in Minnesota unleash fury on Trump after feds raid Ilhan Omar's DC home
       https://www.foxnews.com/politics/somalis-minnesota-unleash-fury-trump-feds-raid-ilhan-omar-dc-home
 
-   5. Trump rules out livestream for Nidal Hasan firing squad execution
-      https://www.foxnews.com/politics/trump-rules-out-livestream-nidal-hasan-firing-squad-execution
-
-   6. Trump announces Montana 'super range' at midterm rally for Pentagon to test advanced war technology
-      https://www.foxnews.com/politics/trump-announces-montana-super-range-midterm-rally-pentagon-test-advanced-war-technology
-
-   7. Press freedom groups that blasted Trump turn fire on Dem governor over alleged media retaliation
-      https://www.foxnews.com/politics/press-freedom-groups-blasted-trump-turn-fire-dem-governor-alleged-media-retaliation
-
-   8. Jerry Seinfeld turns tables on radical anti-Israel agitators after chaotic Chicago stunt backfires
+  10. Jerry Seinfeld turns tables on radical anti-Israel agitators after chaotic Chicago stunt backfires
       https://www.foxnews.com/media/jerry-seinfeld-turns-tables-radical-anti-israel-agitators-chaotic-chicago-stunt-backfires
-
-   9. 'Oh, shut up!': Democrat snaps at Collins after heckler drives Maine Senate debate off the rails
-      https://www.foxnews.com/politics/shut-democrat-snaps-collins-heckler-drives-maine-senate-debate-rails
-
-  10. Hasan Piker defends using incendiary terms like 'inbred' or 'Zionist pig' against opponents
-      https://www.foxnews.com/media/hasan-piker-defends-using-incendiary-terms-like-inbred-zionist-pig-against-opponents
 
 
 ============================================================
-  Generated at 06:34 PM PDT by GitHub Actions
+  Generated at 10:33 AM PDT by GitHub Actions
 ============================================================
