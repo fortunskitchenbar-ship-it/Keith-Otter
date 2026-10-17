@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Trump spills details of dinner with Bill Maher, Stephen A. Smith and Kid Rock at the White House
-      https://www.foxnews.com/media/trump-spills-details-dinner-bill-maher-stephen-a-smith-kid-rock-white-house
+   1. Joy Behar wants Trump back on ‘The View’ despite saying he’s ‘not long for this world’
+      https://www.foxnews.com/media/joy-behar-wants-trump-back-view-despite-saying-hes-not-long-this-world
 
-   2. Biden-appointed judge deals Trump another sanctuary city defeat in major immigration fight
+   2. Netanyahu praises Trump's 'wicked sense of humor,' defends ironclad alliance ahead of historic Israel vote
+      https://www.foxnews.com/media/netanyahu-praises-trumps-wicked-sense-humor-defends-ironclad-alliance-ahead-historic-israel-vote
+
+   3. Biden-appointed judge deals Trump another sanctuary city defeat in major immigration fight
       https://www.foxnews.com/politics/biden-appointed-judge-deals-trump-another-sanctuary-city-defeat-major-immigration-fight
 
-   3. Army expo attendees skeptical of Trump's Iran peace deal hopes: 'Beat 'em into submission'
+   4. Army expo attendees skeptical of Trump's Iran peace deal hopes: 'Beat 'em into submission'
       https://www.foxnews.com/politics/army-expo-attendees-skeptical-trumps-iran-peace-deal-hopes-beat-em-submission
 
-   4. Tish James confronted on camera over Trump's accusation of bias in Cornell rape case
+   5. Tish James confronted on camera over Trump's accusation of bias in Cornell rape case
       https://www.foxnews.com/politics/tish-james-confronted-camera-trumps-accusation-bias-cornell-rape-case
 
-   5. Biden judge rejects Obama CIA chief's legal bid against Trump over one key problem
+   6. Biden judge rejects Obama CIA chief's legal bid against Trump over one key problem
       https://www.foxnews.com/politics/biden-judge-rejects-obama-cia-chiefs-legal-bid-against-trump-over-one-key-problem
 
-   6. Trump's new press secretary out of the job just days after rocky debut
+   7. Trump's new press secretary out of the job just days after rocky debut
       https://www.foxnews.com/politics/trump-casts-doubt-new-press-secretarys-future-after-rocky-white-house-debut
 
-   7. Americans back Trump's decision against livestreaming Nidal Hasan's firing squad execution
+   8. Americans back Trump's decision against livestreaming Nidal Hasan's firing squad execution
       https://www.foxnews.com/politics/americans-back-trumps-decision-against-livestreaming-nidal-hasans-firing-squad-execution
 
-   8. Violence erupts at France protests as Macron warns unrest is being exploited
-      https://www.foxnews.com/world/violence-erupts-france-protests-macron-warns-unrest-being-exploited
+   9. Ohio State snaps Indiana's 22-game winning streak, hands reigning champs first loss since 2024 in thriller
+      https://www.foxnews.com/outkick-sports/ohio-state-snaps-indianas-22-game-winning-streak-hands-reigning-champs-first-loss-since-2024-in-thriller
 
-   9. Michigan teen volleyball player files lawsuit after she unknowingly shared locker room with trans athlete
-      https://www.foxnews.com/media/michigan-teen-volleyball-player-files-lawsuit-unknowingly-shared-locker-room-trans-athlete
-
-  10. NBA Commissioner Adam Silver blindsides Sonics faithful by floating surprise expansion alternative
-      https://www.foxnews.com/outkick-sports/nba-commissioner-adam-silver-blindsides-sonics-faithful-floating-surprise-expansion-alternative
+  10. Man shot and killed inside New York City subway station in Midtown Manhattan: NYPD
+      https://www.foxnews.com/us/man-shot-killed-new-york-city-subway-station-midtown-manhattan-nypd
 
 
 ============================================================
-  Generated at 09:31 AM PDT by GitHub Actions
+  Generated at 01:46 PM PDT by GitHub Actions
 ============================================================
