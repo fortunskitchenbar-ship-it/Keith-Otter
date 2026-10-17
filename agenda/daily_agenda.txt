@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Trump hosted a dinner with – wait for it – Stephen A Smith, Kid Rock and Bill Maher
-      https://www.foxnews.com/outkick-sports/trump-hosted-dinner-stephen-smith-kid-rock-bill-maher
+   1. Kid Rock details sit-down with Trump, Stephen A Smith and Bill Maher
+      https://www.foxnews.com/media/kid-rock-details-sit-down-trump-stephen-smith-bill-maher
 
-   2. Biden judge rejects Obama CIA chief's legal bid against Trump over one key problem
-      https://www.foxnews.com/politics/biden-judge-rejects-obama-cia-chiefs-legal-bid-against-trump-over-one-key-problem
+   2. White House reporters react to Katie Zacharia's 'brutal' exit as Trump's press secretary
+      https://www.foxnews.com/media/white-house-reporters-react-katie-zacharia-brutal-exit-trump-press-secretary
 
-   3. Tish James confronted on camera over Trump's accusation of bias in Cornell rape case
+   3. Seth Meyers admits shock over second Trump victory prompted sit-down with late-night team to adjust tone
+      https://www.foxnews.com/media/seth-meyers-admits-shock-second-trump-victory-prompted-sit-down-late-night-team-adjust-tone
+
+   4. Former NFL All-Pro running back joins President Trump for Georgia midterms rally
+      https://www.foxnews.com/outkick-sports/former-nfl-all-pro-running-back-joins-president-trump-georgia-midterms-rally
+
+   5. Tish James confronted on camera over Trump's accusation of bias in Cornell rape case
       https://www.foxnews.com/politics/tish-james-confronted-camera-trumps-accusation-bias-cornell-rape-case
 
-   4. Trump's new press secretary out of the job just days after rocky debut
+   6. Biden judge rejects Obama CIA chief's legal bid against Trump over one key problem
+      https://www.foxnews.com/politics/biden-judge-rejects-obama-cia-chiefs-legal-bid-against-trump-over-one-key-problem
+
+   7. Trump's new press secretary out of the job just days after rocky debut
       https://www.foxnews.com/politics/trump-casts-doubt-new-press-secretarys-future-after-rocky-white-house-debut
 
-   5. Americans back Trump's decision against livestreaming Nidal Hasan's firing squad execution
+   8. Americans back Trump's decision against livestreaming Nidal Hasan's firing squad execution
       https://www.foxnews.com/politics/americans-back-trumps-decision-against-livestreaming-nidal-hasans-firing-squad-execution
 
-   6. Trump's Capitol Hill whisperer reveals secrets to president's dealmaking as he heads for exit
+   9. Trump's Capitol Hill whisperer reveals secrets to president's dealmaking as he heads for exit
       https://www.foxnews.com/politics/trumps-capitol-hill-whisperer-reveals-secrets-presidents-deal-making-he-heads-exit
 
-   7. Former Border Patrol chief recalls Biden migrant surge chaos as Trump crackdown delivers historic turnaround
+  10. Former Border Patrol chief recalls Biden migrant surge chaos as Trump crackdown delivers historic turnaround
       https://www.foxnews.com/politics/former-border-patrol-chief-recalls-biden-migrant-surge-chaos-trump-crackdown-delivers-historic-turnaround
-
-   8. Trump admin sued over alleged illegal collection of sensitive voter data from 47 states
-      https://www.foxnews.com/politics/trump-admin-sued-alleged-illegal-collection-sensitive-voter-data-47-states
-
-   9. Fort Hood survivors praise Trump for scrapping Hasan execution livestream: ‘We’re not barbaric’
-      https://www.foxnews.com/politics/fort-hood-survivors-praise-trump-scrapping-hasan-execution-livestream-not-barbaric
-
-  10. Trump links Michigan Senate candidate Abdul El-Sayed to Muslim Brotherhood: 'He's a con man'
-      https://www.foxnews.com/politics/trump-links-michigan-senate-candidate-abdul-el-sayed-muslim-brotherhood-con-man
 
 
 ============================================================
-  Generated at 02:27 PM PDT by GitHub Actions
+  Generated at 06:25 PM PDT by GitHub Actions
 ============================================================
