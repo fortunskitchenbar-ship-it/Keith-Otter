@@ -1,5 +1,5 @@
 ============================================================
-  DAILY BRIEFING — Friday, October 16, 2026
+  DAILY BRIEFING — Saturday, October 17, 2026
 ============================================================
 
 📅  TODAY'S AGENDA
@@ -8,17 +8,17 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Kid Rock details sit-down with Trump, Stephen A Smith and Bill Maher
+   1. Army expo attendees skeptical of Trump's Iran peace deal hopes: 'Beat 'em into submission'
+      https://www.foxnews.com/politics/army-expo-attendees-skeptical-trumps-iran-peace-deal-hopes-beat-em-submission
+
+   2. Kid Rock details sit-down with Trump, Stephen A Smith and Bill Maher
       https://www.foxnews.com/media/kid-rock-details-sit-down-trump-stephen-smith-bill-maher
 
-   2. White House reporters react to Katie Zacharia's 'brutal' exit as Trump's press secretary
+   3. White House reporters react to Katie Zacharia's 'brutal' exit as Trump's press secretary
       https://www.foxnews.com/media/white-house-reporters-react-katie-zacharia-brutal-exit-trump-press-secretary
 
-   3. Seth Meyers admits shock over second Trump victory prompted sit-down with late-night team to adjust tone
+   4. Seth Meyers admits shock over second Trump victory prompted sit-down with late-night team to adjust tone
       https://www.foxnews.com/media/seth-meyers-admits-shock-second-trump-victory-prompted-sit-down-late-night-team-adjust-tone
-
-   4. Former NFL All-Pro running back joins President Trump for Georgia midterms rally
-      https://www.foxnews.com/outkick-sports/former-nfl-all-pro-running-back-joins-president-trump-georgia-midterms-rally
 
    5. Tish James confronted on camera over Trump's accusation of bias in Cornell rape case
       https://www.foxnews.com/politics/tish-james-confronted-camera-trumps-accusation-bias-cornell-rape-case
@@ -40,5 +40,5 @@
 
 
 ============================================================
-  Generated at 06:25 PM PDT by GitHub Actions
+  Generated at 01:44 AM PDT by GitHub Actions
 ============================================================
