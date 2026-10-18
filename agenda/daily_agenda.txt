@@ -1,5 +1,5 @@
 ============================================================
-  DAILY BRIEFING — Saturday, October 17, 2026
+  DAILY BRIEFING — Sunday, October 18, 2026
 ============================================================
 
 📅  TODAY'S AGENDA
@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Biden-appointed judge deals Trump another sanctuary city defeat in major immigration fight
+   1. Bernie Sanders admits Democrats failed working-class voters on economics, driving them to Donald Trump
+      https://www.foxnews.com/media/bernie-sanders-admits-democrats-failed-working-class-voters-economics-driving-donald-trump
+
+   2. Trump intel chief warns AI firms on hacks, says new department is the 'cop on the beat'
+      https://www.foxnews.com/media/trump-intel-chief-warns-ai-firms-hacks-says-new-department-cop-beat
+
+   3. Obama backs Ilhan Omar amid probe, accuses Trump admin of 'appalling' targeting in lengthy statement
+      https://www.foxnews.com/politics/obama-backs-ilhan-omar-amid-probe-accuses-trump-admin-appalling-targeting-lengthy-statement
+
+   4. Trump tries different approach with Russia to bring Americans relief amid ongoing war with Ukraine
+      https://www.foxnews.com/politics/trump-tries-different-approach-russia-bring-americans-relief-amid-ongoing-war-ukraine
+
+   5. Becoming a lawyer could get cheaper and faster under looming Trump admin shakeup
+      https://www.foxnews.com/politics/becoming-lawyer-cheaper-faster-trump-admin-shakeup
+
+   6. Biden-appointed judge deals Trump another sanctuary city defeat in major immigration fight
       https://www.foxnews.com/politics/biden-appointed-judge-deals-trump-another-sanctuary-city-defeat-major-immigration-fight
 
-   2. Army expo attendees skeptical of Trump's Iran peace deal hopes: 'Beat 'em into submission'
-      https://www.foxnews.com/politics/army-expo-attendees-skeptical-trumps-iran-peace-deal-hopes-beat-em-submission
+   7. Where's Macron? French leader blasted for attending concert as riots escalated
+      https://www.foxnews.com/world/wheres-macron-french-leader-blasted-attending-concert-riots-escalated
 
-   3. Tish James confronted on camera over Trump's accusation of bias in Cornell rape case
-      https://www.foxnews.com/politics/tish-james-confronted-camera-trumps-accusation-bias-cornell-rape-case
+   8. Oracle Health data breach exposes nearly 20 million patients
+      https://www.foxnews.com/tech/oracle-health-data-breach-exposes-nearly-20-million-patients
 
-   4. Biden judge rejects Obama CIA chief's legal bid against Trump over one key problem
-      https://www.foxnews.com/politics/biden-judge-rejects-obama-cia-chiefs-legal-bid-against-trump-over-one-key-problem
+   9. Christian groups and pastors say new California LGBT hate speech law is disguised as indoctrination
+      https://www.foxnews.com/media/christian-groups-pastors-say-new-california-lgbt-hate-speech-law-disguised-indoctrination
 
-   5. Trump's new press secretary out of the job just days after rocky debut
-      https://www.foxnews.com/politics/trump-casts-doubt-new-press-secretarys-future-after-rocky-white-house-debut
-
-   6. Tennessee dominates as Alabama suffers first back-to-back regular-season losses in nearly two decades
-      https://www.foxnews.com/outkick-sports/tennessee-dominates-alabama-suffers-first-back-to-back-regular-season-losses-nearly-two-decades
-
-   7. Freshman Tommy Carr's second-half magic leads Michigan to must-have win over Penn State
-      https://www.foxnews.com/outkick-sports/freshman-tommy-carr-second-half-magic-leads-michigan-must-have-win-penn-state
-
-   8. Minnesota Senate race takes bizarre turn after dark family history uncovered
-      https://www.foxnews.com/politics/minnesota-senate-race-takes-bizarre-turn-dark-family-history-uncovered
-
-   9. Bend school district honors slain teacher, praises staff member's courage during attack: ‘Forever grateful’
-      https://www.foxnews.com/us/bend-school-district-honors-slain-teacher-praises-staff-member-courage-during-attack-forever-grateful
-
-  10. New protein ranking names unexpected winner over beef, salmon and eggs
-      https://www.foxnews.com/food-drink/new-protein-ranking-names-unexpected-winner-beef-salmon-eggs
+  10. Jana Kramer says Los Angeles priced her out of the childhood she wanted for her kids
+      https://www.foxnews.com/entertainment/jana-kramer-says-los-angeles-priced-her-out-childhood-she-wanted-her-kids
 
 
 ============================================================
-  Generated at 06:23 PM PDT by GitHub Actions
+  Generated at 09:37 AM PDT by GitHub Actions
 ============================================================
