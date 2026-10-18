@@ -1,7 +1,7 @@
 /* sw.js — offline shell for Keith · Command Center.
    API routes are always network-only so live data is never stale-cached. */
 
-const VERSION = 'kc-v2.0.0';
+const VERSION = 'kc-v2.0.1';
 const SHELL = [
   '/',
   '/assets/styles.css',
@@ -50,18 +50,31 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (/\.(css|js|png|svg|webmanifest)$/.test(url.pathname)) {
+  if (/\.(css|js)$/.test(url.pathname)) {
+    // Network-first so a deploy is picked up on the next load; cache is the offline fallback.
     event.respondWith(
-      caches.match(request).then(cached => {
-        const network = fetch(request).then(res => {
+      fetch(request)
+        .then(res => {
           if (res.ok) {
             const copy = res.clone();
             caches.open(VERSION).then(cache => cache.put(request, copy)).catch(() => {});
           }
           return res;
-        }).catch(() => cached);
-        return cached || network;
-      })
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  if (/\.(png|svg|webmanifest)$/.test(url.pathname)) {
+    event.respondWith(
+      caches.match(request).then(cached => cached || fetch(request).then(res => {
+        if (res.ok) {
+          const copy = res.clone();
+          caches.open(VERSION).then(cache => cache.put(request, copy)).catch(() => {});
+        }
+        return res;
+      }))
     );
   }
 });
