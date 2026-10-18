@@ -179,6 +179,7 @@ Last run in this workspace: **all checks passed** — see `tests/artifacts/repor
 
 - 18 HTTP/static checks: shell, assets, manifest, service worker, duplicate-ID scan, UI-binding scan, JSON data files, every API route, JS syntax.
 - 12 real-browser checks in Chrome: weather render, task add/delete, command palette navigation, AI reply, health unlock + medication, markdown notes, theme toggle, ops checks, mobile bottom nav, zero console errors.
+- **Live DeepSeek check:** with a key in the local dev server env, `/api/ai-corner` returned `provider: deepseek` and streamed SSE deltas (74 prompt / 87 total tokens for a smoke prompt). The daily brief and the AI panel both rendered real replies — screenshots `08-overview-brief.png` and `10-ai-real.png`.
 - Screenshots: `tests/artifacts/01-overview-dark.png`, `04-overview-light.png`, `02-ai.png`, `03-notes.png`, `05-ops.png`, `06-mobile.png`, `07-health.png`.
 
 ---
