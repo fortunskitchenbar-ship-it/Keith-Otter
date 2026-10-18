@@ -1,1516 +1,615 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keith Dashboard</title>
-
-<style>
-* { box-sizing: border-box; }
-
-body {
-margin: 0;
-font-family: Arial, sans-serif;
-background:
-radial-gradient(circle at top right, #5b321d 0, transparent 30%),
-linear-gradient(135deg, #08111f, #101827 55%, #172033);
-color: #f8fafc;
-min-height: 100vh;
-}
-
-.wrap {
-max-width: 1200px;
-margin: auto;
-padding: 22px;
-}
-
-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 18px;
-margin-bottom: 22px;
-border-bottom: 1px solid #334155;
-padding-bottom: 16px;
-}
-
-h1 {
-margin: 0;
-font-size: 32px;
-}
-
-.sub {
-color: #94a3b8;
-margin-top: 5px;
-}
-
-.clock {
-font-family: 'Courier New', monospace;
-font-size: 30px;
-font-weight: 800;
-color: #38bdf8;
-letter-spacing: 2px;
-margin-top: 8px;
-text-shadow: 0 0 14px rgba(56,189,248,.55);
-}
-
-.status {
-background: #16372b;
-color: #86efac;
-padding: 8px 13px;
-border-radius: 999px;
-font-size: 12px;
-font-weight: bold;
-}
-
-.grid {
-display: grid;
-grid-template-columns: repeat(2, minmax(0,1fr));
-gap: 18px;
-grid-auto-flow: dense;
-}
-
-.card {
-background: rgba(15,23,42,.82);
-border: 1px solid rgba(148,163,184,.2);
-border-left: 4px solid #64748b;
-border-radius: 18px;
-padding: 20px;
-box-shadow: 0 12px 30px rgba(0,0,0,.25);
-}
-
-.card.c-amber {
-border-left-color: #fbbf24;
-background: linear-gradient(180deg, #2f5d8a 0%, #4f83ac 20%, #8db2c9 40%, #cbb994 62%, #a9835a 82%, #6b4f34 100%);
-}
-
-.card.c-amber h2,
-.card.c-amber .big-temp,
-.card.c-amber > div {
-text-shadow: 0 2px 6px rgba(0,0,0,.6);
-}
-
-.card.c-blue { border-left-color: #38bdf8; }
-.card.c-green { border-left-color: #34d399; }
-.card.c-purple { border-left-color: #a78bfa; }
-.card.c-red { border-left-color: #f87171; }
-.card.c-teal { border-left-color: #2dd4bf; }
-.card.c-pink { border-left-color: #f472b6; }
-.card.c-rose { border-left-color: #fb7185; }
-
-.card h2 {
-margin: 0 0 14px;
-font-size: 17px;
-color: #fbbf24;
-}
-
-.big-temp {
-font-size: 46px;
-font-weight: 800;
-margin: 4px 0;
-}
-
-.muted {
-color: #94a3b8;
-font-size: 13px;
-}
-
-.item {
-background: rgba(30,41,59,.72);
-padding: 10px 12px;
-border-radius: 11px;
-margin: 8px 0;
-}
-
-.item a {
-color: #f8fafc;
-text-decoration: none;
-}
-
-.item a:hover {
-text-decoration: underline;
-}
-
-.item.clickable {
-cursor: pointer;
-transition: background .15s ease, transform .1s ease;
-}
-
-.item.clickable:hover {
-background: rgba(51,65,85,.9);
-}
-
-.task-row {
-display: flex;
-gap: 8px;
-margin-bottom: 10px;
-}
-
-input, textarea {
-width: 100%;
-color: white;
-background: #0f172a;
-border: 1px solid #334155;
-border-radius: 10px;
-padding: 10px;
-}
-
-button {
-border: 0;
-border-radius: 10px;
-padding: 10px 14px;
-font-weight: bold;
-cursor: pointer;
-background: #2563eb;
-color: white;
-}
-
-button:hover { opacity: .9; }
-
-.task {
-display: flex;
-justify-content: space-between;
-gap: 10px;
-align-items: center;
-}
-
-.done {
-text-decoration: line-through;
-opacity: .55;
-}
-
-.remove {
-background: #7f1d1d;
-padding: 5px 9px;
-}
-
-.full {
-grid-column: 1 / -1;
-}
-
-.brief {
-line-height: 1.55;
-white-space: pre-wrap;
-}
-
-.nav {
-display: flex;
-flex-wrap: wrap;
-gap: 8px;
-margin-bottom: 18px;
-}
-
-.nav button {
-background: #1e293b;
-border: 1px solid #334155;
-}
-
-footer {
-text-align: center;
-color: #64748b;
-padding: 25px 0 8px;
-font-size: 12px;
-}
-
-.hour-chip {
-min-width: 70px;
-text-align: center;
-background: rgba(30,41,59,.72);
-border-radius: 10px;
-padding: 8px 6px;
-}
-
-.day-chip {
-text-align: center;
-background: rgba(30,41,59,.72);
-border-radius: 10px;
-padding: 8px 6px;
-}
-
-.health-lock-screen {
-background: rgba(15,23,42,.9);
-border: 1px dashed rgba(251,113,133,.5);
-border-radius: 14px;
-padding: 26px 20px;
-text-align: center;
-}
-
-.health-lock-screen input {
-max-width: 160px;
-margin: 0 auto 12px;
-text-align: center;
-letter-spacing: 4px;
-font-size: 20px;
-}
-
-.health-unlocked-bar {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 14px;
-flex-wrap: wrap;
-gap: 8px;
-}
-
-.link-btn {
-background: none;
-border: none;
-color: #94a3b8;
-text-decoration: underline;
-cursor: pointer;
-padding: 0;
-font-size: 12px;
-font-weight: normal;
-}
-
-.modal-overlay {
-position: fixed;
-inset: 0;
-background: rgba(2,6,23,.75);
-display: none;
-align-items: center;
-justify-content: center;
-padding: 20px;
-z-index: 50;
-}
-
-.modal-overlay.open {
-display: flex;
-}
-
-.modal-box {
-background: #0f172a;
-border: 1px solid rgba(148,163,184,.25);
-border-radius: 16px;
-padding: 22px;
-max-width: 640px;
-width: 100%;
-max-height: 80vh;
-overflow-y: auto;
-box-shadow: 0 20px 50px rgba(0,0,0,.5);
-position: relative;
-}
-
-.modal-box h3 {
-margin: 0 30px 6px 0;
-font-size: 18px;
-color: #fbbf24;
-}
-
-.modal-close {
-position: absolute;
-top: 16px;
-right: 16px;
-background: #334155;
-padding: 6px 12px;
-font-size: 13px;
-}
-
-.modal-body {
-white-space: pre-wrap;
-line-height: 1.55;
-margin-top: 14px;
-font-size: 14px;
-}
-
-@media (max-width: 760px) {
-.grid { grid-template-columns: 1fr; }
-.full { grid-column: auto; }
-h1 { font-size: 26px; }
-header { align-items: flex-start; }
-.clock { font-size: 24px; }
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a101c">
+<title>Keith · Command Center</title>
+<meta name="description" content="Keith Otter's heavy-duty personal command center — weather, tasks, email, news, DeepSeek AI, health, sleep and notes. La Quinta, California.">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+<link rel="stylesheet" href="/assets/styles.css">
 </head>
-
 <body>
 
-<div class="wrap">
-
-<header>
-<div>
-<h1>🏆 Keith Dashboard</h1>
-<div class="sub">
-<span id="date"></span> • La Quinta, California
-</div>
-<div class="clock" id="digitalClock">--:--:--</div>
-</div>
-
-<div class="status">● ONLINE</div>
-</header>
-
-<div class="nav">
-<button onclick="jump('weather')">☀️ Weather</button>
-<button onclick="jump('tasks')">✅ Tasks</button>
-<button onclick="jump('email')">📧 Email</button>
-<button onclick="jump('news')">📰 News</button>
-<button onclick="jump('ai')">🤖 AI Corner</button>
-<button onclick="jump('health')">💊 Health</button>
-</div>
-
-<main class="grid">
-
-<section class="card c-amber full" id="weather">
-<h2>☀️ Desert Weather</h2>
-<div class="big-temp" id="w-temp">--°F</div>
-<div>La Quinta • ZIP 92253</div>
-<div class="item">High: <span id="w-high">--°</span> &nbsp; Low: <span id="w-low">--°</span></div>
-<div class="item">Conditions: <span id="w-cond">Ready for weather feed</span></div>
-
-<div class="muted" style="margin-top:14px;">Next 12 Hours</div>
-<div id="w-hourly" style="display:flex;gap:10px;overflow-x:auto;padding:10px 0;"></div>
-
-<div class="muted" style="margin-top:6px;">5-Day Forecast</div>
-<div id="w-daily" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:8px;"></div>
-</section>
-
-<section class="card c-green" id="tasks">
-<h2>✅ Today's Tasks</h2>
-
-<div class="task-row">
-<input id="taskInput" placeholder="Add something to remember...">
-<button onclick="addTask()">ADD</button>
-</div>
-
-<div id="taskList"></div>
-</section>
-
-<section class="card c-purple" id="email">
-<h2>📧 Email Watch</h2>
-<div id="email-list">
-<div class="item">Important personal email only</div>
-<div class="item">Security • Finance • Travel • Appointments •
-Family</div>
-</div>
-<div class="muted">No promotions or newsletter clutter.</div>
-</section>
-
-<section class="card c-red" id="news">
-<h2>📰 News Worth Knowing</h2>
-<div id="news-list">
-<div class="item">📈 Markets / Economy</div>
-<div class="item">🤖 AI / Technology</div>
-<div class="item">🌴 La Quinta / California</div>
-</div>
-</section>
-
-<section class="card c-teal" id="nighttime">
-<h2>🌜 Nighttime</h2>
-
-<div class="muted" style="margin-bottom:8px;">Fall-asleep audio</div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;">
-<button onclick="window.open('https://www.audible.com','_blank')">Audible</button>
-<button onclick="window.open('https://open.spotify.com','_blank')">Spotify</button>
-<button onclick="window.open('https://podcasts.apple.com','_blank')">Podcasts</button>
-</div>
-
-<div class="muted" style="margin-bottom:8px;">Voice memo</div>
-<button onclick="window.open('https://otter.ai','_blank')">Open Otter</button>
-</section>
-
-<section class="card c-pink" id="ai">
-<h2>🤖 AI Research</h2>
-
-<div id="ai-chat-tabs" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;"></div>
-
-<div id="ai-chat-list" style="max-height:260px;overflow-y:auto;margin-bottom:12px;"></div>
-
-<div class="task-row">
-<input id="aiChatInput" placeholder="Ask anything...">
-<button onclick="sendAiChat()">ASK</button>
-</div>
-
-<div style="display:flex;gap:16px;margin-top:8px;">
-<button class="link-btn" onclick="newAiChat()">+ New chat</button>
-<button class="link-btn" onclick="clearAiChat()">Delete this chat</button>
-</div>
-</section>
-
-<section class="card c-rose full" id="health">
-<h2>💊 Health Hub</h2>
-
-<div id="health-lock-screen" class="health-lock-screen">
-<div style="font-size:28px;margin-bottom:8px;">🔒</div>
-<div id="health-lock-message" class="muted" style="margin-bottom:14px;">Enter PIN to view medications and notes.</div>
-<input id="healthPinInput" type="password" inputmode="numeric" placeholder="PIN">
-<div>
-<button onclick="submitHealthPin()">Unlock</button>
-</div>
-<div id="health-pin-error" class="muted" style="color:#f87171;margin-top:8px;"></div>
-</div>
-
-<div id="health-content" style="display:none;">
-
-<div class="health-unlocked-bar">
-<span class="muted">Unlocked for this session</span>
-<div>
-<button class="link-btn" onclick="changeHealthPin()">Change PIN</button>
-&nbsp;•&nbsp;
-<button class="link-btn" onclick="lockHealth()">Lock now</button>
-</div>
-</div>
-
-<div class="muted" style="margin-bottom:8px;">Medications</div>
-<div id="med-list"></div>
-
-<div class="task-row" style="margin-top:14px;">
-<input id="medInput" placeholder="Add medication (e.g. Lisinopril 10mg, refill Aug 20)...">
-<button onclick="addMed()">ADD</button>
-</div>
-
-<div style="margin-top:22px;">
-<div class="muted" style="margin-bottom:8px;">Doctor's Notes</div>
-<textarea id="health-notes" rows="5" placeholder="Notes for next appointment..."></textarea>
-<div class="muted" style="margin-top:8px;">Saves automatically on this device.</div>
-</div>
-
-</div>
-</section>
-
-<section class="card">
-<h2>📝 Keith's Notes</h2>
-
-<textarea
-id="notes"
-rows="9"
-placeholder="Ideas, reminders, errands, things not to forget..."
-></textarea>
-
-<div class="muted" style="margin-top:8px;">
-Notes save automatically on this device.
-</div>
-</section>
-
-<section class="card full" id="sleep-recorder">
-<h2>🌙 Sleep Apnea Recorder</h2>
-
-<div class="grid">
-
-<div class="item">
-<strong>Tonight's Event Count</strong><br>
-<span id="sleep-count"
-style="font-size:34px;font-weight:800;">0</span>
-<div class="muted">
-Tap a button each time you notice or log an event.
-</div>
-</div>
-
-<div class="item">
-<strong>Quick Sleep Notes</strong><br><br>
-
-<textarea
-id="sleep-notes"
-rows="5"
-placeholder="How did you sleep? CPAP notes, dry mouth, headache,
-awakenings, etc..."
-></textarea>
-
-<div class="muted" style="margin-top:8px;">
-Saves automatically on this device.
-</div>
-</div>
-
-</div>
-
-<div class="item" id="sleep-summary" style="margin-top:16px;font-weight:600;"></div>
-
-<div style="margin-top:16px;">
-<strong>Log an event</strong>
-
-<div style="
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:10px;
-margin-top:10px;
-">
-
-<button onclick="logSleepEvent('Apnea')"
-style="background:#9f1239;">
-Apnea
-</button>
-
-<button onclick="logSleepEvent('Snore')"
-style="background:#b45309;">
-Snore
-</button>
-
-<button onclick="logSleepEvent('Gasping')"
-style="background:#c2410c;">
-Gasping
-</button>
-
-<button onclick="logSleepEvent('Awake')"
-style="background:#047857;">
-Awake
-</button>
-
-</div>
-</div>
-
-<div style="margin-top:18px;">
-<strong>Event History</strong>
-<div id="sleep-history" style="margin-top:10px;"></div>
-</div>
-
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
-
-<button onclick="exportSleepLog()" style="background:#334155;">
-Export Sleep Log
-</button>
-
-<button onclick="clearSleepLog()" style="background:#7f1d1d;">
-Clear Tonight
-</button>
-
-</div>
-
-<div class="muted" style="margin-top:12px;">
-Personal logging tool only — not a medical diagnosis or apnea
-detector.
-</div>
-
-</section>
-
-</main>
-
-<footer>
-Keith Dashboard • GitHub + Vercel
-</footer>
-
-</div>
-
-<div class="modal-overlay" id="emailModalOverlay" onclick="if(event.target===this) closeEmailModal()">
-<div class="modal-box">
-<button class="modal-close" onclick="closeEmailModal()">Close</button>
-<h3 id="emailModalSubject"></h3>
-<div class="muted" id="emailModalMeta"></div>
-<div class="modal-body" id="emailModalBody"></div>
-</div>
-</div>
-
-<script>
-
-document.getElementById("date").textContent =
-new Date().toLocaleDateString("en-US", {
-weekday: "long",
-month: "long",
-day: "numeric",
-year: "numeric"
-});
-
-function updateClock() {
-document.getElementById("digitalClock").textContent =
-new Date().toLocaleTimeString("en-US", {
-hour: "2-digit",
-minute: "2-digit",
-second: "2-digit"
-});
-}
-
-updateClock();
-setInterval(updateClock, 1000);
-
-function jump(id) {
-const section = document.getElementById(id);
-
-if (section) {
-section.scrollIntoView({
-behavior: "smooth"
-});
-}
-}
-
-
-// AI RESEARCH CHAT (multiple saved chats)
-
-const AI_CHATS_KEY = "keith_ai_chats";
-const AI_ACTIVE_KEY = "keith_ai_active_chat";
-const AI_CHATS_MAX = 5;
-
-function loadAiChats() {
-const raw = JSON.parse(localStorage.getItem(AI_CHATS_KEY) || "[]");
-if (raw.length === 0) {
-return [{ id: Date.now().toString(), title: "Chat 1", messages: [] }];
-}
-return raw;
-}
-
-let aiChats = loadAiChats();
-let aiActiveChatId = localStorage.getItem(AI_ACTIVE_KEY) || aiChats[0].id;
-
-if (!aiChats.find(c => c.id === aiActiveChatId)) {
-aiActiveChatId = aiChats[0].id;
-}
-
-function saveAiChats() {
-localStorage.setItem(AI_CHATS_KEY, JSON.stringify(aiChats));
-localStorage.setItem(AI_ACTIVE_KEY, aiActiveChatId);
-}
-
-function getActiveChat() {
-return aiChats.find(c => c.id === aiActiveChatId) || aiChats[0];
-}
-
-function renderAiTabs() {
-
-const tabsEl = document.getElementById("ai-chat-tabs");
-
-if (!tabsEl) return;
-
-tabsEl.innerHTML = aiChats.map(chat => `
-<button
-onclick="switchAiChat('${chat.id}')"
-style="
-padding:6px 10px;
-font-size:12px;
-border-radius:8px;
-background:${chat.id === aiActiveChatId ? '#f472b6' : '#1e293b'};
-color:${chat.id === aiActiveChatId ? '#1e293b' : '#f8fafc'};
-"
->${chat.title}</button>
-`).join('');
-
-}
-
-function renderAiChat() {
-
-renderAiTabs();
-
-const list = document.getElementById("ai-chat-list");
-
-if (!list) return;
-
-const chat = getActiveChat();
-
-if (!chat || chat.messages.length === 0) {
-list.innerHTML =
-'<div class="item muted">Ask a question to get started.</div>';
-return;
-}
-
-list.innerHTML = chat.messages.map(m => `
-<div class="item">
-<strong>${m.role === 'user' ? 'You' : 'AI'}:</strong><br>${m.text}
-</div>
-`).join('');
-
-list.scrollTop = list.scrollHeight;
-
-}
-
-function switchAiChat(id) {
-aiActiveChatId = id;
-saveAiChats();
-renderAiChat();
-}
-
-function newAiChat() {
-
-if (aiChats.length >= AI_CHATS_MAX) {
-alert(`You can keep up to ${AI_CHATS_MAX} chats. Delete one first.`);
-return;
-}
-
-const newChat = {
-id: Date.now().toString(),
-title: "Chat " + (aiChats.length + 1),
-messages: []
-};
-
-aiChats.push(newChat);
-aiActiveChatId = newChat.id;
-
-saveAiChats();
-renderAiChat();
-
-}
-
-async function sendAiChat() {
-
-const input = document.getElementById("aiChatInput");
-const value = input.value.trim();
-
-if (!value) return;
-
-const chat = getActiveChat();
-
-chat.messages.push({ role: 'user', text: value });
-
-if (chat.messages.length === 1) {
-chat.title = value.length > 18 ? value.slice(0, 18) + "…" : value;
-}
-
-saveAiChats();
-renderAiChat();
-
-input.value = "";
-input.disabled = true;
-
-try {
-
-const response = await fetch('/api/ai-corner', {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({
-message: value,
-history: chat.messages.slice(0, -1)
-})
-});
-
-const data = await response.json();
-
-chat.messages.push({
-role: 'ai',
-text: data.reply || 'No response.'
-});
-
-} catch (err) {
-
-chat.messages.push({
-role: 'ai',
-text: 'Something went wrong reaching the AI.'
-});
-
-}
-
-saveAiChats();
-renderAiChat();
-
-input.disabled = false;
-input.focus();
-
-}
-
-function clearAiChat() {
-
-if (!confirm("Delete this chat?")) {
-return;
-}
-
-aiChats = aiChats.filter(c => c.id !== aiActiveChatId);
-
-if (aiChats.length === 0) {
-aiChats = [{ id: Date.now().toString(), title: "Chat 1", messages: [] }];
-}
-
-aiActiveChatId = aiChats[0].id;
-
-saveAiChats();
-renderAiChat();
-
-}
-
-const aiChatInputEl = document.getElementById("aiChatInput");
-
-if (aiChatInputEl) {
-aiChatInputEl.addEventListener("keydown", event => {
-if (event.key === "Enter") {
-sendAiChat();
-}
-});
-}
-
-renderAiChat();
-
-
-// WEATHER
-
-fetch('output/weather.json')
-  .then(r => r.json())
-  .then(w => {
-    document.getElementById('w-temp').textContent = w.temp + '°F';
-    document.getElementById('w-high').textContent = w.high + '°';
-    document.getElementById('w-low').textContent = w.low + '°';
-    document.getElementById('w-cond').textContent = w.conditions;
-
-    const hourlyEl = document.getElementById('w-hourly');
-    if (w.hourly && w.hourly.length) {
-      hourlyEl.innerHTML = w.hourly.map(h => `
-        <div class="hour-chip">
-          <div class="muted" style="font-size:11px;">${h.time}</div>
-          <div style="font-weight:700;margin:4px 0;">${h.temp}°</div>
-          <div class="muted" style="font-size:10px;">${h.conditions}</div>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.6a5.2 5.2 0 0 0-8.8-3.3A5.2 5.2 0 0 0 3.2 8.6C3.2 14 12 20 12 20s8.8-6 8.8-11.4Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-notes" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M3 12h4l2.5-7 4 14 2.5-7h5"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 7.5-2"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v3h16v-3"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m0 0 4 4m-4-4L8 8"/><path d="M4 17v3h16v-3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5H5V6h5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="m9 3 6 6-2 2 4 4-2 2-4-4-2 2-6-6 2-2 4 4 2-2-2-2Z"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.4 1.6A3.5 3.5 0 0 0 7 18Z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
+</svg>
+
+<div class="app" id="app">
+
+  <aside class="rail" id="rail" aria-label="Sections">
+    <a class="brand" href="#overview" aria-label="Keith Command Center home">
+      <span class="brand-mark">KO</span>
+      <span class="brand-text">Command<br>Center</span>
+    </a>
+    <nav class="rail-nav">
+      <button class="nav-btn is-active" data-view="overview" title="Overview"><svg><use href="#i-grid"/></svg><span>Overview</span></button>
+      <button class="nav-btn" data-view="comms" title="Comms"><svg><use href="#i-mail"/></svg><span>Comms</span></button>
+      <button class="nav-btn" data-view="ai" title="AI"><svg><use href="#i-spark"/></svg><span>AI</span></button>
+      <button class="nav-btn" data-view="health" title="Health"><svg><use href="#i-heart"/></svg><span>Health</span></button>
+      <button class="nav-btn" data-view="sleep" title="Sleep"><svg><use href="#i-moon"/></svg><span>Sleep</span></button>
+      <button class="nav-btn" data-view="notes" title="Notes"><svg><use href="#i-notes"/></svg><span>Notes</span></button>
+      <button class="nav-btn" data-view="ops" title="Ops"><svg><use href="#i-activity"/></svg><span>Ops</span></button>
+      <button class="nav-btn" data-view="automations" title="Automations"><svg><use href="#i-zap"/></svg><span>Auto</span></button>
+    </nav>
+    <div class="rail-foot">
+      <button class="icon-btn" id="themeBtn" title="Toggle theme (T)" aria-label="Toggle theme"><svg><use href="#i-sun"/></svg></button>
+      <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings"><svg><use href="#i-settings"/></svg></button>
+    </div>
+  </aside>
+
+  <div class="shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn mobile-only" id="menuBtn" aria-label="Open menu"><svg><use href="#i-menu"/></svg></button>
+        <div>
+          <h1 id="viewTitle">Overview</h1>
+          <p id="viewSub" class="view-sub">Everything that matters, in one screen.</p>
         </div>
-      `).join('');
-    }
-
-    const dailyEl = document.getElementById('w-daily');
-    if (w.daily && w.daily.length) {
-      dailyEl.innerHTML = w.daily.map(d => `
-        <div class="day-chip">
-          <div style="font-weight:700;">${d.day}</div>
-          <div class="muted" style="font-size:11px;margin:4px 0;">${d.conditions}</div>
-          <div style="font-size:13px;">${d.high}° / ${d.low}°</div>
-        </div>
-      `).join('');
-    }
-  })
-  .catch(() => console.log('weather.json not available yet'));
-
-
-// NEWS
-
-fetch('scripts/rss_headlines.json')
-  .then(r => r.json())
-  .then(headlines => {
-    if (!headlines || !headlines.length) return;
-    const list = document.getElementById('news-list');
-    list.innerHTML = headlines.slice(0, 5).map(h =>
-      `<div class="item"><a href="${h.link}" target="_blank">${h.title}</a></div>`
-    ).join('');
-  })
-  .catch(() => console.log('rss_headlines.json not available yet'));
-
-
-// EMAIL
-
-let emailCache = [];
-
-fetch('/api/smartermail-email?t=' + Date.now(), { cache: 'no-store' })
-  .then(r => r.json())
-  .then(emails => {
-    if (!emails || !emails.length) return;
-    emailCache = emails;
-    const list = document.getElementById('email-list');
-    list.innerHTML = emails.map(e => `
-      <div class="item clickable" onclick="openEmail(${e.uid})">
-        <strong>${e.subject}</strong><br>
-        <span class="muted">${e.from} • ${new Date(e.date).toLocaleString()}</span>
       </div>
-    `).join('');
-  })
-  .catch(() => console.log('email_watch.json not available yet'));
-
-function openEmail(uid) {
-
-const overlay = document.getElementById('emailModalOverlay');
-const subjectEl = document.getElementById('emailModalSubject');
-const metaEl = document.getElementById('emailModalMeta');
-const bodyEl = document.getElementById('emailModalBody');
-
-const cached = emailCache.find(e => e.uid === uid);
-
-subjectEl.textContent = cached ? cached.subject : 'Email';
-metaEl.textContent = cached ? `${cached.from} • ${new Date(cached.date).toLocaleString()}` : '';
-bodyEl.textContent = 'Loading…';
-
-overlay.classList.add('open');
-
-fetch('/api/smartermail-email?uid=' + uid, { cache: 'no-store' })
-  .then(r => r.json())
-  .then(data => {
-
-    if (data.error) {
-      bodyEl.textContent = data.error;
-      return;
-    }
-
-    subjectEl.textContent = data.subject || subjectEl.textContent;
-    metaEl.textContent = (data.from || '') +
-      (data.date ? ' • ' + new Date(data.date).toLocaleString() : '');
-    bodyEl.textContent = data.text && data.text.trim()
-      ? data.text
-      : '(No readable text content in this email.)';
-
-  })
-  .catch(() => {
-    bodyEl.textContent = 'Could not load this email.';
-  });
-
-}
-
-function closeEmailModal() {
-document.getElementById('emailModalOverlay').classList.remove('open');
-}
-
-document.addEventListener('keydown', event => {
-if (event.key === 'Escape') {
-closeEmailModal();
-}
-});
-
-
-// NOTES
-
-const notes = document.getElementById("notes");
-
-notes.value =
-localStorage.getItem("keith_notes") || "";
-
-notes.addEventListener("input", () => {
-localStorage.setItem(
-"keith_notes",
-notes.value
-);
-});
-
-
-// HEALTH HUB
-
-let meds =
-JSON.parse(
-localStorage.getItem("keith_meds") || "[]"
-);
-
-function saveMeds() {
-localStorage.setItem(
-"keith_meds",
-JSON.stringify(meds)
-);
-}
-
-function renderMeds() {
-
-const list = document.getElementById("med-list");
-
-if (!list) return;
-
-list.innerHTML = "";
-
-if (meds.length === 0) {
-list.innerHTML =
-'<div class="item muted">No medications added yet.</div>';
-return;
-}
-
-meds.forEach((med, index) => {
-
-const row = document.createElement("div");
-row.className = "item task";
-
-const text = document.createElement("span");
-text.textContent = med.text;
-
-const remove = document.createElement("button");
-remove.textContent = "×";
-remove.className = "remove";
-
-remove.onclick = () => {
-meds.splice(index, 1);
-saveMeds();
-renderMeds();
-};
-
-row.appendChild(text);
-row.appendChild(remove);
-
-list.appendChild(row);
-
-});
-
-}
-
-function addMed() {
-
-const input = document.getElementById("medInput");
-const value = input.value.trim();
-
-if (!value) return;
-
-meds.push({ text: value });
-
-input.value = "";
-
-saveMeds();
-renderMeds();
-
-}
-
-const medInputEl = document.getElementById("medInput");
-
-if (medInputEl) {
-medInputEl.addEventListener("keydown", event => {
-if (event.key === "Enter") {
-addMed();
-}
-});
-}
-
-renderMeds();
-
-const healthNotes = document.getElementById("health-notes");
-
-if (healthNotes) {
-
-healthNotes.value =
-localStorage.getItem("keith_health_notes") || "";
-
-healthNotes.addEventListener("input", () => {
-localStorage.setItem(
-"keith_health_notes",
-healthNotes.value
-);
-});
-
-}
-
-
-// HEALTH HUB PRIVACY LOCK
-
-const HEALTH_PIN_KEY = "keith_health_pin";
-const HEALTH_SESSION_KEY = "keith_health_unlocked";
-
-function getHealthPin() {
-return localStorage.getItem(HEALTH_PIN_KEY) || "";
-}
-
-function isHealthUnlocked() {
-return sessionStorage.getItem(HEALTH_SESSION_KEY) === "1";
-}
-
-function showHealthLock() {
-document.getElementById("health-lock-screen").style.display = "block";
-document.getElementById("health-content").style.display = "none";
-const savedPin = getHealthPin();
-const msg = document.getElementById("health-lock-message");
-if (!savedPin) {
-msg.textContent = "Set a PIN to protect your medications and notes.";
-} else {
-msg.textContent = "Enter PIN to view medications and notes.";
-}
-}
-
-function showHealthContent() {
-document.getElementById("health-lock-screen").style.display = "none";
-document.getElementById("health-content").style.display = "block";
-}
-
-function submitHealthPin() {
-const input = document.getElementById("healthPinInput");
-const value = input.value.trim();
-const errorEl = document.getElementById("health-pin-error");
-const savedPin = getHealthPin();
-
-if (!value) return;
-
-if (!savedPin) {
-if (value.length < 4) {
-errorEl.textContent = "Use at least 4 digits.";
-return;
-}
-localStorage.setItem(HEALTH_PIN_KEY, value);
-sessionStorage.setItem(HEALTH_SESSION_KEY, "1");
-input.value = "";
-errorEl.textContent = "";
-showHealthContent();
-return;
-}
-
-if (value === savedPin) {
-sessionStorage.setItem(HEALTH_SESSION_KEY, "1");
-input.value = "";
-errorEl.textContent = "";
-showHealthContent();
-} else {
-errorEl.textContent = "Wrong PIN.";
-input.value = "";
-}
-}
-
-function lockHealth() {
-sessionStorage.removeItem(HEALTH_SESSION_KEY);
-showHealthLock();
-}
-
-function changeHealthPin() {
-const current = prompt("Enter your current PIN to change it:");
-if (current === null) return;
-if (current !== getHealthPin()) {
-alert("That PIN doesn't match.");
-return;
-}
-const next = prompt("Enter a new PIN (4+ digits):");
-if (!next) return;
-if (next.trim().length < 4) {
-alert("Use at least 4 digits.");
-return;
-}
-localStorage.setItem(HEALTH_PIN_KEY, next.trim());
-alert("PIN updated.");
-}
-
-const healthPinInputEl = document.getElementById("healthPinInput");
-if (healthPinInputEl) {
-healthPinInputEl.addEventListener("keydown", event => {
-if (event.key === "Enter") {
-submitHealthPin();
-}
-});
-}
-
-if (isHealthUnlocked()) {
-showHealthContent();
-} else {
-showHealthLock();
-}
-
-
-// TASKS
-
-let tasks =
-JSON.parse(
-localStorage.getItem("keith_tasks") || "[]"
-);
-
-if (tasks.length === 0) {
-tasks = [
-{ text: "Clean kitchen", done: false },
-{ text: "EDD", done: false },
-{ text: "Finish GitHub repo", done: false },
-{ text: "Fix AI To-Do tasks checklist", done: false },
-{ text: "Take out trash", done: false },
-{ text: "Review 1 pending task", done: false }
-];
-}
-
-function saveTasks() {
-localStorage.setItem(
-"keith_tasks",
-JSON.stringify(tasks)
-);
-}
-
-let tasksExpanded = false;
-
-function renderTasks() {
-
-const list =
-document.getElementById("taskList");
-
-list.innerHTML = "";
-
-const ordered = tasks
-.map((task, index) => ({ task, index }))
-.sort((a, b) => (a.task.done === b.task.done) ? 0 : (a.task.done ? 1 : -1));
-
-const visible = tasksExpanded ? ordered : ordered.slice(0, 4);
-
-visible.forEach(({ task, index }) => {
-
-const row =
-document.createElement("div");
-
-row.className = "item task";
-
-
-const text =
-document.createElement("span");
-
-text.textContent = task.text;
-
-if (task.done) {
-text.className = "done";
-}
-
-text.style.cursor = "pointer";
-
-text.onclick = () => {
-
-tasks[index].done =
-!tasks[index].done;
-
-saveTasks();
-renderTasks();
-};
-
-
-const remove =
-document.createElement("button");
-
-remove.textContent = "×";
-remove.className = "remove";
-
-remove.onclick = () => {
-
-tasks.splice(index, 1);
-
-saveTasks();
-renderTasks();
-};
-
-
-row.appendChild(text);
-row.appendChild(remove);
-
-list.appendChild(row);
-
-});
-
-if (ordered.length > 4) {
-
-const toggle =
-document.createElement("div");
-
-toggle.className = "muted";
-toggle.style.cursor = "pointer";
-toggle.style.marginTop = "6px";
-toggle.style.textDecoration = "underline";
-
-toggle.textContent = tasksExpanded
-? "Show top 4 only"
-: `+${ordered.length - 4} more (tap to show all)`;
-
-toggle.onclick = () => {
-tasksExpanded = !tasksExpanded;
-renderTasks();
-};
-
-list.appendChild(toggle);
-
-}
-
-saveTasks();
-}
-
-function addTask() {
-
-const input =
-document.getElementById("taskInput");
-
-const value =
-input.value.trim();
-
-if (!value) return;
-
-tasks.push({
-text: value,
-done: false
-});
-
-input.value = "";
-
-saveTasks();
-renderTasks();
-}
-
-document
-.getElementById("taskInput")
-.addEventListener("keydown", event => {
-
-if (event.key === "Enter") {
-addTask();
-}
-
-});
-
-renderTasks();
-
-
-// SLEEP RECORDER
-
-let sleepEvents =
-JSON.parse(
-localStorage.getItem("keith_sleep_events") || "[]"
-);
-
-const sleepNotes =
-document.getElementById("sleep-notes");
-
-if (sleepNotes) {
-
-sleepNotes.value =
-localStorage.getItem("keith_sleep_notes") || "";
-
-sleepNotes.addEventListener("input", () => {
-
-localStorage.setItem(
-"keith_sleep_notes",
-sleepNotes.value
-);
-
-});
-}
-
-function saveSleepEvents() {
-
-localStorage.setItem(
-"keith_sleep_events",
-JSON.stringify(sleepEvents)
-);
-
-}
-
-function logSleepEvent(type) {
-
-const now = new Date();
-
-sleepEvents.push({
-type: type,
-time: now.toISOString(),
-displayTime: now.toLocaleString()
-});
-
-saveSleepEvents();
-renderSleepEvents();
-
-}
-
-function summarizeSleep(events) {
-
-if (events.length === 0) {
-return "No events logged yet tonight — looking good so far.";
-}
-
-const counts = {};
-
-events.forEach(e => {
-counts[e.type] = (counts[e.type] || 0) + 1;
-});
-
-const total = events.length;
-
-let quality;
-
-if (total <= 2) {
-quality = "A pretty solid night.";
-} else if (total <= 5) {
-quality = "A few rough patches.";
-} else {
-quality = "A rough night — worth mentioning at your next appointment.";
-}
-
-const breakdown = Object.entries(counts)
-.map(([type, n]) => n + " " + type)
-.join(", ");
-
-return quality + " " + total + " event" + (total === 1 ? "" : "s") +
-" logged (" + breakdown + ").";
-
-}
-
-function renderSleepEvents() {
-
-const count =
-document.getElementById("sleep-count");
-
-const history =
-document.getElementById("sleep-history");
-
-const summary =
-document.getElementById("sleep-summary");
-
-if (!count || !history) return;
-
-count.textContent =
-sleepEvents.length;
-
-if (summary) {
-summary.textContent = summarizeSleep(sleepEvents);
-}
-
-history.innerHTML = "";
-
-if (sleepEvents.length === 0) {
-
-history.innerHTML =
-'<div class="item muted">No sleep events logged yet.</div>';
-
-return;
-}
-
-[...sleepEvents]
-.reverse()
-.forEach(event => {
-
-const row =
-document.createElement("div");
-
-row.className = "item";
-
-row.textContent =
-event.type +
-" • " +
-event.displayTime;
-
-history.appendChild(row);
-
-});
-
-}
-
-function clearSleepLog() {
-
-if (!confirm(
-"Clear tonight's sleep event log?"
-)) {
-return;
-}
-
-sleepEvents = [];
-
-saveSleepEvents();
-renderSleepEvents();
-
-}
-
-function exportSleepLog() {
-
-const notesText =
-sleepNotes
-? sleepNotes.value
-: "";
-
-let text =
-"Keith Sleep Log\n\n";
-
-text +=
-"Exported: " +
-new Date().toLocaleString() +
-"\n\n";
-
-text += "Events:\n";
-
-if (sleepEvents.length === 0) {
-
-text +=
-"No events logged.\n";
-
-} else {
-
-sleepEvents.forEach(event => {
-
-text +=
-"- " +
-event.type +
-" | " +
-event.displayTime +
-"\n";
-
-});
-
-}
-
-text +=
-"\nSleep Notes:\n" +
-notesText +
-"\n";
-
-const blob =
-new Blob(
-[text],
-{ type: "text/plain" }
-);
-
-const url =
-URL.createObjectURL(blob);
-
-const link =
-document.createElement("a");
-
-link.href = url;
-
-link.download =
-"keith-sleep-log.txt";
-
-link.click();
-
-URL.revokeObjectURL(url);
-
-}
-
-renderSleepEvents();
-
-</script>
-
+      <div class="topbar-right">
+        <div class="chip clock-chip" title="Local time in La Quinta">
+          <svg><use href="#i-clock"/></svg>
+          <span id="clock">--:--:--</span>
+        </div>
+        <div class="chip weather-chip" id="weatherChip" title="Current conditions">
+          <svg><use href="#i-sun"/></svg>
+          <span id="weatherChipText">—</span>
+        </div>
+        <span class="status-pill" id="apiDot" data-state="idle" title="API status"><i></i><span>checking</span></span>
+        <button class="palette-btn" id="paletteBtn" aria-label="Open command palette">
+          <svg><use href="#i-search"/></svg><span>Search or jump to…</span><kbd>Ctrl K</kbd>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- ========================= OVERVIEW ========================= -->
+      <section class="view is-active" id="view-overview" data-view="overview" aria-labelledby="viewTitle">
+        <div class="bento">
+
+          <article class="card hero-card span-8" id="heroCard">
+            <div class="hero-top">
+              <div>
+                <p class="eyebrow" id="greeting">Good morning, Keith</p>
+                <h2 class="hero-title"><span id="heroDate">—</span></h2>
+                <p class="hero-sub" id="heroSub">La Quinta, California · ZIP 92253</p>
+              </div>
+              <div class="hero-actions">
+                <button class="btn ghost sm" id="refreshAll"><svg><use href="#i-refresh"/></svg>Refresh</button>
+                <button class="btn sm" id="briefBtn"><svg><use href="#i-spark"/></svg>Daily brief</button>
+              </div>
+            </div>
+
+            <div class="hero-weather" id="heroWeather">
+              <div class="wx-icon" id="wxIcon" aria-hidden="true">☀️</div>
+              <div class="wx-main">
+                <div class="wx-temp"><span id="wxTemp">--</span><span class="wx-deg">°</span></div>
+                <div class="wx-cond" id="wxCond">Loading conditions…</div>
+                <div class="wx-meta" id="wxMeta">—</div>
+              </div>
+              <dl class="wx-facts">
+                <div><dt>High / Low</dt><dd id="wxHiLo">—</dd></div>
+                <div><dt>Feels like</dt><dd id="wxFeels">—</dd></div>
+                <div><dt>Wind</dt><dd id="wxWind">—</dd></div>
+                <div><dt>Humidity</dt><dd id="wxHumid">—</dd></div>
+                <div><dt>Sunrise</dt><dd id="wxSunrise">—</dd></div>
+                <div><dt>Sunset</dt><dd id="wxSunset">—</dd></div>
+              </dl>
+            </div>
+
+            <div class="wx-strips">
+              <div>
+                <div class="strip-head"><span>Next 12 hours</span><span class="muted" id="wxUpdated">—</span></div>
+                <div class="hour-strip" id="wxHourly"></div>
+              </div>
+              <div>
+                <div class="strip-head"><span>7-day forecast</span><span class="muted" id="wxSource">—</span></div>
+                <div class="day-strip" id="wxDaily"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card kpi-card span-4" aria-label="Key numbers">
+            <div class="card-head"><h3>At a glance</h3><span class="tag" id="kpiTag">today</span></div>
+            <ul class="kpis" id="kpis">
+              <li><span class="kpi-icon tasks"><svg><use href="#i-check"/></svg></span><span class="kpi-label">Open tasks</span><strong id="kpiTasks">0</strong></li>
+              <li><span class="kpi-icon mail"><svg><use href="#i-mail"/></svg></span><span class="kpi-label">Priority mail</span><strong id="kpiMail">0</strong></li>
+              <li><span class="kpi-icon cal"><svg><use href="#i-calendar"/></svg></span><span class="kpi-label">Agenda items</span><strong id="kpiAgenda">0</strong></li>
+              <li><span class="kpi-icon sleep"><svg><use href="#i-moon"/></svg></span><span class="kpi-label">Sleep events</span><strong id="kpiSleep">0</strong></li>
+            </ul>
+            <div class="sync-line"><span class="dot" id="syncDot"></span><span id="syncText">Local-first · this device</span></div>
+            <div class="mini-status" id="miniStatus">
+              <div><span>AI engine</span><b id="miniAi">checking</b></div>
+              <div><span>Weather feed</span><b id="miniWeather">—</b></div>
+              <div><span>Daily brief</span><b id="miniBrief">not yet</b></div>
+              <div><span>Inbox</span><b id="miniInbox">—</b></div>
+            </div>
+          </article>
+
+          <article class="card span-8" id="tasksCard">
+            <div class="card-head">
+              <h3><svg class="h-ico"><use href="#i-check"/></svg>Today’s Tasks</h3>
+              <div class="head-actions">
+                <button class="link-btn" id="tasksFilter" data-mode="open">Show all</button>
+              </div>
+            </div>
+            <form class="inline-form" id="taskForm" autocomplete="off">
+              <input id="taskInput" type="text" placeholder="Add a task and press Enter…" maxlength="200" aria-label="New task">
+              <select id="taskPriority" aria-label="Priority">
+                <option value="normal">Normal</option>
+                <option value="high">High</option>
+                <option value="low">Low</option>
+              </select>
+              <input id="taskDue" type="date" aria-label="Due date">
+              <button class="btn" type="submit"><svg><use href="#i-plus"/></svg>Add</button>
+            </form>
+            <ul class="task-list" id="taskList"></ul>
+            <p class="empty" id="taskEmpty" hidden>Nothing open. Enjoy the quiet.</p>
+          </article>
+
+          <article class="card span-4" id="briefCard">
+            <div class="card-head"><h3><svg class="h-ico"><use href="#i-spark"/></svg>Daily Brief</h3><span class="tag" id="briefStamp">not generated</span></div>
+            <div class="brief-body" id="briefText">Generate a short, plain-English brief from your weather, tasks, mail and agenda.</div>
+            <div class="card-foot">
+              <button class="btn ghost sm" id="briefRegen"><svg><use href="#i-refresh"/></svg>Regenerate</button>
+              <button class="link-btn" id="briefCopy">Copy</button>
+            </div>
+          </article>
+
+          <article class="card span-4" id="agendaCard">
+            <div class="card-head"><h3><svg class="h-ico"><use href="#i-calendar"/></svg>Agenda</h3><span class="tag" id="agendaStamp">—</span></div>
+            <ul class="agenda-list" id="agendaList"><li class="empty">No agenda file yet.</li></ul>
+          </article>
+
+          <article class="card span-4" id="mailMiniCard">
+            <div class="card-head"><h3><svg class="h-ico"><use href="#i-mail"/></svg>Priority Mail</h3><button class="link-btn" data-goto="comms">Open inbox</button></div>
+            <ul class="mail-mini" id="emailMini"><li class="empty">Loading inbox…</li></ul>
+          </article>
+
+          <article class="card span-4" id="quickCard">
+            <div class="card-head"><h3><svg class="h-ico"><use href="#i-zap"/></svg>Quick Launch</h3></div>
+            <div class="quick-grid" id="quickLinks">
+              <a href="https://www.audible.com" target="_blank" rel="noopener">Audible</a>
+              <a href="https://open.spotify.com" target="_blank" rel="noopener">Spotify</a>
+              <a href="https://podcasts.apple.com" target="_blank" rel="noopener">Podcasts</a>
+              <a href="https://otter.ai" target="_blank" rel="noopener">Otter</a>
+              <a href="https://forecast.weather.gov/MapClick.php?lat=33.6639&amp;lon=-116.31" target="_blank" rel="noopener">NWS</a>
+              <a href="https://github.com/mathew1960/Keith-Otter/actions" target="_blank" rel="noopener">Actions</a>
+            </div>
+          </article>
+
+          <article class="card span-8" id="newsMiniCard">
+            <div class="card-head"><h3><svg class="h-ico"><use href="#i-notes"/></svg>Worth Knowing</h3><button class="link-btn" data-goto="comms">All headlines</button></div>
+            <ul class="news-mini" id="newsMini"><li class="empty">Loading headlines…</li></ul>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ========================= COMMS ========================= -->
+      <section class="view" id="view-comms" data-view="comms" hidden>
+        <div class="section-grid">
+          <article class="card">
+            <div class="card-head">
+              <h3><svg class="h-ico"><use href="#i-mail"/></svg>Email Watch</h3>
+              <div class="head-actions">
+                <input class="mini-input" id="emailSearch" type="search" placeholder="Filter sender or subject…" aria-label="Filter email">
+                <button class="btn ghost sm" id="emailRefresh"><svg><use href="#i-refresh"/></svg>Refresh</button>
+              </div>
+            </div>
+            <ul class="mail-list" id="emailList"><li class="empty">Loading inbox…</li></ul>
+            <p class="hint">Only senders on the priority list are shown. Cached for 10 minutes at the edge.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h3><svg><use href="#i-notes"/></svg>News Worth Knowing</h3>
+              <div class="head-actions">
+                <select id="newsFilter" class="mini-input" aria-label="Filter category">
+                  <option value="all">All categories</option>
+                  <option value="markets">Markets</option>
+                  <option value="tech">AI &amp; Tech</option>
+                  <option value="local">California</option>
+                  <option value="world">World</option>
+                </select>
+              </div>
+            </div>
+            <input class="mini-input wide" id="newsSearch" type="search" placeholder="Search headlines…" aria-label="Search headlines">
+            <div class="news-grid" id="newsGrid"><p class="empty">Loading headlines…</p></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================= AI ========================= -->
+      <section class="view" id="view-ai" data-view="ai" hidden>
+        <div class="ai-layout">
+          <aside class="card chat-rail">
+            <div class="card-head"><h3>Threads</h3><button class="icon-btn sm" id="newChat" title="New chat"><svg><use href="#i-plus"/></svg></button></div>
+            <ul class="thread-list" id="chatThreads"></ul>
+            <div class="ai-config">
+              <label>Model
+                <select id="modelSelect">
+                  <option value="deepseek-chat">DeepSeek V3 · chat</option>
+                  <option value="deepseek-reasoner">DeepSeek R1 · reasoner</option>
+                </select>
+              </label>
+              <label>Preset
+                <select id="presetSelect">
+                  <option value="research">Research</option>
+                  <option value="brief">Brief writer</option>
+                  <option value="code">Code helper</option>
+                  <option value="kitchen">Kitchen &amp; menu</option>
+                </select>
+              </label>
+              <label class="check"><input type="checkbox" id="streamToggle" checked> Stream replies</label>
+            </div>
+          </aside>
+
+          <article class="card chat-main">
+            <div class="card-head">
+              <h3 id="chatTitle"><svg class="h-ico"><use href="#i-spark"/></svg>New chat</h3>
+              <div class="head-actions">
+                <span class="tag" id="chatStats">ready</span>
+                <button class="icon-btn sm" id="deleteChat" title="Delete chat"><svg><use href="#i-trash"/></svg></button>
+              </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+              <div class="chat-empty" id="chatEmpty">
+                <svg><use href="#i-spark"/></svg>
+                <h4>Ask anything</h4>
+                <p>DeepSeek is wired through a serverless function — your key never reaches the browser.</p>
+                <div class="suggestions">
+                  <button data-suggest="Summarize what I should focus on today given my tasks and the weather.">Today’s focus</button>
+                  <button data-suggest="Draft a short, polite email to my landlord about the water heater.">Draft an email</button>
+                  <button data-suggest="Give me three high-protein dinner ideas I can make in 30 minutes.">Dinner ideas</button>
+                  <button data-suggest="Explain what changed in AI this week in five bullets.">AI recap</button>
+                </div>
+              </div>
+            </div>
+            <form class="chat-form" id="chatForm">
+              <textarea id="chatInput" rows="1" placeholder="Message DeepSeek…  (Enter to send, Shift+Enter for a new line)" aria-label="Message"></textarea>
+              <button class="btn" type="submit" id="chatSend"><svg><use href="#i-spark"/></svg>Send</button>
+            </form>
+            <p class="hint">Replies are generated by DeepSeek. Verify anything important. History stays in this browser unless sync is enabled.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================= HEALTH ========================= -->
+      <section class="view" id="view-health" data-view="health" hidden>
+        <article class="card health-card">
+          <div class="health-lock" id="healthLock">
+            <div class="lock-badge"><svg><use href="#i-lock"/></svg></div>
+            <h3>Health Hub is locked</h3>
+            <p id="healthLockMsg">Enter your PIN to view medications, vitals and notes.</p>
+            <form id="healthPinForm" class="pin-form" autocomplete="off">
+              <input id="healthPin" type="password" inputmode="numeric" maxlength="12" placeholder="PIN" aria-label="Health PIN">
+              <button class="btn" type="submit">Unlock</button>
+            </form>
+            <p class="error" id="healthPinError" role="alert"></p>
+            <p class="hint">Stored as a PBKDF2 hash on this device only. Four digits minimum.</p>
+          </div>
+
+          <div class="health-content" id="healthContent" hidden>
+            <div class="card-head">
+              <h3><svg class="h-ico"><use href="#i-heart"/></svg>Health Hub</h3>
+              <div class="head-actions">
+                <button class="link-btn" id="changePin">Change PIN</button>
+                <button class="link-btn" id="lockHealth">Lock now</button>
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <h4 class="sub-head">Medications</h4>
+                <ul class="med-list" id="medList"></ul>
+                <form class="inline-form" id="medForm" autocomplete="off">
+                  <input id="medName" placeholder="Medication" aria-label="Medication name" required>
+                  <input id="medDose" placeholder="Dose (10 mg)" aria-label="Dose">
+                  <input id="medRefill" type="date" aria-label="Refill date">
+                  <button class="btn" type="submit"><svg><use href="#i-plus"/></svg>Add</button>
+                </form>
+                <p class="hint">Refills due within 7 days are flagged red.</p>
+              </div>
+              <div>
+                <h4 class="sub-head">Vitals</h4>
+                <div class="spark" id="vitalsSpark" aria-label="Blood pressure trend"></div>
+                <form class="inline-form" id="vitalsForm" autocomplete="off">
+                  <input id="vitalSys" type="number" min="60" max="260" placeholder="SYS" aria-label="Systolic" required>
+                  <input id="vitalDia" type="number" min="30" max="180" placeholder="DIA" aria-label="Diastolic" required>
+                  <input id="vitalPulse" type="number" min="30" max="220" placeholder="Pulse" aria-label="Pulse">
+                  <button class="btn" type="submit"><svg><use href="#i-plus"/></svg>Log</button>
+                </form>
+                <ul class="vitals-list" id="vitalsList"></ul>
+              </div>
+            </div>
+
+            <h4 class="sub-head">Doctor’s notes</h4>
+            <textarea id="healthNotes" rows="6" placeholder="Symptoms, questions for the next appointment, CPAP notes…"></textarea>
+            <p class="hint">Saves on this device automatically.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ========================= SLEEP ========================= -->
+      <section class="view" id="view-sleep" data-view="sleep" hidden>
+        <div class="bento">
+          <article class="card span-7">
+            <div class="card-head">
+              <h3><svg class="h-ico"><use href="#i-moon"/></svg>Sleep Apnea Recorder</h3>
+              <span class="tag" id="sleepTag">tonight</span>
+            </div>
+            <div class="sleep-hero">
+              <div class="sleep-count"><strong id="sleepCount">0</strong><span>events logged</span></div>
+              <p class="sleep-summary" id="sleepSummary">No events yet — looking good so far.</p>
+            </div>
+            <div class="sleep-buttons" id="sleepButtons">
+              <button data-type="Apnea" class="sev-4">Apnea</button>
+              <button data-type="Gasping" class="sev-3">Gasping</button>
+              <button data-type="Snore" class="sev-2">Snore</button>
+              <button data-type="Awake" class="sev-1">Awake</button>
+            </div>
+            <div class="chart-wrap">
+              <div class="strip-head"><span>Last 14 nights</span><span class="muted">total events / night</span></div>
+              <div id="sleepChart" class="bar-chart"></div>
+            </div>
+            <div class="card-foot">
+              <button class="btn ghost sm" id="sleepExport"><svg><use href="#i-download"/></svg>Export CSV</button>
+              <button class="btn ghost sm danger" id="sleepClear"><svg><use href="#i-trash"/></svg>Clear tonight</button>
+            </div>
+          </article>
+
+          <article class="card span-5">
+            <div class="card-head"><h3>Tonight’s log</h3><span class="tag" id="sleepLast">—</span></div>
+            <ul class="sleep-history" id="sleepHistory"></ul>
+            <h4 class="sub-head">Sleep notes</h4>
+            <textarea id="sleepNotes" rows="5" placeholder="How did you sleep? CPAP pressure, dry mouth, headaches, awakenings…"></textarea>
+            <p class="hint">Personal logging tool — not a diagnosis or a medical device.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================= NOTES ========================= -->
+      <section class="view" id="view-notes" data-view="notes" hidden>
+        <div class="notes-layout">
+          <aside class="card notes-rail">
+            <div class="card-head"><h3>Notes</h3><button class="icon-btn sm" id="newNote" title="New note"><svg><use href="#i-plus"/></svg></button></div>
+            <input class="mini-input wide" id="noteSearch" type="search" placeholder="Search notes…" aria-label="Search notes">
+            <ul class="note-list" id="notesList"></ul>
+          </aside>
+          <article class="card notes-main">
+            <div class="card-head">
+              <input class="note-title" id="noteTitle" placeholder="Untitled note" aria-label="Note title" maxlength="120">
+              <div class="head-actions">
+                <button class="link-btn" id="notePin">Pin</button>
+                <button class="link-btn danger" id="noteDelete">Delete</button>
+              </div>
+            </div>
+            <div class="note-tabs" role="tablist">
+              <button role="tab" class="is-active" data-note-tab="edit">Write</button>
+              <button role="tab" data-note-tab="preview">Preview</button>
+            </div>
+            <textarea class="note-body" id="noteBody" placeholder="Ideas, reminders, errands… Markdown is supported."></textarea>
+            <div class="note-preview markdown" id="notePreview" hidden></div>
+            <p class="hint" id="noteMeta">—</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================= OPS ========================= -->
+      <section class="view" id="view-ops" data-view="ops" hidden>
+        <div class="bento">
+          <article class="card span-7">
+            <div class="card-head"><h3><svg class="h-ico"><use href="#i-activity"/></svg>Service health</h3><button class="btn ghost sm" id="opsRefresh"><svg><use href="#i-refresh"/></svg>Re-check</button></div>
+            <ul class="health-grid" id="healthGrid"></ul>
+            <p class="hint">Checks run from your browser. A red row usually means an environment variable or upstream outage.</p>
+          </article>
+
+          <article class="card span-5">
+            <div class="card-head"><h3>Data freshness</h3><span class="tag" id="deployTag">—</span></div>
+            <ul class="freshness" id="freshness"></ul>
+            <h4 class="sub-head">Latest workflow runs</h4>
+            <ul class="runs" id="workflowRuns"><li class="empty">Loading GitHub Actions…</li></ul>
+            <div class="card-foot">
+              <a class="link-btn" href="https://github.com/mathew1960/Keith-Otter/actions" target="_blank" rel="noopener">Workflow runs <svg class="inline"><use href="#i-external"/></svg></a>
+            </div>
+          </article>
+
+          <article class="card span-5">
+            <div class="card-head"><h3><svg class="h-ico"><use href="#i-settings"/></svg>Storage &amp; sync</h3></div>
+            <ul class="kv" id="storageUsage"></ul>
+            <form class="inline-form" id="syncForm" autocomplete="off">
+              <input id="syncToken" type="password" placeholder="Sync token (optional)" aria-label="Sync token">
+              <button class="btn" type="submit">Save</button>
+              <button class="btn ghost" type="button" id="syncNow">Sync now</button>
+            </form>
+            <p class="hint" id="syncHint">Cross-device sync needs Supabase env vars plus a shared token. Without them the dashboard is local-first and still fully usable.</p>
+          </article>
+
+          <article class="card span-7">
+            <div class="card-head"><h3><svg><use href="#i-download"/></svg>Backup</h3><span class="tag" id="backupStamp">—</span></div>
+            <p class="muted">Export every task, note, medication, vital, sleep event and chat as one JSON file. Import merges by newest change.</p>
+            <div class="row-actions">
+              <button class="btn ghost sm" id="backupExport"><svg><use href="#i-download"/></svg>Export JSON</button>
+              <label class="btn ghost sm file-btn"><svg><use href="#i-upload"/></svg>Import JSON<input type="file" id="backupImport" accept="application/json" hidden></label>
+            </div>
+            <h4 class="sub-head">Keyboard</h4>
+            <ul class="shortcuts" id="shortcuts">
+              <li><kbd>Ctrl K</kbd><span>Command palette</span></li>
+              <li><kbd>T</kbd><span>Toggle theme</span></li>
+              <li><kbd>N</kbd><span>New task</span></li>
+              <li><kbd>1–8</kbd><span>Jump to section</span></li>
+              <li><kbd>Esc</kbd><span>Close dialogs</span></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================= AUTOMATIONS ========================= -->
+      <section class="view" id="view-automations" data-view="automations" hidden>
+        <div class="bento">
+          <article class="card span-12">
+            <div class="card-head"><h3><svg class="h-ico"><use href="#i-zap"/></svg>Automation stack</h3><span class="tag">optional upgrades</span></div>
+            <p class="muted wide-p">The dashboard works standalone. These integrations are optional layers — they are what turn a static page into a heavy-duty command center. Each card shows whether it is currently configured in this deployment.</p>
+          </article>
+
+          <article class="card span-4 auto-card" data-auto="github">
+            <div class="auto-top"><span class="auto-logo">GH</span><span class="tag" id="autoGitHub">—</span></div>
+            <h3>GitHub Actions</h3>
+            <p>Refreshes weather, news and the daily agenda on a schedule, then commits the JSON that Vercel serves.</p>
+            <a class="link-btn" href="https://github.com/mathew1960/Keith-Otter/actions" target="_blank" rel="noopener">Open Actions <svg class="inline"><use href="#i-external"/></svg></a>
+          </article>
+
+          <article class="card span-4 auto-card" data-auto="vercel">
+            <div class="auto-top"><span class="auto-logo">▲</span><span class="tag" id="autoVercel">—</span></div>
+            <h3>Vercel</h3>
+            <p>Hosts the static dashboard and the serverless API routes (<code>/api/ai-corner</code>, <code>/api/weather</code>, <code>/api/news</code>, <code>/api/status</code>, <code>/api/state</code>).</p>
+            <a class="link-btn" href="https://vercel.com/mathew1960s-projects/keith-otter" target="_blank" rel="noopener">Open project <svg class="inline"><use href="#i-external"/></svg></a>
+          </article>
+
+          <article class="card span-4 auto-card" data-auto="deepseek">
+            <div class="auto-top"><span class="auto-logo">DS</span><span class="tag" id="autoDeepSeek">—</span></div>
+            <h3>DeepSeek API</h3>
+            <p>Powers the AI panel and the daily brief. Set <code>DEEPSEEK_API_KEY</code> in Vercel → Environment Variables. Gemini remains a fallback.</p>
+            <a class="link-btn" href="https://platform.deepseek.com/api_keys" target="_blank" rel="noopener">Manage keys <svg class="inline"><use href="#i-external"/></svg></a>
+          </article>
+
+          <article class="card span-4 auto-card" data-auto="supabase">
+            <div class="auto-top"><span class="auto-logo">SB</span><span class="tag" id="autoSupabase">—</span></div>
+            <h3>Supabase</h3>
+            <p>Optional cross-device sync for tasks, notes, meds, vitals and chats. Run <code>automation/supabase/schema.sql</code>, then set the URL, service key and sync token.</p>
+            <a class="link-btn" href="https://supabase.com/dashboard" target="_blank" rel="noopener">Open Supabase <svg class="inline"><use href="#i-external"/></svg></a>
+          </article>
+
+          <article class="card span-4 auto-card" data-auto="n8n">
+            <div class="auto-top"><span class="auto-logo">n8</span><span class="tag" id="autoN8n">—</span></div>
+            <h3>n8n</h3>
+            <p>Import <code>automation/n8n/keith-command-center.json</code> to run the refresh job on n8n Cloud instead of GitHub Actions, or to fan out to Slack/SMS.</p>
+            <a class="link-btn" href="https://app.n8n.cloud" target="_blank" rel="noopener">Open n8n <svg class="inline"><use href="#i-external"/></svg></a>
+          </article>
+
+          <article class="card span-4 auto-card" data-auto="zapier">
+            <div class="auto-top"><span class="auto-logo">Zp</span><span class="tag" id="autoZapier">—</span></div>
+            <h3>Zapier</h3>
+            <p>Point a Zap at the dashboard webhook to mirror tasks or mail alerts into Slack, SMS or a spreadsheet. Setup notes in <code>automation/zapier/</code>.</p>
+            <a class="link-btn" href="https://zapier.com/app/dashboard" target="_blank" rel="noopener">Open Zapier <svg class="inline"><use href="#i-external"/></svg></a>
+          </article>
+
+          <article class="card span-12">
+            <div class="card-head"><h3>Architecture</h3></div>
+            <pre class="arch">Browser (this page)
+   │  static shell + vanilla JS modules, IndexedDB/localStorage store
+   ├── /api/weather   → Open-Meteo (live, 10-min edge cache)
+   ├── /api/news      → RSS feeds (live, 15-min edge cache)
+   ├── /api/ai-corner → DeepSeek (fallback: Gemini)
+   ├── /api/status    → deployment + GitHub Actions health
+   ├── /api/state     → Supabase (optional sync, token-gated)
+   └── /api/smartermail-email → IMAP inbox (priority senders)
+
+GitHub Actions ──commit JSON──▶ Vercel auto-deploy ──▶ this page
+n8n / Zapier ──webhook──▶ same JSON or Supabase</pre>
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="foot">
+      <span>Keith · Command Center</span>
+      <span class="foot-mid">La Quinta, CA · <span id="footUpdated">—</span></span>
+      <span>v2.0 · <a href="https://github.com/mathew1960/Keith-Otter" target="_blank" rel="noopener">source</a></span>
+    </footer>
+  </div>
+</div>
+
+<!-- Command palette -->
+<div class="palette" id="palette" hidden>
+  <div class="palette-box" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="palette-input-row">
+      <svg><use href="#i-search"/></svg>
+      <input id="paletteInput" type="text" placeholder="Type a command or search…" aria-label="Command palette input">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="palette-list" id="paletteList"></ul>
+  </div>
+</div>
+
+<!-- Modal -->
+<dialog class="modal" id="modal">
+  <div class="modal-head">
+    <h3 id="modalTitle">—</h3>
+    <button class="icon-btn sm" id="modalClose" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <div class="modal-body" id="modalBody"></div>
+</dialog>
+
+<!-- Settings -->
+<dialog class="modal" id="settingsModal">
+  <div class="modal-head">
+    <h3>Settings</h3>
+    <button class="icon-btn sm" id="settingsClose" aria-label="Close settings"><svg><use href="#i-x"/></svg></button>
+  </div>
+  <div class="modal-body settings-body">
+    <div class="settings-grid">
+      <label class="field">Theme
+        <select id="setTheme">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </label>
+      <label class="field">Default DeepSeek model
+        <select id="setModel">
+          <option value="deepseek-chat">DeepSeek V3 · chat</option>
+          <option value="deepseek-reasoner">DeepSeek R1 · reasoner</option>
+        </select>
+      </label>
+      <label class="field">Sync token
+        <input id="setSync" type="password" autocomplete="off" placeholder="Optional — enables cross-device sync">
+      </label>
+      <p class="hint">The token is stored in this browser and checked by <code>/api/state</code>. Without Supabase env vars on the server, sync stays off and the dashboard remains local-first.</p>
+      <div class="row-actions">
+        <button class="btn ghost sm" id="setSyncNow">Sync now</button>
+        <button class="btn ghost sm" id="setExport">Export backup</button>
+        <button class="btn ghost sm" id="setRefresh">Refresh data</button>
+        <button class="btn ghost sm" id="setReset">Erase local data</button>
+      </div>
+      <p class="hint">Command Center v2.0 · <a href="https://github.com/mathew1960/Keith-Otter" target="_blank" rel="noopener">source on GitHub</a></p>
+    </div>
+  </div>
+</dialog>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script type="module" src="/assets/app.js"></script>
 </body>
 </html>

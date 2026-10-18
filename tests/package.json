@@ -1,0 +1,9 @@
+{
+  "name": "keith-command-center-tests",
+  "private": true,
+  "type": "module",
+  "description": "Browser-test dependencies only. Kept out of the root package.json so Vercel does not install them.",
+  "dependencies": {
+    "puppeteer-core": "^24.10.0"
+  }
+}
