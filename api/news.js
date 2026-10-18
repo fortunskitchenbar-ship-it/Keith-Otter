@@ -75,7 +75,7 @@ function parseFeed(xml, source) {
     if (title && link) items.push({ title, link, summary, published: pub ? new Date(pub).toISOString() : null, source });
   }
 
-  return items;
+  return items.filter(item => /^https?:\/\//i.test(item.link));
 }
 
 async function fetchFeed(feed) {

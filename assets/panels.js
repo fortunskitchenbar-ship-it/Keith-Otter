@@ -236,6 +236,7 @@ export async function refreshNews() {
   }
   view.newsLoaded = true;
   view.newsUpdated = new Date().toISOString();
+  view.news = view.news.filter(n => n && /^https?:\/\//i.test(n.link || ''));
   renderNews();
 }
 

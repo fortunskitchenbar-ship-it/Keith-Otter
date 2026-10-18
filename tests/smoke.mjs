@@ -180,6 +180,7 @@ export async function runSmoke(baseUrl) {
     if (res.status === 200) {
       if (!Array.isArray(json?.items) || !json.items.length) throw new Error('no items');
       if (!json.items[0].title || !json.items[0].link) throw new Error('bad item shape');
+      if (!json.items.every(i => /^https?:\/\//i.test(i.link))) throw new Error('non-http link in feed output');
       return `${json.items.length} items from ${json.feeds?.length || 0} feeds`;
     }
     if (res.status === 502) return 'upstream 502 (client falls back to rss_headlines.json)';
