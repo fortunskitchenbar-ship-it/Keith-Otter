@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Joy Behar wants Trump back on ‘The View’ despite saying he’s ‘not long for this world’
-      https://www.foxnews.com/media/joy-behar-wants-trump-back-view-despite-saying-hes-not-long-this-world
-
-   2. Netanyahu praises Trump's 'wicked sense of humor,' defends ironclad alliance ahead of historic Israel vote
-      https://www.foxnews.com/media/netanyahu-praises-trumps-wicked-sense-humor-defends-ironclad-alliance-ahead-historic-israel-vote
-
-   3. Biden-appointed judge deals Trump another sanctuary city defeat in major immigration fight
+   1. Biden-appointed judge deals Trump another sanctuary city defeat in major immigration fight
       https://www.foxnews.com/politics/biden-appointed-judge-deals-trump-another-sanctuary-city-defeat-major-immigration-fight
 
-   4. Army expo attendees skeptical of Trump's Iran peace deal hopes: 'Beat 'em into submission'
+   2. Army expo attendees skeptical of Trump's Iran peace deal hopes: 'Beat 'em into submission'
       https://www.foxnews.com/politics/army-expo-attendees-skeptical-trumps-iran-peace-deal-hopes-beat-em-submission
 
-   5. Tish James confronted on camera over Trump's accusation of bias in Cornell rape case
+   3. Tish James confronted on camera over Trump's accusation of bias in Cornell rape case
       https://www.foxnews.com/politics/tish-james-confronted-camera-trumps-accusation-bias-cornell-rape-case
 
-   6. Biden judge rejects Obama CIA chief's legal bid against Trump over one key problem
+   4. Biden judge rejects Obama CIA chief's legal bid against Trump over one key problem
       https://www.foxnews.com/politics/biden-judge-rejects-obama-cia-chiefs-legal-bid-against-trump-over-one-key-problem
 
-   7. Trump's new press secretary out of the job just days after rocky debut
+   5. Trump's new press secretary out of the job just days after rocky debut
       https://www.foxnews.com/politics/trump-casts-doubt-new-press-secretarys-future-after-rocky-white-house-debut
 
-   8. Americans back Trump's decision against livestreaming Nidal Hasan's firing squad execution
-      https://www.foxnews.com/politics/americans-back-trumps-decision-against-livestreaming-nidal-hasans-firing-squad-execution
+   6. Tennessee dominates as Alabama suffers first back-to-back regular-season losses in nearly two decades
+      https://www.foxnews.com/outkick-sports/tennessee-dominates-alabama-suffers-first-back-to-back-regular-season-losses-nearly-two-decades
 
-   9. Ohio State snaps Indiana's 22-game winning streak, hands reigning champs first loss since 2024 in thriller
-      https://www.foxnews.com/outkick-sports/ohio-state-snaps-indianas-22-game-winning-streak-hands-reigning-champs-first-loss-since-2024-in-thriller
+   7. Freshman Tommy Carr's second-half magic leads Michigan to must-have win over Penn State
+      https://www.foxnews.com/outkick-sports/freshman-tommy-carr-second-half-magic-leads-michigan-must-have-win-penn-state
 
-  10. Man shot and killed inside New York City subway station in Midtown Manhattan: NYPD
-      https://www.foxnews.com/us/man-shot-killed-new-york-city-subway-station-midtown-manhattan-nypd
+   8. Minnesota Senate race takes bizarre turn after dark family history uncovered
+      https://www.foxnews.com/politics/minnesota-senate-race-takes-bizarre-turn-dark-family-history-uncovered
+
+   9. Bend school district honors slain teacher, praises staff member's courage during attack: ‘Forever grateful’
+      https://www.foxnews.com/us/bend-school-district-honors-slain-teacher-praises-staff-member-courage-during-attack-forever-grateful
+
+  10. New protein ranking names unexpected winner over beef, salmon and eggs
+      https://www.foxnews.com/food-drink/new-protein-ranking-names-unexpected-winner-beef-salmon-eggs
 
 
 ============================================================
-  Generated at 01:46 PM PDT by GitHub Actions
+  Generated at 06:23 PM PDT by GitHub Actions
 ============================================================
