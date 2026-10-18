@@ -1231,13 +1231,34 @@ function bindHealthEvents() {
     const input = $('#healthPin');
     const errEl = $('#healthPinError');
     errEl.textContent = '';
+
+    const lock = JSON.parse(session.get('kc.health.lock') || '{"fails":0,"until":0}');
+    if (lock.until > Date.now()) {
+      const secs = Math.ceil((lock.until - Date.now()) / 1000);
+      errEl.textContent = `Too many attempts. Try again in ${secs}s.`;
+      input.value = '';
+      return;
+    }
+
     try {
       await tryUnlock(input.value.trim());
+      session.remove('kc.health.lock');
       input.value = '';
       showHealth(true);
       toast('Health Hub unlocked');
     } catch (err) {
-      errEl.textContent = err.message;
+      const hasPin = !!(store.state.health.pinHash || store.state.health.legacyPin);
+      if (!hasPin) {
+        errEl.textContent = err.message;
+        input.value = '';
+        return;
+      }
+      const fails = (lock.fails || 0) + 1;
+      const until = fails >= 5 ? Date.now() + 60000 : 0;
+      session.set('kc.health.lock', JSON.stringify({ fails: until ? 0 : fails, until }));
+      errEl.textContent = until
+        ? 'Too many wrong PINs. Locked for 60 seconds.'
+        : `${err.message} ${5 - fails} attempt${5 - fails === 1 ? '' : 's'} left.`;
       input.value = '';
     }
   });

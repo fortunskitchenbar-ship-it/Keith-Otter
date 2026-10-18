@@ -111,6 +111,16 @@ export async function runSmoke(baseUrl) {
     return 'shared concurrency + rebase retry';
   });
 
+  await check('automation assets are importable', async () => {
+    const n8n = JSON.parse(await readFile(path.join(ROOT, 'automation/n8n/keith-command-center.json'), 'utf8'));
+    if (!Array.isArray(n8n.nodes) || n8n.nodes.length < 5) throw new Error('n8n workflow has too few nodes');
+    if (!n8n.connections?.['Open-Meteo']) throw new Error('n8n connections missing');
+    const sql = await readFile(path.join(ROOT, 'automation/supabase/schema.sql'), 'utf8');
+    if (!/create table if not exists public\.dashboard_state/i.test(sql)) throw new Error('sync schema missing');
+    if (!/enable row level security/i.test(sql)) throw new Error('schema does not enable RLS');
+    return `${n8n.nodes.length} n8n nodes · schema + RLS`;
+  });
+
   // ---- api ----
   await check('GET /api/ai-corner reports provider', async () => {
     const { res, json } = await get('/api/ai-corner');

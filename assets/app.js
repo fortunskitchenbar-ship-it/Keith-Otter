@@ -3,7 +3,7 @@
    ========================================================================== */
 
 import { $, $$, esc, store, toast, closeModal } from './core.js';
-import { initPanels, refreshAll, generateBrief, exportBackup, syncNow } from './panels.js';
+import { initPanels, refreshAll, generateBrief, exportBackup, syncNow, runChecks } from './panels.js';
 
 const VIEWS = [
   { id: 'overview',    label: 'Overview',    sub: 'Everything that matters, in one screen.' },
@@ -35,11 +35,17 @@ function setView(id, { scroll = true } = {}) {
       v.style.animation = '';
     }
   });
-  $$('.nav-btn').forEach(b => b.classList.toggle('is-active', b.dataset.view === id));
+  $$('.nav-btn').forEach(b => {
+    const isActive = b.dataset.view === id;
+    b.classList.toggle('is-active', isActive);
+    if (isActive) b.setAttribute('aria-current', 'page');
+    else b.removeAttribute('aria-current');
+  });
   $('#viewTitle').textContent = target.label;
   $('#viewSub').textContent = target.sub;
   if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
   if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.title = `Keith · ${target.label}`;
 
   if (id === 'ai') setTimeout(() => $('#chatInput')?.focus(), 60);
   if (id === 'overview') setTimeout(() => document.title = 'Keith · Command Center', 10);
@@ -248,6 +254,29 @@ function bindSettings() {
   });
 }
 
+/* ------------------------------- connectivity ---------------------------- */
+
+function bindConnectivity() {
+  const paint = (online) => {
+    const pill = $('#apiDot');
+    if (!pill) return;
+    if (!online) {
+      pill.dataset.state = 'bad';
+      pill.querySelector('span').textContent = 'offline';
+      pill.title = 'No network connection — local data still works';
+      toast('Offline — local notes and tasks still work', 'err', 5000);
+    }
+  };
+
+  window.addEventListener('offline', () => paint(false));
+  window.addEventListener('online', () => {
+    toast('Back online — refreshing');
+    refreshAll(false);
+    runChecks();
+  });
+  if (!navigator.onLine) paint(false);
+}
+
 /* ---------------------------------- boot --------------------------------- */
 
 function boot() {
@@ -259,6 +288,7 @@ function boot() {
   bindNav();
   bindPalette();
   bindShortcuts();
+  bindConnectivity();
   tickClock();
   setInterval(tickClock, 1000);
 

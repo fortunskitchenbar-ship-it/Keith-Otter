@@ -27,20 +27,33 @@ async function head(url) {
   }
 }
 
+// Only ever self-fetch our own deployment. On Vercel, VERCEL_URL is authoritative;
+// in local dev, allow only localhost. A spoofed Host/x-forwarded-host must not turn
+// this route into an SSRF primitive.
+function selfOrigin(req) {
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  const raw = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
+  const host = raw.split(':')[0];
+  if (host === 'localhost' || host === '127.0.0.1' || host === '[::1]') return `http://${raw}`;
+  if (/^[a-z0-9-]+\.vercel\.app$/.test(host)) return `https://${host}`;
+  return null;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const host = req.headers['x-forwarded-host'] || req.headers.host;
-  const base = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `http://${host}`;
+  const base = selfOrigin(req);
 
-  const [weather, rss, agenda] = await Promise.allSettled([
-    fetchJSON(`${base}/output/weather.json`),
-    head(`${base}/scripts/rss_headlines.json`),
-    head(`${base}/agenda/daily_agenda.txt`),
-  ]);
+  const [weather, rss, agenda] = base
+    ? await Promise.allSettled([
+        fetchJSON(`${base}/output/weather.json`),
+        head(`${base}/scripts/rss_headlines.json`),
+        head(`${base}/agenda/daily_agenda.txt`),
+      ])
+    : [{ status: 'rejected' }, { status: 'rejected' }, { status: 'rejected' }];
 
   let githubRuns = null;
   let commitDate = null;
