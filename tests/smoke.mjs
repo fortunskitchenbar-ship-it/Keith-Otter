@@ -102,6 +102,15 @@ export async function runSmoke(baseUrl) {
     return `${config.headers.length} header rules · ${Object.keys(config.functions).length} function rules`;
   });
 
+  await check('scheduled workflows are race-safe', async () => {
+    for (const file of ['daily_agenda.yml', 'auto-commit-json.yml']) {
+      const yaml = await readFile(path.join(ROOT, '.github', 'workflows', file), 'utf8');
+      if (!yaml.includes('keith-otter-repo-writer')) throw new Error(`${file} missing shared concurrency group`);
+      if (!yaml.includes('git pull --rebase')) throw new Error(`${file} missing rebase retry`);
+    }
+    return 'shared concurrency + rebase retry';
+  });
+
   // ---- api ----
   await check('GET /api/ai-corner reports provider', async () => {
     const { res, json } = await get('/api/ai-corner');

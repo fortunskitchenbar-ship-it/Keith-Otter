@@ -33,7 +33,8 @@ Keith Otter's personal command center for La Quinta, California — a heavy-duty
 | Ops | None | Service health checks, data-freshness table, latest GitHub Action runs, storage usage, backup export/import |
 | Sync | None | **Optional Supabase cross-device sync** (`/api/state`) behind a shared token; fully local without it |
 | Offline | None | PWA manifest + service worker offline shell |
-| Verification | Manual clicks | `npm test` — 18 HTTP/static checks + real Chrome UI checks + screenshots |
+| Scheduled jobs | Two crons raced and `Daily Agenda Builder` failed on push | Shared **concurrency group** + `git pull --rebase` retry in both workflows |
+| Verification | Manual clicks | `npm test` — 19 HTTP/static checks + real Chrome UI checks + screenshots |
 
 Old data is migrated automatically on first load (`keith_tasks`, `keith_notes`, `keith_meds`, `keith_sleep_events`, `keith_ai_chats`, `keith_health_pin`). Nothing is lost; the legacy keys are left untouched.
 
@@ -144,7 +145,7 @@ The previous dashboard is one commit back on `main`. Either `git revert` the v2 
 # static + api routes on http://127.0.0.1:4310
 node tests/dev-server.mjs
 
-# full verification: 18 HTTP/static checks + Chrome UI checks + screenshots
+# full verification: 19 HTTP/static checks + Chrome UI checks + screenshots
 node tests/run.mjs
 
 # smoke only (no browser)
@@ -177,7 +178,7 @@ The AI route is verified with **no key set**: it must answer 200 with a clear �
 
 Last run in this workspace: **all checks passed** — see `tests/artifacts/report.json`.
 
-- 18 HTTP/static checks: shell, assets, manifest, service worker, duplicate-ID scan, UI-binding scan, JSON data files, every API route, JS syntax.
+- 19 HTTP/static checks: shell, assets, manifest, service worker, duplicate-ID scan, UI-binding scan, JSON data files, every API route, JS syntax.
 - 12 real-browser checks in Chrome: weather render, task add/delete, command palette navigation, AI reply, health unlock + medication, markdown notes, theme toggle, ops checks, mobile bottom nav, zero console errors.
 - **Live DeepSeek check:** with a key in the local dev server env, `/api/ai-corner` returned `provider: deepseek` and streamed SSE deltas (74 prompt / 87 total tokens for a smoke prompt). The daily brief and the AI panel both rendered real replies — screenshots `08-overview-brief.png` and `10-ai-real.png`.
 - Screenshots: `tests/artifacts/01-overview-dark.png`, `04-overview-light.png`, `02-ai.png`, `03-notes.png`, `05-ops.png`, `06-mobile.png`, `07-health.png`.
