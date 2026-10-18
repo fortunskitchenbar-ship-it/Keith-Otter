@@ -1,9 +1,9 @@
 {
-  "temp": 85,
+  "temp": 76,
   "high": 86,
-  "low": 75,
+  "low": 71,
   "conditions": "Overcast",
-  "updated": "2026-10-17T20:45:29.790263+00:00",
+  "updated": "2026-10-18T01:25:53.484631+00:00",
   "hourly": [
     {
       "time": "12 AM",
@@ -70,31 +70,31 @@
     {
       "day": "Sat",
       "high": 86,
-      "low": 75,
+      "low": 71,
       "conditions": "Overcast"
     },
     {
       "day": "Sun",
       "high": 87,
-      "low": 70,
+      "low": 68,
       "conditions": "Clear"
     },
     {
       "day": "Mon",
-      "high": 86,
+      "high": 87,
       "low": 72,
       "conditions": "Clear"
     },
     {
       "day": "Tue",
       "high": 85,
-      "low": 73,
-      "conditions": "Clear"
+      "low": 74,
+      "conditions": "Mostly clear"
     },
     {
       "day": "Wed",
-      "high": 84,
-      "low": 71,
+      "high": 83,
+      "low": 70,
       "conditions": "Overcast"
     }
   ]
