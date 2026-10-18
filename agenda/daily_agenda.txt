@@ -8,11 +8,11 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Bernie Sanders admits Democrats failed working-class voters on economics, driving them to Donald Trump
-      https://www.foxnews.com/media/bernie-sanders-admits-democrats-failed-working-class-voters-economics-driving-donald-trump
+   1. Slotkin wants GOP prosecutions to deter young people from Trump administration jobs
+      https://www.foxnews.com/politics/slotkin-wants-gop-prosecutions-deter-young-people-trump-administration-jobs
 
-   2. Trump intel chief warns AI firms on hacks, says new department is the 'cop on the beat'
-      https://www.foxnews.com/media/trump-intel-chief-warns-ai-firms-hacks-says-new-department-cop-beat
+   2. Trump says Netanyahu needs to be re-elected, or else US will have to 'finish the job’ against Iran alone
+      https://www.foxnews.com/politics/trump-says-netanyahu-needs-reelected-else-us-finish-job-against-iran-alone
 
    3. Obama backs Ilhan Omar amid probe, accuses Trump admin of 'appalling' targeting in lengthy statement
       https://www.foxnews.com/politics/obama-backs-ilhan-omar-amid-probe-accuses-trump-admin-appalling-targeting-lengthy-statement
@@ -23,22 +23,22 @@
    5. Becoming a lawyer could get cheaper and faster under looming Trump admin shakeup
       https://www.foxnews.com/politics/becoming-lawyer-cheaper-faster-trump-admin-shakeup
 
-   6. Biden-appointed judge deals Trump another sanctuary city defeat in major immigration fight
-      https://www.foxnews.com/politics/biden-appointed-judge-deals-trump-another-sanctuary-city-defeat-major-immigration-fight
+   6. Falcons rookie Kendal Daniels stretchered off field after helmet-to-knee collision in scary scene
+      https://www.foxnews.com/outkick-sports/falcons-rookie-kendal-daniels-stretchered-off-field-helmet-to-knee-collision-scary-scene
 
-   7. Where's Macron? French leader blasted for attending concert as riots escalated
-      https://www.foxnews.com/world/wheres-macron-french-leader-blasted-attending-concert-riots-escalated
+   7. Major League Baseball's best team can't stop pretending to be the underdogs heading into World Series
+      https://www.foxnews.com/outkick-sports/major-league-baseballs-best-team-cant-stop-pretending-underdogs-heading-world-series
 
-   8. Oracle Health data breach exposes nearly 20 million patients
-      https://www.foxnews.com/tech/oracle-health-data-breach-exposes-nearly-20-million-patients
+   8. Chick-fil-A CEO addresses whether fast-food chain would ever consider opening on Sundays
+      https://www.foxnews.com/food-drink/chick-fil-a-ceo-addresses-whether-fast-food-chain-would-ever-consider-opening-sundays
 
-   9. Christian groups and pastors say new California LGBT hate speech law is disguised as indoctrination
-      https://www.foxnews.com/media/christian-groups-pastors-say-new-california-lgbt-hate-speech-law-disguised-indoctrination
+   9. Investigation launched after Air Force airman fatally falls before UTSA football game
+      https://www.foxnews.com/outkick-sports/investigation-launched-air-force-airman-fatally-falls-utsa-football-game
 
-  10. Jana Kramer says Los Angeles priced her out of the childhood she wanted for her kids
-      https://www.foxnews.com/entertainment/jana-kramer-says-los-angeles-priced-her-out-childhood-she-wanted-her-kids
+  10. Abdul El-Sayed invokes JFK to dismiss 'crazy' questions over family's alleged ties to Muslim Brotherhood
+      https://www.foxnews.com/media/abdul-el-sayed-invokes-jfk-dismiss-crazy-questions-over-familys-alleged-ties-muslim-brotherhood
 
 
 ============================================================
-  Generated at 09:37 AM PDT by GitHub Actions
+  Generated at 01:55 PM PDT by GitHub Actions
 ============================================================
