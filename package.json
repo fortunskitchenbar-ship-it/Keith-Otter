@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "node tests/dev-server.mjs",
     "test": "node tests/run.mjs",
-    "test:ui": "node tests/ui.mjs"
+    "test:ui": "node tests/ui.mjs",
+    "test:live": "node tests/live.mjs --ai"
   },
   "dependencies": {
     "imapflow": "^1.0.155",
