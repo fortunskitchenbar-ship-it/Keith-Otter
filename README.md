@@ -150,6 +150,9 @@ node tests/run.mjs
 
 # smoke only (no browser)
 node tests/run.mjs --smoke
+
+# accessibility audit with axe-core across all views
+node tests/a11y.mjs
 ```
 
 Browser checks need `puppeteer-core` (installed in `tests/`, deliberately kept out of the root `package.json` so Vercel does not install it):
@@ -178,8 +181,9 @@ The AI route is verified with **no key set**: it must answer 200 with a clear �
 
 Last run in this workspace: **all checks passed** — see `tests/artifacts/report.json`.
 
-- 20 HTTP/static checks: shell, assets, manifest, service worker, duplicate-ID scan, UI-binding scan, JSON data files, every API route, JS syntax.
+- 20 HTTP/static checks: shell, assets, manifest, service worker, duplicate-ID scan, UI-binding scan, JSON data files, every API route, JS syntax, workflow race guard, automation assets.
 - 12 real-browser checks in Chrome: weather render, task add/delete, command palette navigation, AI reply, health unlock + medication, markdown notes, theme toggle, ops checks, mobile bottom nav, zero console errors.
+- **Accessibility:** 0 WCAG 2.1 A/AA violations across 7 views (axe-core 4.14, `npm run test:a11y`).
 - **Live DeepSeek check:** with a key in the local dev server env, `/api/ai-corner` returned `provider: deepseek` and streamed SSE deltas (74 prompt / 87 total tokens for a smoke prompt). The daily brief and the AI panel both rendered real replies — screenshots `08-overview-brief.png` and `10-ai-real.png`.
 - Screenshots: `tests/artifacts/01-overview-dark.png`, `04-overview-light.png`, `02-ai.png`, `03-notes.png`, `05-ops.png`, `06-mobile.png`, `07-health.png`.
 

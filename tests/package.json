@@ -4,6 +4,7 @@
   "type": "module",
   "description": "Browser-test dependencies only. Kept out of the root package.json so Vercel does not install them.",
   "dependencies": {
+    "axe-core": "^4.14.0",
     "puppeteer-core": "^24.10.0"
   }
 }

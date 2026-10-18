@@ -99,6 +99,8 @@ PASS  mobile layout renders bottom nav
 PASS  no uncaught page errors
 ```
 
+Plus an axe-core audit: **0 WCAG 2.1 A/AA violations across 7 views** (`npm run test:a11y`).
+
 Screenshots: `tests/artifacts/` (desktop dark/light, AI, notes, ops, health, mobile).
 
 ---
