@@ -50,6 +50,37 @@ async function getJSON(url) {
   }
 }
 
+// Active NWS alerts for the house. Heat advisories matter in La Quinta; this is
+// best-effort and must never take the forecast down with it.
+async function getAlerts() {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 5000);
+  try {
+    const res = await fetch(`https://api.weather.gov/alerts/active?point=${LAT},${LON}`, {
+      signal: controller.signal,
+      headers: {
+        Accept: 'application/geo+json',
+        'User-Agent': 'KeithCommandCenter/2.0 (keith-otter.vercel.app)',
+      },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.features || [])
+      .map(f => ({
+        event: f.properties?.event || 'Weather alert',
+        severity: String(f.properties?.severity || 'Unknown').toLowerCase(),
+        headline: f.properties?.headline || '',
+        ends: f.properties?.ends || f.properties?.expires || null,
+      }))
+      .filter(a => a.headline || a.event)
+      .slice(0, 3);
+  } catch {
+    return [];
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
@@ -69,7 +100,11 @@ export default async function handler(req, res) {
     `&current=us_aqi,pm2_5&timezone=${encodeURIComponent(TZ)}`;
 
   try {
-    const [forecastResult, airResult] = await Promise.allSettled([getJSON(forecastUrl), getJSON(airUrl)]);
+    const [forecastResult, airResult, alertsResult] = await Promise.allSettled([
+      getJSON(forecastUrl),
+      getJSON(airUrl),
+      getAlerts(),
+    ]);
     if (forecastResult.status !== 'fulfilled') throw forecastResult.reason || new Error('forecast failed');
 
     const f = forecastResult.value;
@@ -108,6 +143,8 @@ export default async function handler(req, res) {
       ? { aqi: Math.round(airResult.value.current.us_aqi), pm25: airResult.value.current.pm2_5 }
       : null;
 
+    const alerts = alertsResult.status === 'fulfilled' ? alertsResult.value : [];
+
     res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=1800');
     return res.status(200).json({
       source: 'open-meteo',
@@ -132,6 +169,7 @@ export default async function handler(req, res) {
       hourly,
       daily,
       air,
+      alerts,
     });
   } catch (err) {
     console.error('weather failed:', err.message);

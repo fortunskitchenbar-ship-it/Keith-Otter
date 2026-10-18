@@ -178,7 +178,8 @@ export async function runSmoke(baseUrl) {
     if (res.status === 200) {
       if (!json?.current || typeof json.current.temp !== 'number') throw new Error('bad weather shape');
       if (!Array.isArray(json.hourly) || !Array.isArray(json.daily)) throw new Error('series missing');
-      weatherState = `live ${json.current.temp}°F`;
+      if (!Array.isArray(json.alerts)) throw new Error('alerts must be an array');
+      weatherState = `live ${json.current.temp}°F · ${json.alerts.length} alert(s)`;
       return weatherState;
     }
     if (res.status === 502) return 'upstream 502 (client falls back to output/weather.json)';

@@ -396,6 +396,30 @@ html[data-theme="light"] .hero-weather {
 
 .wx-strips { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
 .wx-strips > div { min-width: 0; }
+.wx-alerts { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.wx-alert {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 9px 12px;
+  border: 1px solid rgba(245, 185, 66, .4);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: rgba(245, 185, 66, .1);
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+.wx-alert.severe, .wx-alert.extreme {
+  border-color: rgba(255, 107, 107, .5);
+  border-left-color: var(--red);
+  background: rgba(255, 107, 107, .1);
+}
+.wx-alert .a-tag {
+  flex: 0 0 auto;
+  font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent);
+}
+.wx-alert.severe .a-tag, .wx-alert.extreme .a-tag { color: var(--red); }
+.wx-alert .a-text { flex: 1; line-height: 1.45; }
+.wx-alert .a-ends { color: var(--muted); font-size: 10.5px; white-space: nowrap; }
 .strip-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
 .strip-head > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .hour-strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; min-width: 0; }

@@ -260,6 +260,7 @@ function normalizeWeather(raw) {
       hourly: raw.hourly || [],
       daily: raw.daily || [],
       air: raw.air || null,
+      alerts: Array.isArray(raw.alerts) ? raw.alerts : [],
       sunrise: raw.sunrise || raw.daily?.[0]?.sunrise || '',
       sunset: raw.sunset || raw.daily?.[0]?.sunset || '',
       units: raw.units || 'imperial',
@@ -275,7 +276,7 @@ function normalizeWeather(raw) {
     updated: raw.updated,
     hourly: (raw.hourly || []).map(h => ({ time: h.time, temp: h.temp, code: null, label: h.conditions })),
     daily: (raw.daily || []).map(d => ({ day: d.day, high: d.high, low: d.low, code: null, label: d.conditions })),
-    air: null, sunrise: '', sunset: '', units: 'imperial',
+    air: null, alerts: [], sunrise: '', sunset: '', units: 'imperial',
   };
 }
 
@@ -325,6 +326,18 @@ function renderWeather() {
   $('#footUpdated').textContent = `data ${w.updated ? timeAgo(w.updated) : '—'}`;
   const miniWx = $('#miniWeather');
   if (miniWx) miniWx.textContent = view.weatherSource.replace(' · Open-Meteo', '').replace(' · GitHub Actions', '');
+
+  const alertsEl = $('#wxAlerts');
+  if (alertsEl) {
+    const alerts = w.alerts || [];
+    alertsEl.hidden = alerts.length === 0;
+    alertsEl.innerHTML = alerts.map(a => `
+      <div class="wx-alert ${esc(String(a.severity || '').toLowerCase())}" role="status">
+        <span class="a-tag">${esc(a.event || 'Alert')}</span>
+        <span class="a-text">${esc(a.headline || a.event || '')}</span>
+        ${a.ends ? `<span class="a-ends">until ${esc(fmtDate(a.ends))}</span>` : ''}
+      </div>`).join('');
+  }
 
   const hourly = (w.hourly || []).slice(0, 12);
   $('#wxHourly').innerHTML = hourly.map(h => {

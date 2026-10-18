@@ -24,7 +24,7 @@ Keith Otter's personal command center for La Quinta, California — a heavy-duty
 |---|---|---|
 | Layout | Seven stacked cards | Bento command center with 8 sections, command palette (`Ctrl K`), keyboard shortcuts, dark **and** light themes |
 | AI | Gemini only, no streaming | **DeepSeek V3 / R1 primary**, Gemini fallback, token streaming, 4 presets, threads, usage + latency |
-| Weather | Static JSON refreshed 4×/day | **Live Open-Meteo API** (`/api/weather`), 10-minute edge cache, hourly + 7-day + AQI, falls back to the committed JSON |
+| Weather | Static JSON refreshed 4×/day | **Live Open-Meteo API** (`/api/weather`), 10-minute edge cache, hourly + 7-day + AQI + NWS alerts, falls back to the committed JSON |
 | News | Static Fox headlines | **Live multi-feed aggregation** (`/api/news`) from Fox News, NPR and The Verge, categorised and searchable |
 | Tasks | Text + done | Priority, due dates, filter, open/done counters, safe migration of old tasks |
 | Notes | One textarea | Multiple markdown notes with preview, pinning, search and autosave |
@@ -86,7 +86,7 @@ The dashboard is a **static shell** (`index.html` + `assets/`) with **no build s
 
 | Route | Method | Purpose | Needs |
 |---|---|---|---|
-| `/api/weather` | GET | Live current/hourly/daily + AQI for La Quinta | nothing (Open-Meteo is keyless) |
+| `/api/weather` | GET | Live current/hourly/daily, AQI and active NWS alerts | nothing (Open-Meteo is keyless) |
 | `/api/news` | GET | Merged, de-duplicated, categorised headlines | nothing |
 | `/api/ai-corner` | GET / POST | DeepSeek chat (JSON or SSE stream) | `DEEPSEEK_API_KEY` (or `GEMINI_API_KEY`) |
 | `/api/status` | GET | Env/integrations, deployment, GitHub runs, file freshness | optional `GITHUB_TOKEN` |

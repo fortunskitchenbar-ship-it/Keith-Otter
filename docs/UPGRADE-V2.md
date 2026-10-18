@@ -41,7 +41,7 @@ v2 keeps the same deployment model (static + Vercel functions, free tier) and ad
 ### Back-end
 
 - `api/ai-corner.js` rewritten: **DeepSeek primary** (V3 chat / R1 reasoner), Gemini fallback, SSE token streaming, preset system prompts, input limits, per-IP rate limiting, 100s upstream timeout, graceful "no key" message.
-- `api/weather.js` **new**: live Open-Meteo forecast + air quality, 10-minute edge cache, server-side shape normalisation.
+- `api/weather.js` **new**: live Open-Meteo forecast + air quality, 10-minute edge cache, server-side shape normalisation, plus active NWS alerts (heat, wind, dust) surfaced on the hero card.
 - `api/news.js` **new**: Fox News + NPR + The Verge RSS/Atom merge, entity decoding, de-duplication, keyword categorisation, 15-minute edge cache.
 - `api/status.js` **new**: deployment metadata, integration flags (booleans only), latest GitHub Action runs, static-file freshness.
 - `api/state.js` **new**: optional Supabase sync, token-gated, service-role key stays server-side, 1.5 MB cap, 501 when not configured.
