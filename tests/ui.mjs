@@ -60,7 +60,7 @@ export async function runUi(baseUrl) {
     if (msg.type() === 'error') {
       const text = msg.text();
       // 501 is the documented "sync not configured" answer; network noise is not a bug.
-      if (!/favicon|net::ERR_ABORTED|status of 501|status of 404/i.test(text)) errors.push(`console: ${text}`);
+      if (!/favicon|net::ERR_|status of 501|status of 404|Failed to fetch/i.test(text)) errors.push(`console: ${text}`);
     }
   });
 
@@ -142,6 +142,23 @@ export async function runUi(baseUrl) {
       return 'unlocked + med round-trip';
     });
 
+    await check('health PIN throttles brute force', async () => {
+      await page.click('#lockHealth');
+      await waitFor(async () => page.$eval('#healthContent', el => el.hidden), { label: 'health locked' });
+      for (let i = 0; i < 5; i++) {
+        await page.type('#healthPin', '0000');
+        await page.click('#healthPinForm button[type="submit"]');
+        await sleep(320);
+      }
+      await waitFor(async () => (await page.$eval('#healthPinError', el => el.textContent)).includes('Locked'), { label: 'lockout message' });
+      await page.type('#healthPin', '4321');
+      await page.click('#healthPinForm button[type="submit"]');
+      await sleep(200);
+      const msg = await page.$eval('#healthPinError', el => el.textContent);
+      if (!/Too many attempts/i.test(msg)) throw new Error(`correct PIN not blocked during lockout: ${msg}`);
+      return 'locked after 5 wrong attempts';
+    });
+
     await check('notes: create, write, preview', async () => {
       await page.click('.nav-btn[data-view="notes"]');
       await page.click('#newNote');
@@ -195,6 +212,46 @@ export async function runUi(baseUrl) {
       return `rail ${Math.round(box.width)}px wide at y=${Math.round(box.top)}`;
     });
 
+    await check('mobile bottom nav switches views', async () => {
+      await mobile.click('.nav-btn[data-view="sleep"]');
+      await waitFor(async () => mobile.$eval('#view-sleep', el => !el.hidden), { label: 'mobile sleep view' });
+      const title = await mobile.$eval('#viewTitle', el => el.textContent);
+      if (title !== 'Sleep') throw new Error(`title=${title}`);
+      await mobile.click('.nav-btn[data-view="overview"]');
+      await waitFor(async () => mobile.$eval('#view-overview', el => !el.hidden), { label: 'mobile overview' });
+      return 'sleep → overview';
+    });
+
+    await check('offline shell survives reload', async () => {
+      await mobile.evaluate(async () => {
+        if (!('serviceWorker' in navigator)) throw new Error('no service worker support');
+        await navigator.serviceWorker.ready;
+        if (!navigator.serviceWorker.controller) {
+          await new Promise(resolve => {
+            const t = setTimeout(resolve, 4000);
+            navigator.serviceWorker.addEventListener('controllerchange', () => { clearTimeout(t); resolve(); }, { once: true });
+          });
+        }
+      });
+
+      await mobile.setOfflineMode(true);
+      try {
+        await mobile.reload({ waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => {});
+        await sleep(900);
+        const state = await mobile.evaluate(() => ({
+          hasShell: !!document.querySelector('#view-overview'),
+          hasTitle: document.body.textContent.includes('Command Center'),
+          hasTasks: !!document.querySelector('#taskList'),
+        }));
+        if (!state.hasShell || !state.hasTitle || !state.hasTasks) {
+          throw new Error(`offline render incomplete: ${JSON.stringify(state)}`);
+        }
+      } finally {
+        await mobile.setOfflineMode(false);
+      }
+      return 'service worker served the shell offline';
+    });
+
     await check('no uncaught page errors', async () => {
       if (errors.length) throw new Error(errors.slice(0, 3).join(' | '));
       return 'clean console';
@@ -209,7 +266,7 @@ export async function runUi(baseUrl) {
 const invokedDirectly = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 if (invokedDirectly) {
   const { startServer } = await import('./dev-server.mjs');
-  const { url, server } = await startServer();
+  const { url, server } = await startServer(0);
   try {
     const out = await runUi(process.argv[2] || url);
     console.log(JSON.stringify(out, null, 2));

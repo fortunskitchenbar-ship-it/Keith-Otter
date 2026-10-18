@@ -56,7 +56,7 @@ v2 keeps the same deployment model (static + Vercel functions, free tier) and ad
 - `automation/zapier/README.md` and `automation/netlify/README.md` — how to layer the old stack back on without touching the shell.
 - **Scheduled-workflow race fixed.** Both crons fired in the same minute; whichever pushed second lost with `! [rejected] main -> main (fetch first)` — the failure seen in `Daily Agenda Builder` on 2026-10-18. Both workflows now share `concurrency: keith-otter-repo-writer` and retry `git pull --rebase` + push up to four times.
 - `.env.example`, rewritten README and setup guide.
-- `tests/` — local Vercel-like dev server, 20 HTTP/static checks, 12 Chrome UI checks, screenshots, JSON report.
+- `tests/` — local Vercel-like dev server, 20 HTTP/static checks, 15 Chrome UI checks, screenshots, JSON report.
 - `tests/live.mjs` — post-deploy verification (`npm run test:live`) for the production URL.
 - `.github/workflows/ci.yml` — runs the smoke suite on every push/PR.
 
@@ -92,10 +92,13 @@ PASS  task add + delete round-trip
 PASS  command palette navigates
 PASS  AI panel answers or explains configuration
 PASS  health PIN unlock + add medication
+PASS  health PIN throttles brute force
 PASS  notes: create, write, preview
 PASS  theme toggle (dark → light → dark)
 PASS  ops panel health checks run
 PASS  mobile layout renders bottom nav
+PASS  mobile bottom nav switches views
+PASS  offline shell survives reload
 PASS  no uncaught page errors
 ```
 
