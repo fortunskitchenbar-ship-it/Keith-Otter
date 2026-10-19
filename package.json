@@ -1,6 +1,6 @@
 {
   "name": "keith-command-center",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "description": "Keith Otter's personal command center — static dashboard + Vercel API routes.",
   "type": "module",
@@ -13,9 +13,5 @@
     "test:ui": "node tests/ui.mjs",
     "test:a11y": "node tests/a11y.mjs",
     "test:live": "node tests/live.mjs --ai"
-  },
-  "dependencies": {
-    "imapflow": "^1.0.155",
-    "mailparser": "^3.6.5"
   }
 }

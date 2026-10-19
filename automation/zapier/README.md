@@ -4,7 +4,7 @@ The dashboard does not need Zapier. If you want the old automation back, this is
 
 ## What Zapier is good for here
 
-- Mirror new priority mail or tasks into Slack / SMS / email.
+- Mirror new tasks or market moves into Slack / SMS / email.
 - Create a task in the dashboard from another app (via a small webhook endpoint).
 - Log a daily digest into a Google Sheet.
 

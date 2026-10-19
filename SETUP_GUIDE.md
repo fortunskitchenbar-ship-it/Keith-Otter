@@ -7,7 +7,7 @@ How to stand this dashboard up from scratch, recreate it in a new repo, or add t
 ## 1. What you are building
 
 - A static `index.html` + `assets/` shell hosted on Vercel.
-- Seven serverless routes in `api/` (weather, news, AI, status, sync, email, agenda greeting).
+- Seven serverless routes in `api/` (weather, news, markets, AI, status, sync, agenda greeting).
 - Two scheduled GitHub Actions that refresh JSON in the repo (and therefore redeploy Vercel).
 - Optional: Supabase for cross-device sync, n8n or Zapier for automation.
 
@@ -19,15 +19,15 @@ How to stand this dashboard up from scratch, recreate it in a new repo, or add t
 your-repo/
 ├── index.html
 ├── assets/            styles.css, core.js, panels.js, app.js, icons/
-├── api/               weather.js, news.js, ai-corner.js, status.js, state.js, smartermail-email.js, agenda-brief.js
+├── api/               weather.js, news.js, markets.js, ai-corner.js, status.js, state.js, agenda-brief.js
 ├── scripts/           Python fetchers used by the scheduled workflows
-├── output/            weather.json, email_watch.json, research_data.json
+├── output/            weather.json, research_data.json
 ├── agenda/            daily_agenda.txt
 ├── automation/        supabase/schema.sql, n8n/workflow.json, zapier/, netlify/
 ├── tests/             dev server + smoke + Chrome UI checks
 ├── .github/workflows/ auto-commit-json.yml, daily_agenda.yml, ci.yml
 ├── .env.example
-└── package.json       type: module, imapflow + mailparser
+└── package.json       type: module, no runtime dependencies
 ```
 
 ---
@@ -50,8 +50,6 @@ Vercel → **Settings → Environment Variables** (Production **and** Preview). 
 |---|---|---|
 | `DEEPSEEK_API_KEY` | yes, for AI | https://platform.deepseek.com/api_keys |
 | `GEMINI_API_KEY` | optional | fallback only |
-| `SMARTERMAIL_USER` / `SMARTERMAIL_PASS` | for Email Watch | IMAP mailbox |
-| `SMARTERMAIL_HOST` / `SMARTERMAIL_PORT` | optional | defaults `mail.fortunfoods.com` / `993` |
 | `SUPABASE_URL` | optional sync | https://supabase.com |
 | `SUPABASE_SERVICE_ROLE_KEY` | optional sync | server-side only |
 | `DASHBOARD_SYNC_TOKEN` | optional sync | long random string |
@@ -107,7 +105,7 @@ Manual:
 1. Open the site — weather should be live (not the 4×/day file).
 2. **AI** → ask "Summarize my day" — should stream a reply.
 3. **Ops** → all rows green except *Sync (Supabase)* if not set up.
-4. **Comms** → priority mail loads (if `SMARTERMAIL_*` set).
+4. **Comms** → market quotes load (S&P, Nasdaq, Dow, oil, BTC, ETH).
 5. Toggle the theme, press `Ctrl K`, add a task.
 
 Automated (local):
@@ -130,7 +128,7 @@ CI runs the smoke suite on every push (`.github/workflows/ci.yml`).
 | News empty | All three feeds unreachable; the client falls back to `scripts/rss_headlines.json` |
 | Ops shows "Sync (Supabase): not configured" | Expected until the three sync env vars are set |
 | Sync returns 401 | The token in the browser does not match `DASHBOARD_SYNC_TOKEN` |
-| Email says "SmarterMail not configured" | `SMARTERMAIL_USER` / `SMARTERMAIL_PASS` missing, or you are on the duplicate Vercel project |
+| Markets show “unavailable” | Yahoo Finance or CoinGecko is temporarily unreachable; the card recovers on the next refresh |
 | Health Hub asks for a PIN you don't remember | The PIN is local to that browser; clear `kc.v2.health` in DevTools (data stays) |
 | Weekly cron drifts by an hour | Crons are UTC; adjust the four cron lines around DST |
 | A workflow fails with `IndentationError` | A Python file was pasted with indentation stripped |

@@ -7,7 +7,7 @@ import { initPanels, refreshAll, generateBrief, exportBackup, syncNow, runChecks
 
 const VIEWS = [
   { id: 'overview',    label: 'Overview',    sub: 'Everything that matters, in one screen.' },
-  { id: 'comms',       label: 'Comms',       sub: 'Priority mail and headlines worth knowing.' },
+  { id: 'comms',       label: 'Comms',       sub: 'Markets and headlines worth knowing.' },
   { id: 'ai',          label: 'AI',          sub: 'DeepSeek research, drafting and thinking.' },
   { id: 'health',      label: 'Health',      sub: 'Medications, vitals and appointment notes.' },
   { id: 'sleep',       label: 'Sleep',       sub: 'Nightly apnea events, trends and notes.' },
@@ -103,7 +103,7 @@ const staticCommands = () => [
   { label: 'New note', kind: 'action', hint: 'Create a markdown note', run: () => { setView('notes'); setTimeout(() => $('#newNote')?.click(), 120); } },
   { label: 'Ask DeepSeek', kind: 'action', hint: 'Open the AI thread', run: () => { setView('ai'); } },
   { label: 'Generate daily brief', kind: 'action', hint: 'Summarise the day with AI', run: () => { setView('overview'); generateBrief(true); } },
-  { label: 'Refresh everything', kind: 'action', hint: 'Weather, news, mail, agenda', run: () => refreshAll(true) },
+  { label: 'Refresh everything', kind: 'action', hint: 'Weather, news, markets, agenda', run: () => refreshAll(true) },
   { label: 'Toggle theme', kind: 'action', hint: 'Light / dark', run: toggleTheme },
   { label: 'Export backup', kind: 'action', hint: 'Download all local data', run: () => exportBackup() },
   { label: 'Lock Health Hub', kind: 'action', hint: 'Hide health data now', run: () => { setView('health'); $('#lockHealth')?.click(); } },

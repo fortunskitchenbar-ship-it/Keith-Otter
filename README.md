@@ -1,10 +1,10 @@
 # Keith · Command Center
 
-Keith Otter's personal command center for La Quinta, California — a heavy-duty replacement for the original n8n / Zapier / Supabase / Netlify dashboard. One screen for weather, tasks, priority mail, news, DeepSeek AI, health, sleep, notes, backups and deployment health.
+Keith Otter's personal command center for La Quinta, California — a heavy-duty replacement for the original n8n / Zapier / Supabase / Netlify dashboard. One screen for weather, tasks, markets, news, DeepSeek AI, health, sleep, notes, backups and deployment health.
 
 **Live:** https://keith-otter.vercel.app
 **Repo:** https://github.com/mathew1960/Keith-Otter
-**Status:** v2.0 — static shell + Vercel serverless routes, no build step, local-first data.
+**Status:** v2.1 — static shell + Vercel serverless routes, no build step, local-first data.
 
 ![Overview — dark](docs/screenshots/overview-dark.jpg)
 
@@ -15,6 +15,8 @@ Keith Otter's personal command center for La Quinta, California — a heavy-duty
 | Health | Mobile |
 |---|---|
 | ![Health panel](docs/screenshots/health.jpg) | ![Mobile](docs/screenshots/mobile.jpg) |
+
+![Markets](docs/screenshots/markets.jpg)
 
 ---
 
@@ -36,6 +38,8 @@ Keith Otter's personal command center for La Quinta, California — a heavy-duty
 | Scheduled jobs | Two crons raced and `Daily Agenda Builder` failed on push | Shared **concurrency group** + `git pull --rebase` retry in both workflows |
 | Verification | Manual clicks | `npm test` — 20 HTTP/static checks + real Chrome UI checks + screenshots |
 
+**v2.1:** SmarterMail was retired with its account, so the Email Watch card, the IMAP route and the `imapflow`/`mailparser` dependencies were removed and replaced by the live **Markets** card.
+
 Old data is migrated automatically on first load (`keith_tasks`, `keith_notes`, `keith_meds`, `keith_sleep_events`, `keith_ai_chats`, `keith_health_pin`). Nothing is lost; the legacy keys are left untouched.
 
 ---
@@ -50,7 +54,7 @@ flowchart TD
     A["/api/ai-corner<br/>DeepSeek V3/R1 · Gemini fallback"]
     S["/api/status<br/>deployment + GitHub Actions"]
     Y["/api/state<br/>Supabase sync (token-gated)"]
-    E["/api/smartermail-email<br/>IMAP priority inbox"]
+    E["/api/markets<br/>Yahoo Finance + CoinGecko"]
     G["GitHub Actions<br/>weather / news / agenda JSON"]
     V["Vercel<br/>auto-deploy on main"]
 
@@ -71,8 +75,8 @@ The dashboard is a **static shell** (`index.html` + `assets/`) with **no build s
 
 | Section | What it does |
 |---|---|
-| **Overview** | Greeting, live weather with hourly + 7-day strips, at-a-glance counters, tasks, AI daily brief, agenda, priority mail, quick launch, headlines |
-| **Comms** | Full priority inbox with detail reader, live news grid with category filter and search |
+| **Overview** | Greeting, live weather with hourly + 7-day strips, at-a-glance counters, tasks, AI daily brief, agenda, markets, quick launch, headlines |
+| **Comms** | Live market grid with sparklines, and a news grid with category filter and search |
 | **AI** | DeepSeek chat with streaming, model selector (V3 / R1), presets (research, brief, code, kitchen), saved threads, copy to notes |
 | **Health** | PIN lock (PBKDF2), medications with refill countdowns, blood-pressure trend, vitals log, doctor's notes |
 | **Sleep** | Apnea / gasping / snore / awake event logger, last-night summary, 14-night chart, CSV export |
@@ -91,7 +95,7 @@ The dashboard is a **static shell** (`index.html` + `assets/`) with **no build s
 | `/api/ai-corner` | GET / POST | DeepSeek chat (JSON or SSE stream) | `DEEPSEEK_API_KEY` (or `GEMINI_API_KEY`) |
 | `/api/status` | GET | Env/integrations, deployment, GitHub runs, file freshness | optional `GITHUB_TOKEN` |
 | `/api/state` | GET / PUT | Cross-device JSON snapshot sync | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `DASHBOARD_SYNC_TOKEN` |
-| `/api/smartermail-email` | GET | Priority inbox list, or `?uid=` detail | `SMARTERMAIL_USER`, `SMARTERMAIL_PASS` |
+| `/api/markets` | GET | Live quotes: S&P 500, Nasdaq, Dow, crude oil, Bitcoin, Ethereum | none — public APIs |
 | `/api/agenda-brief` | GET | Short DeepSeek greeting (legacy link compatibility) | same AI keys |
 
 Every route degrades gracefully: a missing key returns a readable message, never a crash, and never exposes the key to the browser.
@@ -106,8 +110,6 @@ Copy `.env.example` → `.env.local` for local work, and set the same names in *
 |---|---|---|
 | `DEEPSEEK_API_KEY` | **yes** (AI) | `api/ai-corner.js`, `api/agenda-brief.js` |
 | `GEMINI_API_KEY` | optional fallback | same |
-| `SMARTERMAIL_USER` / `SMARTERMAIL_PASS` | for Email Watch | `api/smartermail-email.js` |
-| `SMARTERMAIL_HOST` / `SMARTERMAIL_PORT` | optional | defaults `mail.fortunfoods.com` / `993` |
 | `SUPABASE_URL` | optional sync | `api/state.js` |
 | `SUPABASE_SERVICE_ROLE_KEY` | optional sync | `api/state.js` (server only) |
 | `DASHBOARD_SYNC_TOKEN` | optional sync | shared secret the browser sends as `x-sync-token` |
@@ -173,11 +175,10 @@ The AI route is verified with **no key set**: it must answer 200 with a clear �
 - The health PIN is stored as a **PBKDF2-SHA256 hash** (150k iterations, random salt), never plaintext. It is a screen lock, not disk encryption.
 - Sync is off by default. When enabled, snapshots go to your own Supabase project and are protected by RLS + a server-side service key; the browser only ever holds the sync token.
 - The AI key lives only in Vercel env vars. The browser calls `/api/ai-corner`.
-- Email is fetched live per request; nothing is stored server-side.
 
 ---
 
-## Verification (v2.0)
+## Verification (v2.1)
 
 Last run in this workspace: **all checks passed** — see `tests/artifacts/report.json`.
 
@@ -194,7 +195,7 @@ Last run in this workspace: **all checks passed** — see `tests/artifacts/repor
 ```
 index.html                 dashboard shell
 assets/                    styles.css, core.js, panels.js, app.js, icons/
-api/                       weather, news, ai-corner, status, state, smartermail-email, agenda-brief
+api/                       weather, news, markets, ai-corner, status, state, agenda-brief
 automation/supabase/       schema.sql for optional sync
 automation/n8n/            importable n8n workflow
 automation/zapier/         Zap setup notes

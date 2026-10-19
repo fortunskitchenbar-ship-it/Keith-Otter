@@ -1,7 +1,7 @@
 /* sw.js — offline shell for Keith · Command Center.
    API routes are always network-only so live data is never stale-cached. */
 
-const VERSION = 'kc-v2.0.1';
+const VERSION = 'kc-v2.1.0';
 const SHELL = [
   '/',
   '/assets/styles.css',

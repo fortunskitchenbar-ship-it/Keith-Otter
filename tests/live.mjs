@@ -88,7 +88,7 @@ await check('status API (production)', async () => {
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   if (json.deployment?.env !== 'production') throw new Error(`env=${json.deployment?.env}`);
   if (typeof json.integrations?.deepseek !== 'boolean') throw new Error('integration flags missing');
-  return `deepseek=${json.integrations.deepseek} gemini=${json.integrations.gemini} email=${json.integrations.email}`;
+  return `deepseek=${json.integrations.deepseek} gemini=${json.integrations.gemini} markets=${json.integrations.markets}`;
 });
 
 await check('AI route is configured', async () => {
@@ -105,12 +105,12 @@ await check('state route degrades or is configured', async () => {
   return res.status === 501 ? 'sync not configured (expected)' : `HTTP ${res.status}`;
 });
 
-await check('email route responds', async () => {
-  const { res, json } = await get('/api/smartermail-email');
+await check('markets route responds', async () => {
+  const { res, json } = await get('/api/markets');
   if (res.status === 404) throw new Error('route not deployed');
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  if (!Array.isArray(json)) throw new Error('not an array');
-  return `${json.filter(m => m.uid).length} priority message(s)`;
+  if (!Array.isArray(json.items) || !json.items.length) throw new Error('no quotes');
+  return `${json.items.length} quotes (${json.items[0].label} ${json.items[0].changePct.toFixed(2)}%)`;
 });
 
 if (withAi) {

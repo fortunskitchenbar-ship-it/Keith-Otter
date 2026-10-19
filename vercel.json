@@ -21,6 +21,6 @@
   "functions": {
     "api/ai-corner.js": { "maxDuration": 60 },
     "api/status.js": { "maxDuration": 20 },
-    "api/smartermail-email.js": { "maxDuration": 30 }
+    "api/markets.js": { "maxDuration": 20 }
   }
 }

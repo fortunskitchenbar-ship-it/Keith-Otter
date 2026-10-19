@@ -24,7 +24,7 @@ const routes = {
   news: (await import('../../api/news.js')).default,
   status: (await import('../../api/status.js')).default,
   state: (await import('../../api/state.js')).default,
-  'smartermail-email': (await import('../../api/smartermail-email.js')).default,
+  markets: (await import('../../api/markets.js')).default,
 };
 
 export async function handler(event) {
@@ -72,7 +72,7 @@ Streaming (`/api/ai-corner` SSE) will not stream through the adapter above — N
 
 ## Env vars
 
-Same names as Vercel (`DEEPSEEK_API_KEY`, `SMARTERMAIL_*`, `SUPABASE_*`, `DASHBOARD_SYNC_TOKEN`). Set them in **Site configuration → Environment variables**.
+Same names as Vercel (`DEEPSEEK_API_KEY`, `GEMINI_API_KEY`, `SUPABASE_*`, `DASHBOARD_SYNC_TOKEN`). Set them in **Site configuration → Environment variables**.
 
 ## Recommendation
 

@@ -164,11 +164,16 @@ export async function runSmoke(baseUrl) {
     return `env=${json.deployment.env} deepseek=${json.integrations.deepseek}`;
   });
 
-  await check('GET /api/smartermail-email degrades cleanly', async () => {
-    const { res, json } = await get('/api/smartermail-email');
-    if (res.status !== 200) throw new Error(`status ${res.status}`);
-    if (!Array.isArray(json)) throw new Error('not an array');
-    return `${json.length} item(s)`;
+  await check('GET /api/markets returns quotes or documented fallback', async () => {
+    const { res, json } = await get('/api/markets');
+    if (res.status === 200) {
+      if (!Array.isArray(json.items) || !json.items.length) throw new Error('no items');
+      const item = json.items[0];
+      if (!item.label || typeof item.price !== 'number' || typeof item.changePct !== 'number') throw new Error('bad quote shape');
+      return `${json.items.length} quotes (${item.label} ${item.changePct.toFixed(2)}%)`;
+    }
+    if (res.status === 502) return 'upstream 502 (UI shows unavailable)';
+    throw new Error(`unexpected status ${res.status}`);
   });
 
   // ---- upstream-dependent (allowed to degrade, but shape must be right) ----

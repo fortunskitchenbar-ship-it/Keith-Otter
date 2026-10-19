@@ -98,7 +98,7 @@ export default async function handler(req, res) {
     integrations: {
       deepseek: !!process.env.DEEPSEEK_API_KEY,
       gemini: !!process.env.GEMINI_API_KEY,
-      email: !!(process.env.SMARTERMAIL_USER && process.env.SMARTERMAIL_PASS),
+      markets: true,
       supabase: !!(process.env.SUPABASE_URL && (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY)),
       sync: !!process.env.DASHBOARD_SYNC_TOKEN,
       github: !!process.env.GITHUB_TOKEN,

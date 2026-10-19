@@ -23,7 +23,7 @@ v2 keeps the same deployment model (static + Vercel functions, free tier) and ad
 ### Front-end
 
 - New shell: fixed rail navigation, responsive bottom nav on mobile, sticky top bar with live clock, weather chip and API status.
-- **Bento overview** with live weather (current, hourly, 7-day, AQI, sunrise/sunset), at-a-glance counters, tasks, AI daily brief, agenda, priority mail, quick launch and headlines.
+- **Bento overview** with live weather (current, hourly, 7-day, AQI, sunrise/sunset), at-a-glance counters, tasks, AI daily brief, agenda, markets, quick launch and headlines.
 - **Command palette** (`Ctrl K`): jump to sections, create a task/note, ask DeepSeek, refresh, export, toggle theme, open GitHub/Vercel, and search across notes and tasks.
 - Keyboard shortcuts: `T` theme, `N` new task, `1–8` sections, `Esc` closes dialogs.
 - Dark and light themes (dark by default, remembered per device).
@@ -45,9 +45,9 @@ v2 keeps the same deployment model (static + Vercel functions, free tier) and ad
 - `api/news.js` **new**: Fox News + NPR + The Verge RSS/Atom merge, entity decoding, de-duplication, keyword categorisation, 15-minute edge cache.
 - `api/status.js` **new**: deployment metadata, integration flags (booleans only), latest GitHub Action runs, static-file freshness.
 - `api/state.js` **new**: optional Supabase sync, token-gated, service-role key stays server-side, 1.5 MB cap, 501 when not configured.
-- `api/smartermail-email.js` hardened: lazy imports, timeouts, 2-day window, up to 12 messages, clean degradation.
+- `api/markets.js` **new**: live quotes for S&P 500, Nasdaq, Dow, crude oil (Yahoo Finance) and BTC/ETH (CoinGecko), 2-minute edge cache, keyless.
 - `api/agenda-brief.js` moved off the retired Gemini 2.0 model to DeepSeek/Gemini 3.6, and stopped putting the key in the URL.
-- Removed the duplicate `api/smartermail-mail-detail.js` (its behaviour lives in `smartermail-email.js?uid=`).
+- SmarterMail retired with its owner's account: the IMAP route and its two dependencies were removed in v2.1 and replaced by the Markets card.
 
 ### Automation & docs
 
@@ -80,7 +80,7 @@ PASS  POST /api/ai-corner validates empty message
 PASS  POST /api/ai-corner degrades without a key
 PASS  GET /api/state is token-gated
 PASS  GET /api/status returns integrations
-PASS  GET /api/smartermail-email degrades cleanly
+PASS  GET /api/markets returns quotes or documented fallback
 PASS  GET /api/weather (live)
 PASS  GET /api/news (live, 30 items / 3 feeds)
 PASS  all JavaScript parses
@@ -133,7 +133,7 @@ Until step 3 the AI panel will say "No AI key is configured" — by design, not 
 | GitHub API rate limit in `/api/status` | Short edge cache, optional `GITHUB_TOKEN`, Ops shows "GitHub unavailable" instead of failing |
 | Sync misconfiguration | `/api/state` returns 501/401 with a clear message; dashboard stays local-first |
 | Data loss on upgrade | Legacy keys are migrated and left in place; export backup from Ops at any time |
-| Service worker serving stale shell | Cache is versioned (`kc-v2.0.0`); API routes are never cached; navigation is network-first |
+| Service worker serving stale shell | Cache is versioned (`kc-v2.1.0`); API routes are never cached; navigation is network-first |
 | Health data exposure on a shared device | PIN lock + auto-lock via "Lock now"; session-only unlock |
 
 ---
@@ -160,7 +160,7 @@ api/weather.js                 Open-Meteo
 api/news.js                    RSS merge
 api/status.js                  deployment + GitHub + freshness
 api/state.js                   Supabase sync
-api/smartermail-email.js       IMAP
+api/markets.js                 Yahoo + CoinGecko quotes
 api/agenda-brief.js            greeting endpoint
 automation/…                   Supabase SQL, n8n workflow, Zapier/Netlify notes
 tests/…                        dev server, smoke, UI, artifacts

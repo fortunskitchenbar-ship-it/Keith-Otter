@@ -4,7 +4,7 @@
 
 import {
   $, $$, esc, uid, isoDay, timeAgo, relativeDay, fmtTime, fmtDate,
-  store, apiJSON, toast, openModal, closeModal, markdown,
+  store, apiJSON, toast, markdown,
   wxInfo, wxFromText, windDir, download, debounce, session, clamp,
 } from './core.js';
 
@@ -12,9 +12,9 @@ import {
 
 const view = {
   taskFilter: 'open',
-  emailFilter: '',
-  email: [],
-  emailLoaded: false,
+  markets: [],
+  marketsLoaded: false,
+  marketsUpdated: null,
   news: [],
   newsLoaded: false,
   agenda: { items: [], sections: {}, updated: null, raw: '' },
@@ -118,67 +118,96 @@ function addTask(text, priority, due) {
   return true;
 }
 
-/* -------------------------------- email --------------------------------- */
+/* -------------------------------- markets ------------------------------- */
 
-function renderEmail() {
-  const filter = view.emailFilter.toLowerCase();
-  const matches = (m) => !filter || `${m.subject} ${m.from}`.toLowerCase().includes(filter);
-  const emptyText = view.emailLoaded
-    ? (view.emailError || (filter ? 'No priority mail matches that filter.' : 'No priority mail right now.'))
-    : 'Loading inbox…';
+function money(value, currency = 'USD') {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return '—';
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: value >= 1000 ? 0 : 2,
+    maximumFractionDigits: value >= 1000 ? 0 : 2,
+  }).format(value);
+}
 
-  const mini = $('#emailMini');
+function pct(value) {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return '—';
+  return `${value >= 0 ? '+' : ''}${value.toFixed(2)}%`;
+}
+
+function sparkline(values, up) {
+  const points = (values || []).filter(v => typeof v === 'number' && Number.isFinite(v));
+  if (points.length < 2) return '';
+  const w = 120, h = 34, pad = 2;
+  const min = Math.min(...points), max = Math.max(...points);
+  const span = max - min || 1;
+  const d = points.map((v, i) => {
+    const x = pad + (i / (points.length - 1)) * (w - pad * 2);
+    const y = h - pad - ((v - min) / span) * (h - pad * 2);
+    return `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true" class="m-spark-svg ${up ? 'up' : 'down'}"><path d="${d}"/></svg>`;
+}
+
+export function renderMarkets() {
+  const items = view.markets || [];
+  const stamp = $('#marketStamp');
+  if (stamp) stamp.textContent = view.marketsUpdated ? `as of ${fmtTime(view.marketsUpdated)}` : '—';
+
+  const mini = $('#marketMini');
   if (mini) {
-    const items = view.email.filter(matches).slice(0, 3);
     mini.innerHTML = items.length
-      ? items.map(m => `<li data-uid="${esc(m.uid)}"><span class="mail-subject">${esc(m.subject)}</span><span class="mail-meta">${esc(m.from)} · ${esc(timeAgo(m.date))}</span></li>`).join('')
-      : `<li class="empty">${esc(emptyText)}</li>`;
-  }
-
-  const list = $('#emailList');
-  if (list) {
-    const items = view.email.filter(matches);
-    list.innerHTML = items.length
-      ? items.map(m => `
-        <li data-uid="${esc(m.uid)}">
-          <span class="mail-subject">${esc(m.subject)}</span>
-          <span class="mail-meta"><span>${esc(m.from)}</span><span>${esc(new Date(m.date).toLocaleString())}</span></span>
+      ? items.slice(0, 4).map(m => `
+        <li>
+          <span class="m-label">${esc(m.label)}</span>
+          <span class="m-price-sm">${esc(money(m.price, m.currency))}</span>
+          <span class="m-pct ${m.changePct >= 0 ? 'pos' : 'neg'}">${esc(pct(m.changePct))}</span>
         </li>`).join('')
-      : `<li class="empty">${esc(emptyText)}</li>`;
+      : `<li class="empty">${view.marketsLoaded ? 'Market data unavailable.' : 'Loading markets…'}</li>`;
   }
 
-  $('#kpiMail').textContent = view.email.length;
+  const grid = $('#marketGrid');
+  if (grid) {
+    grid.innerHTML = items.length
+      ? items.map(m => `
+        <article class="market-tile">
+          <div class="m-top"><span class="m-label">${esc(m.label)}</span><span class="m-sym">${esc(m.symbol)}</span></div>
+          <div class="m-price">${esc(money(m.price, m.currency))}</div>
+          <div class="m-change ${m.changePct >= 0 ? 'pos' : 'neg'}">
+            ${esc(pct(m.changePct))}
+            <span>${m.change >= 0 ? '+' : ''}${money(m.change, m.currency)}</span>
+          </div>
+          ${sparkline(m.spark, m.changePct >= 0)}
+        </article>`).join('')
+      : `<p class="empty">${view.marketsLoaded ? 'Market data is unavailable right now.' : 'Loading markets…'}</p>`;
+  }
+
+  const kpi = $('#kpiMarket');
+  if (kpi) {
+    const sp = items.find(m => m.symbol === 'GSPC') || items[0];
+    kpi.textContent = sp ? pct(sp.changePct) : '—';
+    kpi.style.color = sp ? (sp.changePct >= 0 ? 'var(--green)' : 'var(--red)') : '';
+  }
+
+  const miniStatus = $('#miniMarkets');
+  if (miniStatus) {
+    const sp = items.find(m => m.symbol === 'GSPC') || items[0];
+    miniStatus.textContent = sp ? `S&P ${pct(sp.changePct)}` : '—';
+  }
 }
 
-export async function refreshEmail(force = false) {
-  if (view.emailLoaded && !force) { renderEmail(); return; }
-  const res = await apiJSON('/api/smartermail-email?t=' + Date.now(), {}, 18000);
-  if (res.ok && Array.isArray(res.data)) {
-    view.email = res.data.filter(m => m && m.uid);
-    const system = res.data.find(m => m && m.error);
-    view.emailError = system ? system.subject : null;
+export async function refreshMarkets(force = false) {
+  if (view.marketsLoaded && !force && view.markets.length) { renderMarkets(); return; }
+  const res = await apiJSON('/api/markets?t=' + Date.now(), {}, 20000);
+  if (res.ok && res.data && Array.isArray(res.data.items)) {
+    view.markets = res.data.items;
+    view.marketsUpdated = res.data.updated || new Date().toISOString();
   } else {
-    view.email = [];
-    view.emailError = res.error || 'Could not reach the inbox.';
+    if (!view.markets.length) view.markets = [];
   }
-  view.emailLoaded = true;
-  renderEmail();
+  view.marketsLoaded = true;
+  renderMarkets();
   updateStatusSummary();
-}
-
-async function openEmail(uidValue) {
-  const cached = view.email.find(m => String(m.uid) === String(uidValue));
-  openModal(cached ? cached.subject : 'Email', '<p class="muted">Loading…</p>');
-  const res = await apiJSON('/api/smartermail-email?uid=' + encodeURIComponent(uidValue), {}, 20000);
-  const body = $('#modalBody');
-  if (!body) return;
-  if (!res.ok || !res.data || res.data.error) {
-    body.innerHTML = `<p class="error">${esc((res.data && res.data.error) || 'Could not load this email.')}</p>`;
-    return;
-  }
-  const d = res.data;
-  $('#modalTitle').textContent = d.subject || cached?.subject || 'Email';
-  body.innerHTML = `<p class="muted" style="margin-bottom:12px">${esc(d.from || '')}${d.date ? ' · ' + esc(new Date(d.date).toLocaleString()) : ''}</p><div>${esc(d.text || '(No readable text in this email.)')}</div>`;
 }
 
 /* --------------------------------- news --------------------------------- */
@@ -504,7 +533,7 @@ export async function runChecks() {
     { name: 'Weather API', url: '/api/weather' },
     { name: 'News API', url: '/api/news' },
     { name: 'AI (DeepSeek)', url: '/api/ai-corner', expect: [405, 200] },
-    { name: 'Inbox (SmarterMail)', url: '/api/smartermail-email' },
+    { name: 'Markets API', url: '/api/markets' },
     { name: 'Status', url: '/api/status' },
     { name: 'Sync (Supabase)', url: '/api/state', allow: [200, 501, 503] },
   ];
@@ -540,20 +569,18 @@ function updateStatusSummary() {
   if (!pill) return;
   const configured = view.checks.filter(c => c.status !== 501);
   const bad = configured.filter(c => !c.ok).length;
-  const mailOk = view.emailLoaded && view.email.length > 0;
+  const marketsOk = view.marketsLoaded && view.markets.length > 0;
   let state = 'ok';
   let text = 'online';
   if (bad > 0) { state = 'warn'; text = `${bad} degraded`; }
   if (view.checks.length === 0) { state = 'idle'; text = 'checking'; }
   pill.dataset.state = state;
   pill.querySelector('span').textContent = text;
-  pill.title = `${view.checks.filter(c => c.ok).length}/${view.checks.length} services healthy${mailOk ? ' · mail ok' : ''}`;
+  pill.title = `${view.checks.filter(c => c.ok).length}/${view.checks.length} services healthy${marketsOk ? ' · markets ok' : ''}`;
 
   const ints = view.status?.integrations || {};
   const ai = $('#miniAi');
   if (ai) ai.textContent = ints.deepseek ? 'DeepSeek V3' : ints.gemini ? 'Gemini fallback' : 'no key';
-  const inbox = $('#miniInbox');
-  if (inbox) inbox.textContent = view.emailLoaded ? (view.email.length ? `${view.email.length} priority` : 'empty') : '—';
   const brief = $('#miniBrief');
   if (brief) {
     const cached = store.state.settings.brief;
@@ -566,14 +593,14 @@ function updateStatusSummary() {
 function briefContext() {
   const w = view.weather;
   const tasks = sortTasks(store.state.tasks.filter(t => !t.done)).slice(0, 8).map(t => `- ${t.text}${t.due ? ` (due ${t.due})` : ''}${t.priority === 'high' ? ' [high]' : ''}`);
-  const mail = view.email.slice(0, 4).map(m => `- ${m.subject} — ${m.from}`);
+  const marks = view.markets.slice(0, 4).map(m => `- ${m.label}: ${pct(m.changePct)}`);
   const agenda = view.agenda.items.slice(0, 6).map(i => `- ${i}`);
   const weather = w ? `${w.temp}°F now, high ${w.high}°, low ${w.low}°, ${w.conditions || ''}` : 'weather unavailable';
   return [
     `Weather: ${weather}`,
     tasks.length ? `Open tasks:\n${tasks.join('\n')}` : 'Open tasks: none',
     agenda.length ? `Agenda:\n${agenda.join('\n')}` : 'Agenda: nothing scheduled',
-    mail.length ? `Priority mail:\n${mail.join('\n')}` : 'Priority mail: nothing new',
+    marks.length ? `Markets:\n${marks.join('\n')}` : 'Markets: unavailable',
   ].join('\n\n');
 }
 
@@ -597,9 +624,9 @@ export async function generateBrief(force = false) {
   const btn = $('#briefBtn');
   setBusy(btn, true, 'Thinking…');
   $('#briefText').classList.add('loading');
-  $('#briefText').textContent = 'Writing your brief from weather, tasks, agenda and mail…';
+  $('#briefText').textContent = 'Writing your brief from weather, tasks, agenda and markets…';
   try {
-    const message = `Write Keith's daily brief in under 120 words. Plain English, warm but efficient. Use short paragraphs or dashes. Cover: weather to expect, the two or three things worth doing first, anything time-sensitive in mail or agenda. Do not invent facts.\n\n${briefContext()}`;
+    const message = `Write Keith's daily brief in under 120 words. Plain English, warm but efficient. Use short paragraphs or dashes. Cover: weather to expect, the two or three things worth doing first, anything time-sensitive in the agenda, and any market move worth noticing. Do not invent facts.\n\n${briefContext()}`;
     const res = await apiJSON('/api/ai-corner', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1163,18 +1190,8 @@ function bindTaskEvents() {
   });
 }
 
-function bindEmailEvents() {
-  $('#emailSearch')?.addEventListener('input', debounce((e) => {
-    view.emailFilter = e.target.value.trim();
-    renderEmail();
-  }, 150));
-  $('#emailRefresh')?.addEventListener('click', () => refreshEmail(true));
-  ['#emailList', '#emailMini'].forEach(sel => {
-    $(sel)?.addEventListener('click', (e) => {
-      const li = e.target.closest('[data-uid]');
-      if (li) openEmail(li.dataset.uid);
-    });
-  });
+function bindMarketEvents() {
+  $('#marketRefresh')?.addEventListener('click', () => refreshMarkets(true));
 }
 
 function bindNewsEvents() {
@@ -1450,7 +1467,7 @@ function bindOpsEvents() {
 
 export function initPanels() {
   bindTaskEvents();
-  bindEmailEvents();
+  bindMarketEvents();
   bindNewsEvents();
   bindChatEvents();
   bindHealthEvents();
@@ -1491,7 +1508,7 @@ export function initPanels() {
   // Kick off network work in parallel
   refreshWeather();
   refreshNews();
-  refreshEmail();
+  refreshMarkets();
   refreshAgenda();
   refreshStatus().then(renderFreshness);
   runChecks();
@@ -1500,7 +1517,7 @@ export function initPanels() {
   if (store.state.settings.syncToken) syncNow(false).catch(() => {});
 
   setInterval(() => { refreshWeather(); }, 10 * 60 * 1000);
-  setInterval(() => { refreshEmail(true); }, 12 * 60 * 1000);
+  setInterval(() => { refreshMarkets(); }, 5 * 60 * 1000);
   setInterval(() => { refreshStatus(); }, 5 * 60 * 1000);
 }
 
@@ -1508,7 +1525,7 @@ export async function refreshAll(verbose = false) {
   const btn = $('#refreshAll');
   setBusy(btn, true, 'Refreshing…');
   try {
-    await Promise.all([refreshWeather(), refreshNews(), refreshEmail(true), refreshAgenda(), refreshStatus()]);
+    await Promise.all([refreshWeather(), refreshNews(), refreshMarkets(true), refreshAgenda(), refreshStatus()]);
     if (verbose) toast('Dashboard refreshed');
   } finally {
     setBusy(btn, false);
