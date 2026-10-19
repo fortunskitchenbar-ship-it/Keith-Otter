@@ -1,127 +1,151 @@
-# Keith Dashboard — Setup Guide
+# Keith · Command Center — Setup Guide
 
-How to stand this dashboard up from scratch, or recreate it in a new repo. Covers both scheduled GitHub Actions and the two live Vercel API endpoints.
-
----
-
-## What you're building
-
-- A static `index.html` dashboard hosted on Vercel
-- Two GitHub Actions workflows that run **4x/day** (6:30 AM, 11:30 AM, 4:30 PM, 9:30 PM Pacific) and commit fresh JSON data back to the repo, which Vercel then redeploys
-- Two Vercel serverless functions that respond live, on every page load — not on the schedule above
+How to stand this dashboard up from scratch, recreate it in a new repo, or add the optional integrations. The dashboard itself needs **no build step** and **no database**.
 
 ---
 
-## Step 1 — Fork or create the repo
+## 1. What you are building
 
-Repo needs this structure:
+- A static `index.html` + `assets/` shell hosted on Vercel.
+- Seven serverless routes in `api/` (weather, news, AI, status, sync, email, agenda greeting).
+- Two scheduled GitHub Actions that refresh JSON in the repo (and therefore redeploy Vercel).
+- Optional: Supabase for cross-device sync, n8n or Zapier for automation.
+
+---
+
+## 2. Repo layout
 
 ```
 your-repo/
-├── .github/workflows/
-│   ├── daily_agenda.yml
-│   └── auto-commit-json.yml
-├── api/
-│   ├── ai-corner.js
-│   └── smartermail-email.js
-├── scripts/
-│   ├── fetch_calendar.py
-│   ├── fetch_rss.py
-│   ├── fetch_weather.py
-│   ├── build_agenda.py
-│   └── generate_json.py
-├── agenda/.gitkeep
-├── output/.gitkeep
-└── index.html
+├── index.html
+├── assets/            styles.css, core.js, panels.js, app.js, icons/
+├── api/               weather.js, news.js, ai-corner.js, status.js, state.js, smartermail-email.js, agenda-brief.js
+├── scripts/           Python fetchers used by the scheduled workflows
+├── output/            weather.json, email_watch.json, research_data.json
+├── agenda/            daily_agenda.txt
+├── automation/        supabase/schema.sql, n8n/workflow.json, zapier/, netlify/
+├── tests/             dev server + smoke + Chrome UI checks
+├── .github/workflows/ auto-commit-json.yml, daily_agenda.yml, ci.yml
+├── .env.example
+└── package.json       type: module, imapflow + mailparser
 ```
 
 ---
 
-## Step 2 — Deploy to Vercel
+## 3. Deploy to Vercel
 
-1. Go to vercel.com, sign in, **Add New → Project**, import the repo.
-2. Leave build settings default (this is a static `index.html` + serverless `api/` functions — Vercel detects both automatically).
-3. Deploy. Note the resulting domain (e.g. `your-project.vercel.app`).
-
-**Watch out for duplicate projects** — if you ever re-import the same repo under a slightly different name, Vercel will happily run two live "Production" deployments side by side from the same code. That's confusing to debug later (one may be missing env vars the other has). If it happens, delete the extra one in Project Settings → scroll to bottom → Delete Project.
-
----
-
-## Step 3 — Set Vercel environment variables
-
-Vercel project → **Settings → Environment Variables**. These are separate from GitHub Actions secrets (Step 5) — don't mix them up.
-
-| Variable | Value |
-|---|---|
-| `SMARTERMAIL_USER` | Your SmarterMail inbox username |
-| `SMARTERMAIL_PASS` | Your SmarterMail inbox password |
-| `GEMINI_API_KEY` | From [aistudio.google.com](https://aistudio.google.com) → Get API key |
-
-After adding these, trigger a redeploy (any new commit, or Vercel's "Redeploy" button) so the functions pick them up.
-
-### About the Gemini model
-
-`api/ai-corner.js` currently targets `gemini-3.6-flash`. Google periodically retires free-tier Flash model names — if AI Research starts responding with `"source": "fallback"` instead of `"source": "gemini"`, check the actual response at `your-domain.vercel.app/api/ai-corner` (a plain GET shows the raw JSON), then check Vercel's function logs for that request for the exact error. A `404` with a message like *"model no longer available to new users"* means it's time to swap the `MODEL` constant for whatever's current at [ai.google.dev/gemini-api/docs/pricing](https://ai.google.dev/gemini-api/docs/pricing).
+1. Push the repo to GitHub.
+2. Vercel → **Add New → Project** → import the repo.
+3. Framework preset: **Other**. Build command: empty. Output directory: `.` (root).
+4. Deploy. Note the domain (`something.vercel.app`).
+5. Avoid importing the same repo twice under different project names — you will end up with two "production" sites, one of which is missing env vars.
 
 ---
 
-## Step 4 — Get a Google Calendar iCal URL (optional)
+## 4. Environment variables
 
-Only needed if you want `fetch_calendar.py` doing anything — note the dashboard's Calendar card isn't currently wired up to display this data, so this step is optional infrastructure, not something you'll see on screen yet.
+Vercel → **Settings → Environment Variables** (Production **and** Preview). These are separate from GitHub Actions secrets.
 
-1. Open [Google Calendar](https://calendar.google.com), hover the calendar in the sidebar → **⋮ → Settings and sharing**.
-2. Scroll to **Integrate calendar** → copy **Secret address in iCal format**.
-3. That URL is what goes in the GitHub secret below. Treat it like a password — anyone with it can read your calendar.
+| Variable | Required | Notes |
+|---|---|---|
+| `DEEPSEEK_API_KEY` | yes, for AI | https://platform.deepseek.com/api_keys |
+| `GEMINI_API_KEY` | optional | fallback only |
+| `SMARTERMAIL_USER` / `SMARTERMAIL_PASS` | for Email Watch | IMAP mailbox |
+| `SMARTERMAIL_HOST` / `SMARTERMAIL_PORT` | optional | defaults `mail.fortunfoods.com` / `993` |
+| `SUPABASE_URL` | optional sync | https://supabase.com |
+| `SUPABASE_SERVICE_ROLE_KEY` | optional sync | server-side only |
+| `DASHBOARD_SYNC_TOKEN` | optional sync | long random string |
+| `GITHUB_TOKEN` | optional | raises GitHub API limits in Ops |
+| `N8N_WEBHOOK_URL` | optional | shown in Automations |
 
----
-
-## Step 5 — Add GitHub Actions secrets
-
-Repo → **Settings → Secrets and variables → Actions → New repository secret**.
-
-| Secret | Value |
-|---|---|
-| `GCAL_ICAL_URL` | The iCal URL from Step 4 |
-
-`fetch_calendar.py` fails soft — if this secret is missing, it writes an empty calendar file instead of crashing the workflow, so the rest of the pipeline (news, weather) still runs fine either way.
+After adding or changing variables, **redeploy** so the functions pick them up.
 
 ---
 
-## Step 6 — Verify each workflow manually
+## 5. Optional: cross-device sync (Supabase)
 
-1. Repo → **Actions** tab → click **Daily Agenda Builder** → **Run workflow**.
-2. Watch it finish (green checkmark, ~10-15s). If it fails, click the red step to see the exact error.
-3. Repeat for **Auto Commit JSON**.
-4. Check that `output/weather.json` and `scripts/rss_headlines.json` now have real content, not placeholders.
+1. Create a Supabase project (free tier is fine).
+2. SQL Editor → paste and run `automation/supabase/schema.sql`.
+3. Add `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `DASHBOARD_SYNC_TOKEN` to Vercel → redeploy.
+4. On each device: **Ops → Storage & sync** → paste the same token → **Save**. It will pull, merge and push.
+5. Verify: `select id, updated_at from public.dashboard_state;` should show one row (`keith`).
 
-Once both pass manually, they'll run automatically at the four scheduled times going forward.
+Without these three variables the dashboard is fully functional and local-first; `/api/state` returns 501 with a clear hint.
 
 ---
 
-## Customizing the schedule
+## 6. Optional: n8n
 
-Both workflow files use the same four cron lines:
+1. n8n Cloud or self-hosted.
+2. Set n8n environment variables `SUPABASE_URL` and `SUPABASE_SERVICE_KEY`.
+3. **Import** `automation/n8n/keith-command-center.json`.
+4. Open the workflow, check the schedule (6:30 / 11:30 / 16:30 / 21:30 Pacific expressed as UTC cron), activate.
+5. The webhook trigger (`keith-command-center-refresh`) gives you a manual refresh URL.
 
-```yaml
-schedule:
-  - cron: '30 13 * * *'   # 6:30 AM Pacific (PDT)
-  - cron: '30 18 * * *'   # 11:30 AM Pacific (PDT)
-  - cron: '30 23 * * *'   # 4:30 PM Pacific (PDT)
-  - cron: '30 4 * * *'    # 9:30 PM Pacific (PDT, lands on next UTC date)
+---
+
+## 7. Optional: Zapier
+
+See `automation/zapier/README.md`. Short version: watch GitHub commits, or write to Supabase and let the dashboard read it. Do not expose a write endpoint without the sync token.
+
+---
+
+## 8. GitHub Actions secrets
+
+| Secret | Used by | Notes |
+|---|---|---|
+| `GCAL_ICAL_URL` | `scripts/fetch_calendar.py` | optional; script fails soft |
+
+`GITHUB_TOKEN` is provided automatically to the JSON workflows.
+
+---
+
+## 9. Verify
+
+Manual:
+
+1. Open the site — weather should be live (not the 4×/day file).
+2. **AI** → ask "Summarize my day" — should stream a reply.
+3. **Ops** → all rows green except *Sync (Supabase)* if not set up.
+4. **Comms** → priority mail loads (if `SMARTERMAIL_*` set).
+5. Toggle the theme, press `Ctrl K`, add a task.
+
+Automated (local):
+
+```bash
+node tests/run.mjs           # HTTP + Chrome checks + screenshots
+node tests/run.mjs --smoke   # no browser
 ```
 
-Cron runs in UTC only and does not know about daylight saving. Use [crontab.guru](https://crontab.guru) to work out new UTC times, and expect to manually adjust these twice a year (~March and ~November) if you want the local times to stay fixed.
+CI runs the smoke suite on every push (`.github/workflows/ci.yml`).
 
 ---
 
-## Troubleshooting
+## 10. Troubleshooting
 
-| Problem | Likely cause / fix |
+| Symptom | Cause / fix |
 |---|---|
-| AI Research always shows `"source": "fallback"` | Model name retired — see "About the Gemini model" above |
-| Email Watch shows "SmarterMail not configured" | Check you're on the real Vercel domain, not a duplicate project missing env vars |
-| Email Watch only shows old bot notifications | Add real senders to the `priorityFrom` array in `api/smartermail-email.js` — only listed senders show up at all |
-| Workflow fails with a Python `IndentationError` | A script got pasted/edited with its indentation stripped — re-check the file's whitespace carefully, Python is whitespace-sensitive |
-| Inbox flooded with GitHub Action failure emails | github.com/settings/notifications → Actions → turn off email, or per-repo via the "Watch" dropdown → Custom → uncheck Actions |
-| Weather/news look stale all day | These only update at the 4 scheduled times, not on page load — check the workflow's last successful run time in the Actions tab |
-| Health Hub / Tasks / Notes empty on a different device | Expected — all three are localStorage-only, per-device, never synced |
+| AI says "No AI key is configured" | Add `DEEPSEEK_API_KEY` in Vercel and redeploy |
+| Weather card says "cached · GitHub Actions" | `/api/weather` upstream failed; the committed JSON is being used. Check `fetch_weather.py` and the Open-Meteo status |
+| News empty | All three feeds unreachable; the client falls back to `scripts/rss_headlines.json` |
+| Ops shows "Sync (Supabase): not configured" | Expected until the three sync env vars are set |
+| Sync returns 401 | The token in the browser does not match `DASHBOARD_SYNC_TOKEN` |
+| Email says "SmarterMail not configured" | `SMARTERMAIL_USER` / `SMARTERMAIL_PASS` missing, or you are on the duplicate Vercel project |
+| Health Hub asks for a PIN you don't remember | The PIN is local to that browser; clear `kc.v2.health` in DevTools (data stays) |
+| Weekly cron drifts by an hour | Crons are UTC; adjust the four cron lines around DST |
+| A workflow fails with `IndentationError` | A Python file was pasted with indentation stripped |
+
+---
+
+## 11. Customising
+
+- **Colours / spacing:** `assets/styles.css` design tokens at the top (`--accent`, `--surface`, `--bg`).
+- **Sections:** `VIEWS` in `assets/app.js` and the matching `<section class="view">` blocks in `index.html`.
+- **AI prompts:** `SYSTEM` in `api/ai-corner.js`.
+- **News feeds / categories:** `FEEDS` and `CATEGORIES` in `api/news.js`.
+- **Location:** `LAT` / `LON` / `TZ` in `api/weather.js`.
+- **Refresh cadence:** service-worker-free intervals at the bottom of `initPanels()`; GitHub Actions cron in `.github/workflows/`.
+
+---
+
+*La Quinta, CA*

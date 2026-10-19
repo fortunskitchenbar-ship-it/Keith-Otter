@@ -13,6 +13,12 @@ on:
         required: false
         default: 'manual'
 
+# Both scheduled jobs push to main. Without a shared group they can start in the
+# same minute, and whichever pushes second gets "fetch first" and fails.
+concurrency:
+  group: keith-otter-repo-writer
+  cancel-in-progress: false
+
 jobs:
   build-agenda:
     runs-on: ubuntu-latest
@@ -21,6 +27,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -43,8 +51,25 @@ jobs:
 
       - name: Commit agenda
         run: |
+          set -euo pipefail
           git config user.name "Daily Agenda Bot"
           git config user.email "actions@github.com"
           git add agenda/daily_agenda.txt
-          git diff --cached --quiet || git commit -m "Daily agenda update"
-          git push
+          if git diff --cached --quiet; then
+            echo "No agenda changes to commit."
+            exit 0
+          fi
+          git commit -m "Daily agenda update"
+
+          # Retry with rebase: another job may have pushed while this one ran.
+          for attempt in 1 2 3 4; do
+            git pull --rebase --autostash origin main
+            if git push origin main; then
+              echo "Pushed on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push attempt ${attempt} failed; retrying in 5s…"
+            sleep 5
+          done
+          echo "Could not push the agenda after 4 attempts." >&2
+          exit 1

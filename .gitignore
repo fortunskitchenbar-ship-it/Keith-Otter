@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+tests/node_modules/
+
+# local env
+.env
+.env.local
+.env.*.local
+
+# vercel
+.vercel/
+
+# test output
+tests/artifacts/
+
+# os / editor
+.DS_Store
+Thumbs.db
+*.log

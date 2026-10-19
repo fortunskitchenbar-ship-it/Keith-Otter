@@ -17,6 +17,11 @@ on:
     - cron: '30 23 * * *'   # 4:30 PM Pacific (PDT)
     - cron: '30 4 * * *'    # 9:30 PM Pacific (PDT, lands on next UTC date)
 
+# Shared with Daily Agenda Builder so the two jobs never push at the same time.
+concurrency:
+  group: keith-otter-repo-writer
+  cancel-in-progress: false
+
 jobs:
   generate-and-commit:
     runs-on: ubuntu-latest
@@ -58,9 +63,22 @@ jobs:
       - name: Commit and push JSON changes
         if: steps.json_changes.outputs.changed == 'true'
         run: |
+          set -euo pipefail
           git add '*.json'
           git commit -m "chore: auto-update JSON data [skip ci]"
-          git push origin main
+
+          # Retry with rebase: the agenda job may have pushed while this one ran.
+          for attempt in 1 2 3 4; do
+            git pull --rebase --autostash origin main
+            if git push origin main; then
+              echo "Pushed on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push attempt ${attempt} failed; retrying in 5s…"
+            sleep 5
+          done
+          echo "Could not push JSON changes after 4 attempts." >&2
+          exit 1
       - name: Report no changes
         if: steps.json_changes.outputs.changed == 'false'
         run: echo "No JSON changes detected — skipping commit"
