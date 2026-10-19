@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Trump unveils plan to transform historic DC golf course as judge tees off
+   1. Trump threatened by judge with sanctions if he doesn’t sit for deposition in $10 billion BBC defamation suit
+      https://www.foxnews.com/media/trump-threatened-judge-sanctions-he-doesnt-sit-deposition-10-billion-bbc-defamation-suit
+
+   2. Trump takes border crackdown to deep-red state as shock Senate battle threatens GOP stronghold
+      https://www.foxnews.com/politics/trump-takes-border-crackdown-deep-red-state-shock-senate-battle-threatens-gop-stronghold
+
+   3. Trump unveils plan to transform historic DC golf course as judge tees off
       https://www.foxnews.com/politics/trump-unveils-plan-transform-historic-dc-golf-course-judge-tees-off
 
-   2. Slotkin wants GOP prosecutions to deter young people from Trump administration jobs
+   4. Slotkin wants GOP prosecutions to deter young people from Trump administration jobs
       https://www.foxnews.com/politics/slotkin-wants-gop-prosecutions-deter-young-people-trump-administration-jobs
 
-   3. Trump says Netanyahu needs to be re-elected, or else US will have to 'finish the job’ against Iran alone
+   5. Trump says Netanyahu needs to be re-elected, or else US will have to 'finish the job’ against Iran alone
       https://www.foxnews.com/politics/trump-says-netanyahu-needs-reelected-else-us-finish-job-against-iran-alone
 
-   4. Obama backs Ilhan Omar amid probe, accuses Trump admin of 'appalling' targeting in lengthy statement
+   6. Obama backs Ilhan Omar amid probe, accuses Trump admin of 'appalling' targeting in lengthy statement
       https://www.foxnews.com/politics/obama-backs-ilhan-omar-amid-probe-accuses-trump-admin-appalling-targeting-lengthy-statement
 
-   5. Trump tries different approach with Russia to bring Americans relief amid ongoing war with Ukraine
+   7. Trump tries different approach with Russia to bring Americans relief amid ongoing war with Ukraine
       https://www.foxnews.com/politics/trump-tries-different-approach-russia-bring-americans-relief-amid-ongoing-war-ukraine
 
-   6. Becoming a lawyer could get cheaper and faster under looming Trump admin shakeup
-      https://www.foxnews.com/politics/becoming-lawyer-cheaper-faster-trump-admin-shakeup
+   8. Smithsonian screening dispute puts museum's commitment to diverse views on trial: 'Right kind of Black?'
+      https://www.foxnews.com/politics/smithsonian-screening-dispute-puts-museums-commitment-diverse-views-trial-right-kind-black
 
-   7. Prince Harry risks 'lobbing a grenade' at Prince William as chance to heal years-long feud emerges: expert
-      https://www.foxnews.com/entertainment/prince-harry-risks-lobbing-grenade-prince-william-chance-heal-years-long-feud-emerges-expert
+   9. Reporter’s Notebook: Senate sneaks in one last political play before voters have their say
+      https://www.foxnews.com/politics/reporters-notebook-senate-sneaks-one-last-political-play-before-voters-have-their-say
 
-   8. It took 3 months to get inside this massive Texas data center — here’s what we saw
-      https://www.foxnews.com/politics/took-3-months-get-inside-massive-texas-data-center-heres-what-we-saw
-
-   9. Mom accused of slaughtering husband, toddler at Great Wolf Lodge could face death penalty: PI
-      https://www.foxnews.com/us/mom-accused-slaughtering-husband-toddler-great-wolf-lodge-could-face-death-penalty-pi
-
-  10. National Guard member shot in DC, police chief says
-      https://www.foxnews.com/us/national-guard-member-shot-washington-dc
+  10. France's massive intel failure sparks resignation offers amid days of rioting
+      https://www.foxnews.com/politics/frances-massive-intel-failure-sparks-resignation-offers-amid-days-rioting
 
 
 ============================================================
-  Generated at 03:10 AM PDT by GitHub Actions
+  Generated at 12:23 PM PDT by GitHub Actions
 ============================================================
