@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Slotkin wants GOP prosecutions to deter young people from Trump administration jobs
+   1. Trump unveils plan to transform historic DC golf course as judge tees off
+      https://www.foxnews.com/politics/trump-unveils-plan-transform-historic-dc-golf-course-judge-tees-off
+
+   2. Slotkin wants GOP prosecutions to deter young people from Trump administration jobs
       https://www.foxnews.com/politics/slotkin-wants-gop-prosecutions-deter-young-people-trump-administration-jobs
 
-   2. Trump says Netanyahu needs to be re-elected, or else US will have to 'finish the job’ against Iran alone
+   3. Trump says Netanyahu needs to be re-elected, or else US will have to 'finish the job’ against Iran alone
       https://www.foxnews.com/politics/trump-says-netanyahu-needs-reelected-else-us-finish-job-against-iran-alone
 
-   3. Obama backs Ilhan Omar amid probe, accuses Trump admin of 'appalling' targeting in lengthy statement
+   4. Obama backs Ilhan Omar amid probe, accuses Trump admin of 'appalling' targeting in lengthy statement
       https://www.foxnews.com/politics/obama-backs-ilhan-omar-amid-probe-accuses-trump-admin-appalling-targeting-lengthy-statement
 
-   4. Trump tries different approach with Russia to bring Americans relief amid ongoing war with Ukraine
+   5. Trump tries different approach with Russia to bring Americans relief amid ongoing war with Ukraine
       https://www.foxnews.com/politics/trump-tries-different-approach-russia-bring-americans-relief-amid-ongoing-war-ukraine
 
-   5. Becoming a lawyer could get cheaper and faster under looming Trump admin shakeup
+   6. Becoming a lawyer could get cheaper and faster under looming Trump admin shakeup
       https://www.foxnews.com/politics/becoming-lawyer-cheaper-faster-trump-admin-shakeup
 
-   6. Falcons rookie Kendal Daniels stretchered off field after helmet-to-knee collision in scary scene
-      https://www.foxnews.com/outkick-sports/falcons-rookie-kendal-daniels-stretchered-off-field-helmet-to-knee-collision-scary-scene
+   7. Kansas City Chiefs star defensive lineman Chris Jones caught in screaming match with coaches on sidelines
+      https://www.foxnews.com/outkick-sports/kansas-city-chiefs-star-defensive-lineman-chris-jones-caught-screaming-match-coaches-sidelines
 
-   7. Major League Baseball's best team can't stop pretending to be the underdogs heading into World Series
-      https://www.foxnews.com/outkick-sports/major-league-baseballs-best-team-cant-stop-pretending-underdogs-heading-world-series
+   8. Kristin Cavallari says she learned a painful $250K lesson involving her father at 22
+      https://www.foxnews.com/entertainment/kristin-cavallari-says-she-learned-painful-250k-lesson-involving-her-father-22
 
-   8. Chick-fil-A CEO addresses whether fast-food chain would ever consider opening on Sundays
-      https://www.foxnews.com/food-drink/chick-fil-a-ceo-addresses-whether-fast-food-chain-would-ever-consider-opening-sundays
+   9. Shane Steichen says Daniel Jones won't be benched but coach and general manager Chris Ballard are in trouble
+      https://www.foxnews.com/outkick-sports/shane-steichen-says-daniel-jones-wont-benched-coach-general-manager-chris-ballard-trouble
 
-   9. Investigation launched after Air Force airman fatally falls before UTSA football game
-      https://www.foxnews.com/outkick-sports/investigation-launched-air-force-airman-fatally-falls-utsa-football-game
-
-  10. Abdul El-Sayed invokes JFK to dismiss 'crazy' questions over family's alleged ties to Muslim Brotherhood
-      https://www.foxnews.com/media/abdul-el-sayed-invokes-jfk-dismiss-crazy-questions-over-familys-alleged-ties-muslim-brotherhood
+  10. Mike Rogers presses CNN's Dana Bash on why the press is 'eager' to defend Abdul El-Sayed
+      https://www.foxnews.com/media/mike-rogers-presses-cnn-dana-bash-why-press-eager-defend-abdul-el-sayed
 
 
 ============================================================
-  Generated at 01:55 PM PDT by GitHub Actions
+  Generated at 06:31 PM PDT by GitHub Actions
 ============================================================
