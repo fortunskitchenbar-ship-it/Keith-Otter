@@ -8,37 +8,37 @@
 
 📰  FOX NEWS — TOP HEADLINES
 ------------------------------------------------------------
-   1. Trump threatened by judge with sanctions if he doesn’t sit for deposition in $10 billion BBC defamation suit
-      https://www.foxnews.com/media/trump-threatened-judge-sanctions-he-doesnt-sit-deposition-10-billion-bbc-defamation-suit
+   1. Beleaguered Macron cites US-Iran war as factor in protests amid Trump, Vance criticism
+      https://www.foxnews.com/world/beleaguered-macron-cites-us-iran-war-factor-protests-amid-trump-vance-criticism
 
-   2. Trump takes border crackdown to deep-red state as shock Senate battle threatens GOP stronghold
+   2. Trump renews push to rename New Mexico ‘New America,’ touts higher home values and incomes
+      https://www.foxnews.com/politics/trump-renews-push-rename-new-mexico-new-america-touts-higher-home-values-incomes
+
+   3. Trump takes border crackdown to deep-red state as shock Senate battle threatens GOP stronghold
       https://www.foxnews.com/politics/trump-takes-border-crackdown-deep-red-state-shock-senate-battle-threatens-gop-stronghold
 
-   3. Trump unveils plan to transform historic DC golf course as judge tees off
+   4. Trump unveils plan to transform historic DC golf course as judge tees off
       https://www.foxnews.com/politics/trump-unveils-plan-transform-historic-dc-golf-course-judge-tees-off
 
-   4. Slotkin wants GOP prosecutions to deter young people from Trump administration jobs
+   5. Slotkin wants GOP prosecutions to deter young people from Trump administration jobs
       https://www.foxnews.com/politics/slotkin-wants-gop-prosecutions-deter-young-people-trump-administration-jobs
 
-   5. Trump says Netanyahu needs to be re-elected, or else US will have to 'finish the job’ against Iran alone
+   6. Trump says Netanyahu needs to be re-elected, or else US will have to 'finish the job’ against Iran alone
       https://www.foxnews.com/politics/trump-says-netanyahu-needs-reelected-else-us-finish-job-against-iran-alone
 
-   6. Obama backs Ilhan Omar amid probe, accuses Trump admin of 'appalling' targeting in lengthy statement
+   7. Obama backs Ilhan Omar amid probe, accuses Trump admin of 'appalling' targeting in lengthy statement
       https://www.foxnews.com/politics/obama-backs-ilhan-omar-amid-probe-accuses-trump-admin-appalling-targeting-lengthy-statement
 
-   7. Trump tries different approach with Russia to bring Americans relief amid ongoing war with Ukraine
+   8. Trump tries different approach with Russia to bring Americans relief amid ongoing war with Ukraine
       https://www.foxnews.com/politics/trump-tries-different-approach-russia-bring-americans-relief-amid-ongoing-war-ukraine
 
-   8. Smithsonian screening dispute puts museum's commitment to diverse views on trial: 'Right kind of Black?'
-      https://www.foxnews.com/politics/smithsonian-screening-dispute-puts-museums-commitment-diverse-views-trial-right-kind-black
+   9. 'The View' co-hosts defend El Sayed comparing himself to JFK over Muslim Brotherhood scrutiny
+      https://www.foxnews.com/media/view-cohosts-defend-el-sayed-comparing-himself-jfk-muslim-brotherhood-scrutiny
 
-   9. Reporter’s Notebook: Senate sneaks in one last political play before voters have their say
-      https://www.foxnews.com/politics/reporters-notebook-senate-sneaks-one-last-political-play-before-voters-have-their-say
-
-  10. France's massive intel failure sparks resignation offers amid days of rioting
-      https://www.foxnews.com/politics/frances-massive-intel-failure-sparks-resignation-offers-amid-days-rioting
+  10. The Eagles owe it to Jalen Hurts to address these serious allegations
+      https://www.foxnews.com/outkick-sports/eagles-owe-jalen-hurts-address-serious-allegations
 
 
 ============================================================
-  Generated at 12:23 PM PDT by GitHub Actions
+  Generated at 03:31 PM PDT by GitHub Actions
 ============================================================
